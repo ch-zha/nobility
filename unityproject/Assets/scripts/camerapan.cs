@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class camerapan : MonoBehaviour {
+public class Camerapan : MonoBehaviour {
 
 	//MANUALS
 	public float LEFTBOUND;
@@ -13,7 +13,7 @@ public class camerapan : MonoBehaviour {
 	private Camera cam;
 
 	//STATIC VARS
-	private Vector3 CAMERA_STARTINGPOS;
+//	private Vector3 CAMERA_STARTINGPOS;
 
 	//NONSTATIC VARS
 	private float keydir;
@@ -23,7 +23,7 @@ public class camerapan : MonoBehaviour {
 	/*Init*/
 	void Start () {
 		cam = this.gameObject.GetComponent<Camera> ();
-		CAMERA_STARTINGPOS = cam.transform.position;
+//		CAMERA_STARTINGPOS = cam.transform.position;
 	}
 
 	/*Check for edge of world*/

@@ -46,9 +46,11 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-     <Compile Include="Assets\scripts\battlemanager.cs" />
-     <Compile Include="Assets\scripts\camerapan.cs" />
-     <Compile Include="Assets\scripts\worldmanager.cs" />
+     <Compile Include="Assets\scripts\Battlemanager.cs" />
+     <Compile Include="Assets\scripts\Camerapan.cs" />
+     <Compile Include="Assets\scripts\Teamstate.cs" />
+     <Compile Include="Assets\scripts\Worldactions.cs" />
+     <Compile Include="Assets\scripts\Worldmanager.cs" />
  <Reference Include="UnityEngine.UI">
  <HintPath>C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>
  </Reference>
