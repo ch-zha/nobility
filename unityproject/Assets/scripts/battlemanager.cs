@@ -12,6 +12,14 @@ public class Battlemanager : MonoBehaviour {
 	/*Mechanic Vars*/
 	private int turn;
 
+	/*Skills*/
+	//change to fetch functions later
+	private Skill snartscreen;
+	private int snartscreenToUse;
+
+	private Skill sidebern;
+	private int sidebernToUse;
+
 	void Awake() {
 		//collect character data
 		//find GUI elements
@@ -22,15 +30,22 @@ public class Battlemanager : MonoBehaviour {
 	void Start() {
 		//initialize turn counters & stuff
 		turn = 0;
+
+		/*TESTING ONLY VARS*/
+		snartscreen = new Skill(3);
+		snartscreenToUse = snartscreen.Cooldown;
+
+		sidebern = new Skill (2);
+		sidebernToUse = sidebern.Cooldown;
 	}
 
 /*INTERFACE MANAGEMENT*/
-	void displayHealth() {
+	private void displayHealth() {
 		//add more characters later
 		PLAYERHEALTH.text = "HP:" + System.Convert.ToString(Teamstate.teamstate.player.Health);
 	}
 
-	void displayTurn() {
+	private void displayTurn() {
 		TURNCOUNT.text = "Turn:" + System.Convert.ToString (turn);
 	}
 
@@ -38,28 +53,36 @@ public class Battlemanager : MonoBehaviour {
 	/*Increment Turn*/
 	public void incrementTurn() {turn++;}
 
-	/*Character CDs*/
-	//switch to array when multiple skills implemented?
+	/*Reduce CD of all skills*/
+	private void reduceAllCD() {
+		if (snartscreenToUse != 0) { snartscreenToUse--; }
+		if (sidebernToUse != 0) { sidebernToUse--;}
+	}
 
-/*BATTLE ACTIONS*/
+/*SKILLS*/
+//move skill constructors to character scripts once mechanics set
+//replace with search function to find appropriate skills in character prefab
 
-	/*PLAYER SIDE*/
-	public void reduceHealth() {
-		//add handling for other characters later
-		Teamstate.teamstate.changeHealth(-20);
-		incrementTurn ();
-		if (Teamstate.teamstate.player.Health == 0) {
-			endBattle ();
+	public void useSnartscreen() {
+		if (snartscreenToUse == 0) {
+			reduceAllCD();
+			snartscreen.reduceHealth (this);
+			snartscreenToUse = snartscreen.Cooldown;
 		}
 	}
 
-	public void increaseHealth() {
-		Teamstate.teamstate.changeHealth (20);
-		incrementTurn ();
+	public void useSideBern() {
+		if (sidebernToUse == 0) {
+			reduceAllCD();
+			sidebern.increaseHealth (this);
+			sidebernToUse = sidebern.Cooldown;
+		}
 	}
 
-	/*ENEMY SIDE*/
-	//import enemy stats, functions, etc.
+	public void emptySkill() {
+		reduceAllCD();
+		incrementTurn ();
+	}
 
 /*GAME FUNCTIONS*/
 	public void endBattle() {
@@ -70,5 +93,9 @@ public class Battlemanager : MonoBehaviour {
 	void Update() {
 		displayHealth ();
 		displayTurn ();
+
+		//cd displays - make custom function when done writing
+		GameObject.Find ("snartscreentext").GetComponent<Text> ().text = "Snartscreen: CD " + System.Convert.ToString (snartscreenToUse);
+		GameObject.Find ("sideberntext").GetComponent<Text> ().text = "SideBern: CD " + System.Convert.ToString (sidebernToUse);
 	}
 }

@@ -1,20 +1,10 @@
 ﻿<Properties StartupItem="Assembly-CSharp.csproj">
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\scripts\Worldmanager.cs">
-    <Files>
-      <File FileName="Assets\scripts\Worldmanager.cs" Line="11" Column="17" />
-      <File FileName="Assets\scripts\Teamstate.cs" Line="45" Column="24" />
-      <File FileName="Assets\scripts\Battlemanager.cs" Line="31" Column="3" />
-      <File FileName="Assets\scripts\Characters\Windblade.cs" Line="5" Column="35" />
-      <File FileName="Assets\scripts\Characters\Character.cs" Line="12" Column="1" />
-    </Files>
-  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.WindowsPlayer" />
+  <MonoDevelop.Ide.Workbench />
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore>
-      <RunToCursorBreakpoint file="D:\GitHub\nobility\unityproject\Assets\scripts\Teamstate.cs" line="12" column="61" />
-      <RunToCursorBreakpoint file="D:\GitHub\nobility\unityproject\Assets\scripts\Teamstate.cs" line="12" column="62" />
-      <RunToCursorBreakpoint file="D:\GitHub\nobility\unityproject\Assets\scripts\Teamstate.cs" line="12" column="69" />
-      <RunToCursorBreakpoint file="D:\GitHub\nobility\unityproject\Assets\scripts\Teamstate.cs" line="12" column="70" />
+      <RunToCursorBreakpoint file="D:\GitHub\nobility\unityproject\Assets\scripts\Battlemanager.cs" line="44" column="22" />
+      <RunToCursorBreakpoint file="D:\GitHub\nobility\unityproject\Assets\scripts\Battlemanager.cs" line="45" column="25" />
     </BreakpointStore>
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />
