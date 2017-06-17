@@ -6,11 +6,20 @@ public class Teamstate : MonoBehaviour {
 
 	public static Teamstate teamstate;
 
-	private float playerhealth;
+	public Teammate player;
 
-	//add enum to handle all characters later
+	/*TEAMMATE CONSTRUCTOR FOR TEMP TEAMMATE ELEMENTS*/
+	public class Teammate {
 
-	// Use this for initialization
+		public Teammate() {
+			Health = 100;
+		}
+
+		public float Health { get; set; }
+	}
+
+	//NOTE: add enum to handle all characters later
+
 	void Awake () {
 		if (teamstate == null) {
 			DontDestroyOnLoad (this.gameObject);
@@ -23,20 +32,21 @@ public class Teamstate : MonoBehaviour {
 	void Start () {
 		//if game state present: import from game state
 		//else import defaults from character files
-		playerhealth = 100;
-	}
-
-	//Access variables
-	public float getHealth (int character) {
-		return playerhealth;
+		player = new Teammate();
 	}
 
 	// Edit team state
 	public void changeHealth (float health) {
-		playerhealth += health;
+		player.Health += health;
+		if (player.Health <= 0) {
+			player.Health = 0;
+			//call death
+		} else if (player.Health > 100) /*change condition to char's max health*/ {
+			player.Health = 100;
+		}
 	}
-	
-	// Update is called once per frame
+
+
 	void Update () {
 		
 	}

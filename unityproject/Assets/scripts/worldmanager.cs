@@ -10,11 +10,11 @@ public class Worldmanager : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		HEALTH = GameObject.FindGameObjectWithTag ("health").GetComponent<Text> ();
-		HEALTH.text = System.Convert.ToString (Teamstate.teamstate.getHealth (1));
+		HEALTH.text = System.Convert.ToString (Teamstate.teamstate.player.Health);
 	}
 	
 	// Update is called once per frame
 	void Update () {
-		
+		HEALTH.text = "HP:" + System.Convert.ToString(Teamstate.teamstate.player.Health);
 	}
 }

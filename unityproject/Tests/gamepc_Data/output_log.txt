@@ -17,32 +17,35 @@ Platform assembly: D:\GitHub\nobility\unityproject\Tests\gamepc_Data\Managed\Uni
 Loading D:\GitHub\nobility\unityproject\Tests\gamepc_Data\Managed\UnityEngine.Networking.dll into Unity Child Domain
 Platform assembly: D:\GitHub\nobility\unityproject\Tests\gamepc_Data\Managed\UnityEngine.Analytics.dll (this message is harmless)
 Loading D:\GitHub\nobility\unityproject\Tests\gamepc_Data\Managed\UnityEngine.Analytics.dll into Unity Child Domain
-- Completed reload, in  0.024 seconds
+- Completed reload, in  0.084 seconds
 Platform assembly: D:\GitHub\nobility\unityproject\Tests\gamepc_Data\Managed\System.Core.dll (this message is harmless)
 Platform assembly: D:\GitHub\nobility\unityproject\Tests\gamepc_Data\Managed\System.dll (this message is harmless)
 desktop: 1920x1080 60Hz; virtual: 1920x1080 at 0,0
 <RI> Initializing input.
 <RI> Input initialized.
 <RI> Initialized touch support.
-UnloadTime: 1.619111 ms
-Unloading 5 Unused Serialized files (Serialized files now loaded: 0)
-UnloadTime: 3.517777 ms
+UnloadTime: 2.517333 ms
+DontDestroyOnLoad only work for root GameObjects or components on root GameObjects.
+ 
+(Filename:  Line: 462)
 
-Unloading 5 unused Assets to reduce memory usage. Loaded Objects now: 290.
-Total: 0.295111 ms (FindLiveObjects: 0.046666 ms CreateObjectMapping: 0.015111 ms MarkObjects: 0.199555 ms  DeleteObjects: 0.032888 ms)
+NullReferenceException: Object reference not set to an instance of an object
+  at Worldmanager.Start () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+Unloading 5 Unused Serialized files (Serialized files now loaded: 0)
+UnloadTime: 5.099111 ms
+
+Unloading 5 unused Assets to reduce memory usage. Loaded Objects now: 304.
+Total: 0.238666 ms (FindLiveObjects: 0.020888 ms CreateObjectMapping: 0.014666 ms MarkObjects: 0.190666 ms  DeleteObjects: 0.012000 ms)
 
 Unloading 3 Unused Serialized files (Serialized files now loaded: 0)
-UnloadTime: 3.986222 ms
+UnloadTime: 2.009333 ms
 
-Unloading 5 unused Assets to reduce memory usage. Loaded Objects now: 255.
-Total: 0.271555 ms (FindLiveObjects: 0.046666 ms CreateObjectMapping: 0.010666 ms MarkObjects: 0.193777 ms  DeleteObjects: 0.020000 ms)
-
-Unloading 4 Unused Serialized files (Serialized files now loaded: 0)
-UnloadTime: 0.279111 ms
-
-Unloading 3 unused Assets to reduce memory usage. Loaded Objects now: 290.
-Total: 0.388888 ms (FindLiveObjects: 0.072000 ms CreateObjectMapping: 0.016888 ms MarkObjects: 0.277777 ms  DeleteObjects: 0.020888 ms)
+Unloading 5 unused Assets to reduce memory usage. Loaded Objects now: 273.
+Total: 0.252000 ms (FindLiveObjects: 0.024000 ms CreateObjectMapping: 0.017333 ms MarkObjects: 0.189777 ms  DeleteObjects: 0.020000 ms)
 
 Setting up 2 worker threads for Enlighten.
-  Thread -> id: 41c0 -> priority: 1 
-  Thread -> id: 1344 -> priority: 1 
+  Thread -> id: 6924 -> priority: 1 
+  Thread -> id: 5f38 -> priority: 1 
