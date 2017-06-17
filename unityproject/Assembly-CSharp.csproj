@@ -46,14 +46,16 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-     <Compile Include="Assets\scripts\Battlemanager.cs" />
-     <Compile Include="Assets\scripts\Camerapan.cs" />
+     <Compile Include="Assets\scripts\Battle State\BattleLoad.cs" />
+     <Compile Include="Assets\scripts\Battle State\BattleUI.cs" />
+     <Compile Include="Assets\scripts\Battle State\Battlemanager.cs" />
      <Compile Include="Assets\scripts\Characters\Character.cs" />
      <Compile Include="Assets\scripts\Characters\Windblade.cs" />
      <Compile Include="Assets\scripts\Skill.cs" />
      <Compile Include="Assets\scripts\Teamstate.cs" />
-     <Compile Include="Assets\scripts\Worldactions.cs" />
-     <Compile Include="Assets\scripts\Worldmanager.cs" />
+     <Compile Include="Assets\scripts\World Interaction\Camerapan.cs" />
+     <Compile Include="Assets\scripts\World Interaction\Worldactions.cs" />
+     <Compile Include="Assets\scripts\World Interaction\Worldmanager.cs" />
  <Reference Include="UnityEngine.UI">
  <HintPath>C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>
  </Reference>

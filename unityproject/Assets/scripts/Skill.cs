@@ -4,6 +4,10 @@ using UnityEngine;
 
 public class Skill {
 
+	/*Base class for all basic and character-specific skills. Still 
+	 * debating whether to use it primarily for inheriting or for 
+	 * instancing.*/
+
 	public Skill(int cd) {
 		Cooldown = cd;
 		//constructor for activate();
@@ -12,7 +16,7 @@ public class Skill {
 	public int Cooldown { get; set; }
 
 	public void activate(Battlemanager battle) {
-		//fit to constructor once done testing;
+		//adapt constructor once done testing;
 	}
 
 	/*BATTLE FUNCTIONS*/
@@ -22,15 +26,13 @@ public class Skill {
 	public void reduceHealth(Battlemanager battle) {
 		//add handling for other characters later
 		Teamstate.teamstate.changeHealth(-20);
-		battle.incrementTurn (); //delete when activate() is complete
 		if (Teamstate.teamstate.player.Health == 0) {
-			battle.endBattle ();
+			//death handling;
 		}
 	}
 
 	public void increaseHealth(Battlemanager battle) {
 		Teamstate.teamstate.changeHealth (20);
-		battle.incrementTurn (); //delete when activate() is complete
 	}
 
 	/*ENEMY SIDE*/

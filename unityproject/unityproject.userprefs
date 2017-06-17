@@ -3,8 +3,7 @@
   <MonoDevelop.Ide.Workbench />
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore>
-      <RunToCursorBreakpoint file="D:\GitHub\nobility\unityproject\Assets\scripts\Battlemanager.cs" line="44" column="22" />
-      <RunToCursorBreakpoint file="D:\GitHub\nobility\unityproject\Assets\scripts\Battlemanager.cs" line="45" column="25" />
+      <RunToCursorBreakpoint file="D:\GitHub\nobility\unityproject\Assets\scripts\Battle State\Battlemanager.cs" line="9" column="15" />
     </BreakpointStore>
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />
