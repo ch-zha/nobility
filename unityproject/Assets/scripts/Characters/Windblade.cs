@@ -8,6 +8,7 @@ public class Windblade : Character {
 		switch (level) {
 		case (1):
 			MaxHealth = 100;
+			BaseAttack = 20;
 			break;
 		case (2):
 			MaxHealth = 120;

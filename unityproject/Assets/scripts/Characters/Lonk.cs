@@ -6,6 +6,7 @@ public class Lonk : Character {
 
 	public Lonk() {
 		MaxHealth = 80;
+		BaseAttack = 15;
 	}
 
 }

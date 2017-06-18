@@ -47,6 +47,17 @@ public class BattleUI : MonoBehaviour {
 		}
 	}
 
+	/*Parse player input: move to separate script when layout set*/
+	public void optionOne() {
+		switch (teamOne.value) {
+		case (0):
+			break;
+		case (1):
+			TEAM.teamOne.selected = Participant.Action.ATTACK;
+			break;
+		}
+	}
+
 
 /*DISPLAYS*/
 

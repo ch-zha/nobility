@@ -7,6 +7,7 @@ public class Participant {
 	public Character source;
 
 	public float currentHealth {get; set;}
+	public float currentAttack {get; set;}
 	public bool dead;
 	public int cooldown { get; set;}
 
@@ -22,6 +23,7 @@ public class Participant {
 
 		dead = false;
 		currentHealth = source.MaxHealth;
+		currentAttack = source.BaseAttack;
 		selected = Action.NONE;
 		//cooldown = source.whatever;
 	}

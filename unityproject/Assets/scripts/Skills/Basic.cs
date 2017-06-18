@@ -5,7 +5,7 @@ using UnityEngine;
 public static class Basic {
 
 	public static void attack(Participant user, Participant target) {
-		target.currentHealth -= 20;
+		target.currentHealth -= user.currentAttack;
 		if (target.currentHealth <= 0) {
 			target.currentHealth = 0;
 			target.dead = true;

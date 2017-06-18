@@ -11,9 +11,8 @@ public class Battlemanager : MonoBehaviour {
 	public enum BattleState {
 		START,
 		PLAYERCHOICE,
-		PLAYERANIMATE,
 		ENEMYCHOICE,
-		ENEMYANIMATE,
+		ATTACKANIMATE,
 		DIALOGUE,
 		LOSE,
 		WIN
@@ -32,16 +31,7 @@ public class Battlemanager : MonoBehaviour {
 	private void incrementTurn() {turn++;}
 
 /*PLAYER OPTIONS*/
-
-	public void optionOne() {
-		switch (DISPLAY.teamOne.value) {
-		case (0):
-			break;
-		case (1):
-			TEAM.teamOne.selected = Participant.Action.ATTACK;
-			break;
-		}
-	}
+	//?????????????????????????
 
 /*THE GAME, IT DO STUFF*/
 	private void doPlayerStuff() {
@@ -64,9 +54,9 @@ public class Battlemanager : MonoBehaviour {
 /*GAME FUNCTIONS*/
 	public void endTurn() {
 		if (currentState == BattleState.PLAYERCHOICE) {
-			currentState = BattleState.PLAYERANIMATE;
+			currentState = BattleState.ENEMYCHOICE;
 		} else if (currentState == BattleState.ENEMYCHOICE) {
-			currentState = BattleState.ENEMYANIMATE;
+			currentState = BattleState.ATTACKANIMATE;
 		}
 	}
 
@@ -106,14 +96,11 @@ public class Battlemanager : MonoBehaviour {
 			break;
 		case(BattleState.PLAYERCHOICE):
 			break;
-		case(BattleState.PLAYERANIMATE):
-			doPlayerStuff ();
-			clearCharacterActions ();
-			currentState = BattleState.ENEMYCHOICE;
-			break;
 		case(BattleState.ENEMYCHOICE):
 			break;
-		case(BattleState.ENEMYANIMATE):
+		case(BattleState.ATTACKANIMATE):
+			doPlayerStuff ();
+			clearCharacterActions ();
 			enemyActions ();
 			incrementTurn();
 			currentState = BattleState.PLAYERCHOICE;
