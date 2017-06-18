@@ -18,7 +18,7 @@ public class Teamstate : MonoBehaviour {
 		public float Health { get; set; }
 	}
 
-	//NOTE: add enum to handle all characters later
+	//NOTE: add enum to handle all characters later?
 
 	void Awake () {
 		if (teamstate == null) {

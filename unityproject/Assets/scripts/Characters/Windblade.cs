@@ -4,8 +4,14 @@ using UnityEngine;
 
 public class Windblade : Character {
 
-	void Start() {
-		this.MaxHealth = 100;
+	public Windblade(int level) {
+		switch (level) {
+		case (1):
+			MaxHealth = 100;
+			break;
+		case (2):
+			MaxHealth = 120;
+			break;
+		}
 	}
-
 }

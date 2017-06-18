@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public abstract class Character : MonoBehaviour {
+public class Character {
 
 	/*The abstract class Character is the base class 
 	 * for all other character classes to extend from. 
@@ -10,20 +10,13 @@ public abstract class Character : MonoBehaviour {
 	 * in the future.*/
 
 	/*STATIC PROPERTIES*/
-	public float MaxHealth { get; set; }
-	public float BaseAttack { get; set; }
-	public float BaseDefense { get; set; }
+	public float MaxHealth;
+	//abstract public float BaseAttack { get; }
+	//abstract public float BaseDefense { get; }
+	public Skill CharSkill;
 
 	/*SKILLS*/
 
-
-	/*CASE HANDLING FOR LEVELS*/
-
-
-	void Start() {
+	void Start () {
 	}
-
-	void Update() {
-	}
-
 }

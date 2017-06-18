@@ -5,9 +5,8 @@ using UnityEngine.UI;
 
 public class Battlemanager : MonoBehaviour {
 
-	/*Battlemanager manages the battle state machine and
-	 * any variables or functions specific to the battle
-	 * instance.*/
+	/*Battlemanager manages the battle state machine and 
+	 * non-team-specific functions.*/
 
 	public enum BattleState {
 		START,
@@ -23,99 +22,109 @@ public class Battlemanager : MonoBehaviour {
 	public BattleState currentState;
 	public int turn;
 
-	private BattleLoad LOAD;
+	//private BattleLoad LOAD;
 	private BattleUI DISPLAY;
+	private Playerstatus TEAM;
+	private Enemystatus ENEMY;
 
-	/*NOTE: TRANSFER ALL TEST VARIABLES TO PROPER CLASSES WHEN BUILT*/
+/*BATTLE STRUCTURE*/
+	/*Increment Turn*/
+	private void incrementTurn() {turn++;}
 
-	/*Skills*/
-	//change to fetch functions later
-	private Skill snartscreen;
-	private int snartscreenToUse;
+/*PLAYER OPTIONS*/
 
-	private Skill sidebern;
-	private int sidebernToUse;
+	public void optionOne() {
+		switch (DISPLAY.teamOne.value) {
+		case (0):
+			break;
+		case (1):
+			TEAM.teamOne.selected = Participant.Action.ATTACK;
+			break;
+		}
+	}
 
+/*THE GAME, IT DO STUFF*/
+	private void doPlayerStuff() {
+		switch (TEAM.teamOne.selected) {
+		case (Participant.Action.ATTACK):
+			Basic.attack (TEAM.teamOne, ENEMY.enemyOne);
+			break;
+		}
+	}
+
+	private void clearCharacterActions() { 
+		TEAM.teamOne.selected = Participant.Action.NONE;
+		DISPLAY.teamOne.value = 0;
+	}
+
+	private void enemyActions() {
+		Basic.attack (ENEMY.enemyOne, TEAM.teamOne);
+	}
+
+/*GAME FUNCTIONS*/
+	public void endTurn() {
+		if (currentState == BattleState.PLAYERCHOICE) {
+			currentState = BattleState.PLAYERANIMATE;
+		} else if (currentState == BattleState.ENEMYCHOICE) {
+			currentState = BattleState.ENEMYANIMATE;
+		}
+	}
+
+	public void endBattle() {
+		UnityEngine.SceneManagement.SceneManager.LoadScene (0);
+	}
+
+	public void checkVictory() {
+		if (TEAM.allDead == true) {
+			currentState = BattleState.LOSE;
+		} else if (ENEMY.allDead == true) {
+			currentState = BattleState.WIN;
+		}
+	}
+
+
+/*START*/
 	void Start() {
 		//initialize turn counters & stuff
 		turn = 0;
 		currentState = BattleState.START;
 
-		LOAD = this.gameObject.GetComponent<BattleLoad> ();
+		//LOAD = this.gameObject.GetComponent<BattleLoad> ();
 		DISPLAY = this.gameObject.GetComponent<BattleUI> ();
-
-		/*TESTING ONLY VARS*/
-		snartscreen = new Skill(3);
-		snartscreenToUse = snartscreen.Cooldown;
-
-		sidebern = new Skill (2);
-		sidebernToUse = sidebern.Cooldown;
-	}
-
-/*INTERFACE MANAGEMENT*/
-//move to UI class later
-
-/*BATTLE STRUCTURE*/
-	/*Increment Turn*/
-	public void incrementTurn() {turn++;}
-
-	/*Reduce CD of all skills (Testing Only)*/
-	private void reduceAllCD() {
-		if (snartscreenToUse != 0) { snartscreenToUse--; }
-		if (sidebernToUse != 0) { sidebernToUse--;}
-	}
-
-/*SKILLS*/
-//move skill constructors to character scripts once mechanics set
-//replace with search function to find appropriate skills in character prefab
-
-	public void useSnartscreen() {
-		if (snartscreenToUse == 0) {
-			reduceAllCD();
-			snartscreen.reduceHealth (this);
-			snartscreenToUse = snartscreen.Cooldown;
-		}
-	}
-
-	public void useSideBern() {
-		if (sidebernToUse == 0) {
-			reduceAllCD();
-			sidebern.increaseHealth (this);
-			sidebernToUse = sidebern.Cooldown;
-		}
-	}
-
-	public void emptySkill() {
-		reduceAllCD();
-		incrementTurn ();
-	}
-
-/*GAME FUNCTIONS*/
-	public void endBattle() {
-		UnityEngine.SceneManagement.SceneManager.LoadScene (0);
+		TEAM = this.gameObject.GetComponent<Playerstatus> ();
+		ENEMY = this.gameObject.GetComponent<Enemystatus> ();
 	}
 
 /*UPDATE*/
 	void Update() {
 
-		//cd displays - move to UI class when done writing
-		GameObject.Find ("snartscreentext").GetComponent<Text> ().text = "Snartscreen: CD " + System.Convert.ToString (snartscreenToUse);
-		GameObject.Find ("sideberntext").GetComponent<Text> ().text = "SideBern: CD " + System.Convert.ToString (sidebernToUse);
+		checkVictory ();
 
 		switch(currentState) {
+		case(BattleState.START):
+			currentState = BattleState.PLAYERCHOICE;
+			break;
 		case(BattleState.PLAYERCHOICE):
 			break;
 		case(BattleState.PLAYERANIMATE):
+			doPlayerStuff ();
+			clearCharacterActions ();
+			currentState = BattleState.ENEMYCHOICE;
 			break;
 		case(BattleState.ENEMYCHOICE):
 			break;
 		case(BattleState.ENEMYANIMATE):
+			enemyActions ();
+			incrementTurn();
+			currentState = BattleState.PLAYERCHOICE;
 			break;
 		case(BattleState.DIALOGUE):
 			break;
 		case(BattleState.WIN):
+			endBattle ();
 			break;
 		case(BattleState.LOSE):
+			endBattle ();
 			break;
 		}
 	}
