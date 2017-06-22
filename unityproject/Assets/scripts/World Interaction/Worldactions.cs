@@ -15,6 +15,10 @@ public class Worldactions : MonoBehaviour {
 		UnityEngine.SceneManagement.SceneManager.LoadScene(1);
 	}
 
+	public void onClick() {
+		Debug.Log ("Been clicked");
+	}
+
 	public void die(GameObject me) {
 		Destroy (me);
 	}
