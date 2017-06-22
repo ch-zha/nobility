@@ -10,9 +10,11 @@ public class Character {
 	 * in the future.*/
 
 	/*STATIC PROPERTIES*/
-	public float MaxHealth {get; set; }
+	public float BaseHealth {get; set; }
 	public float BaseAttack { get; set;}
-	//abstract public float BaseDefense { get; }
+	public float BaseGuard { get; set;}
+
+	public int Cooldown { get; set;}
 	public Skill CharSkill;
 
 	/*SKILLS*/

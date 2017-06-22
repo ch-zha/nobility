@@ -8,20 +8,22 @@ public class BattleLoad : MonoBehaviour {
 	 * from the game state / character roster and loads
 	 * them into the appropriate character/interface slots. */
 
-	private Battlemanager STATE;
-	private BattleUI DISPLAY;
+	//private Battlemanager STATE;
+	//private BattleUI DISPLAY;
+
+	public TeamStatus TEAM;
+	public TeamStatus ENEMY;
 
 	// Use this for initialization
 	void Start () {
 		/*Load Partner Scripts*/
-		DISPLAY = this.gameObject.GetComponent<BattleUI> ();
-		STATE = this.gameObject.GetComponent<Battlemanager> ();
+		//DISPLAY = this.gameObject.GetComponent<BattleUI> ();
+		//STATE = this.gameObject.GetComponent<Battlemanager> ();
 
 		//collect character data
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
+
+		TEAM = new TeamStatus (new Windblade (1));
+		ENEMY = new TeamStatus (new Lonk());
+
 	}
 }

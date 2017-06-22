@@ -2,7 +2,15 @@
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.WindowsPlayer" />
   <MonoDevelop.Ide.Workbench />
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
-    <BreakpointStore />
+    <BreakpointStore>
+      <RunToCursorBreakpoint file="D:\GitHub\nobility\unityproject\Assets\scripts\Battle State\Participant.cs" line="10" column="35" />
+      <RunToCursorBreakpoint file="D:\GitHub\nobility\unityproject\Assets\scripts\Battle State\Participant.cs" line="11" column="31" />
+      <RunToCursorBreakpoint file="D:\GitHub\nobility\unityproject\Assets\scripts\Battle State\Battlemanager.cs" line="50" column="8" />
+      <RunToCursorBreakpoint file="D:\GitHub\nobility\unityproject\Assets\scripts\Battle State\BattleUI.cs" line="56" column="10" />
+      <RunToCursorBreakpoint file="D:\GitHub\nobility\unityproject\Assets\scripts\Battle State\Battlemanager.cs" line="88" column="7" />
+      <RunToCursorBreakpoint file="D:\GitHub\nobility\unityproject\Assets\scripts\Battle State\Battlemanager.cs" line="89" column="22" />
+      <RunToCursorBreakpoint file="D:\GitHub\nobility\unityproject\Assets\scripts\Battle State\Battlemanager.cs" line="106" column="15" />
+    </BreakpointStore>
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />
 </Properties>

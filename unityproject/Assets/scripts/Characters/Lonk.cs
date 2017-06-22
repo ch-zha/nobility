@@ -5,8 +5,11 @@ using UnityEngine;
 public class Lonk : Character {
 
 	public Lonk() {
-		MaxHealth = 80;
+		BaseHealth = 80;
 		BaseAttack = 15;
+		BaseGuard = 15;
+
+		Cooldown = 3;
 	}
 
 }

@@ -21,10 +21,8 @@ public class Battlemanager : MonoBehaviour {
 	public BattleState currentState;
 	public int turn;
 
-	//private BattleLoad LOAD;
+	private BattleLoad LOAD;
 	private BattleUI DISPLAY;
-	private Playerstatus TEAM;
-	private Enemystatus ENEMY;
 
 /*BATTLE STRUCTURE*/
 	/*Increment Turn*/
@@ -34,24 +32,82 @@ public class Battlemanager : MonoBehaviour {
 	//?????????????????????????
 
 /*THE GAME, IT DO STUFF*/
-	private void doPlayerStuff() {
-		switch (TEAM.teamOne.selected) {
-		case (Participant.Action.ATTACK):
-			Basic.attack (TEAM.teamOne, ENEMY.enemyOne);
+	private void chooseEnemyActions() {
+		Debug.Log ("Picking enemy action");
+
+		int action = Random.Range (1, 3);
+		switch (action) {
+		case (1):
+			LOAD.ENEMY.teamOne.selected = Participant.Action.ATTACK;
+			break;
+		case (2):
+			LOAD.ENEMY.teamOne.selected = Participant.Action.GUARD;
 			break;
 		}
 	}
 
-	private void clearCharacterActions() { 
-		TEAM.teamOne.selected = Participant.Action.NONE;
-		DISPLAY.teamOne.value = 0;
+	private void applyCharacterActions(TeamStatus team, Participant user) {
+		if (team.teamOne != user) {
+			Debug.Log("Character does not belong to that team.");
+			return; //add error handling for other users when implemented;
+		}
+
+		switch (user.selected) {
+		case (Participant.Action.NONE):
+			break;
+		case (Participant.Action.ATTACK):
+			otherTeam(team).addDamage (user);
+			break;
+		case (Participant.Action.GUARD):
+			team.addGuard (user);
+			break;
+		}
 	}
 
-	private void enemyActions() {
-		Basic.attack (ENEMY.enemyOne, TEAM.teamOne);
+	private void doBattle() {
+		Debug.Log ("Doing battle.");
+
+		applyCharacterActions (LOAD.TEAM, LOAD.TEAM.teamOne);
+		applyCharacterActions (LOAD.ENEMY, LOAD.ENEMY.teamOne);
+
+		LOAD.TEAM.calculateDamage ();
+		LOAD.ENEMY.calculateDamage ();
+	}
+
+	private void clearCharacterActions() {
+		Debug.Log ("Clearing Actions");
+
+		LOAD.TEAM.teamOne.selected = Participant.Action.NONE; //change to a function inside TeamStatus;
+		DISPLAY.teamOne.value = 0; //change to a function inside BattleUI
+		LOAD.TEAM.clearAll();
+		LOAD.ENEMY.clearAll ();
 	}
 
 /*GAME FUNCTIONS*/
+	private TeamStatus otherTeam(TeamStatus team) {
+		if (team == LOAD.TEAM) {
+			return LOAD.ENEMY;
+		} else if (team == LOAD.ENEMY) {
+			return LOAD.TEAM;
+		} else {
+			Debug.Log("Not a valid team.");
+			return null;
+		}
+	}
+
+	private bool animationStarted = false;
+	IEnumerator BattleAnimation() {
+		if (animationStarted == true) {
+			yield break;
+		}
+		Debug.Log ("Starting battle animation");
+		animationStarted = true;
+		yield return new WaitForSeconds(2);
+		doBattle ();
+		clearCharacterActions ();
+		currentState = BattleState.START;
+	}
+
 	public void endTurn() {
 		if (currentState == BattleState.PLAYERCHOICE) {
 			currentState = BattleState.ENEMYCHOICE;
@@ -64,10 +120,10 @@ public class Battlemanager : MonoBehaviour {
 		UnityEngine.SceneManagement.SceneManager.LoadScene (0);
 	}
 
-	public void checkVictory() {
-		if (TEAM.allDead == true) {
+	private void checkVictory() {
+		if (LOAD.TEAM.allDead == true) {
 			currentState = BattleState.LOSE;
-		} else if (ENEMY.allDead == true) {
+		} else if (LOAD.ENEMY.allDead == true) {
 			currentState = BattleState.WIN;
 		}
 	}
@@ -79,10 +135,8 @@ public class Battlemanager : MonoBehaviour {
 		turn = 0;
 		currentState = BattleState.START;
 
-		//LOAD = this.gameObject.GetComponent<BattleLoad> ();
+		LOAD = this.gameObject.GetComponent<BattleLoad> ();
 		DISPLAY = this.gameObject.GetComponent<BattleUI> ();
-		TEAM = this.gameObject.GetComponent<Playerstatus> ();
-		ENEMY = this.gameObject.GetComponent<Enemystatus> ();
 	}
 
 /*UPDATE*/
@@ -92,25 +146,30 @@ public class Battlemanager : MonoBehaviour {
 
 		switch(currentState) {
 		case(BattleState.START):
+			Debug.Log ("START");
+			incrementTurn ();
+			animationStarted = false;
 			currentState = BattleState.PLAYERCHOICE;
 			break;
 		case(BattleState.PLAYERCHOICE):
 			break;
 		case(BattleState.ENEMYCHOICE):
+			Debug.Log("ENEMY CHOICE");
+			chooseEnemyActions ();
+			currentState = BattleState.ATTACKANIMATE;
 			break;
 		case(BattleState.ATTACKANIMATE):
-			doPlayerStuff ();
-			clearCharacterActions ();
-			enemyActions ();
-			incrementTurn();
-			currentState = BattleState.PLAYERCHOICE;
+			StartCoroutine (BattleAnimation ());
 			break;
 		case(BattleState.DIALOGUE):
+			Debug.Log ("DIALOGUE");
 			break;
 		case(BattleState.WIN):
+			Debug.Log("WIN");
 			endBattle ();
 			break;
 		case(BattleState.LOSE):
+			Debug.Log ("LOSE");
 			endBattle ();
 			break;
 		}

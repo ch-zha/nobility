@@ -9,17 +9,13 @@ public class BattleUI : MonoBehaviour {
 	 * and manages outputs.*/
 
 	private Battlemanager STATE;
-	//private BattleLoad LOAD;
-	private Playerstatus TEAM;
-	private Enemystatus ENEMY;
+	private BattleLoad LOAD;
 
 	// Use this for initialization
 	void Start () {
 		/*Load Partner Scripts*/
-		//LOAD = this.gameObject.GetComponent<BattleLoad> ();
+		LOAD = this.gameObject.GetComponent<BattleLoad> ();
 		STATE = this.gameObject.GetComponent<Battlemanager> ();
-		TEAM = this.gameObject.GetComponent<Playerstatus> ();
-		ENEMY = this.gameObject.GetComponent<Enemystatus> ();
 
 		//find GUI elements
 		PLAYERHEALTH = GameObject.Find("p1health").GetComponent<Text>();
@@ -34,16 +30,20 @@ public class BattleUI : MonoBehaviour {
 /*BUTTON HANDLING*/
 
 	public Dropdown teamOne;
+	public Button endTurn;
 
 	private void findPlayerUI() {
 		teamOne = GameObject.Find ("p1choice").GetComponent<Dropdown> ();
+		endTurn = GameObject.Find ("endturn").GetComponent<Button> ();
 			}
 
 	private void buttonEnabler() {
 		if (STATE.currentState == Battlemanager.BattleState.PLAYERCHOICE) {
 			teamOne.enabled = true;
+			endTurn.enabled = true;
 		} else {
 			teamOne.enabled = false;
+			endTurn.enabled = false;
 		}
 	}
 
@@ -53,7 +53,10 @@ public class BattleUI : MonoBehaviour {
 		case (0):
 			break;
 		case (1):
-			TEAM.teamOne.selected = Participant.Action.ATTACK;
+			LOAD.TEAM.teamOne.selected = Participant.Action.ATTACK;
+			break;
+		case (2):
+			LOAD.TEAM.teamOne.selected = Participant.Action.GUARD;
 			break;
 		}
 	}
@@ -67,8 +70,8 @@ public class BattleUI : MonoBehaviour {
 
 	private void displayHealth() {
 		//add more characters later
-		PLAYERHEALTH.text = "HP:" + System.Convert.ToString(TEAM.teamOne.currentHealth);
-		ENEMYHEALTH.text = "HP:" + System.Convert.ToString(ENEMY.enemyOne.currentHealth);
+		PLAYERHEALTH.text = "HP:" + System.Convert.ToString(LOAD.TEAM.teamHealth) + "/" + System.Convert.ToString(LOAD.TEAM.teamMaxHealth);
+		ENEMYHEALTH.text = "HP:" + System.Convert.ToString(LOAD.ENEMY.teamHealth) + "/" + System.Convert.ToString(LOAD.ENEMY.teamMaxHealth);
 	}
 
 	private void displayTurn() {

@@ -7,11 +7,14 @@ public class Windblade : Character {
 	public Windblade(int level) {
 		switch (level) {
 		case (1):
-			MaxHealth = 100;
+			BaseHealth = 100;
 			BaseAttack = 20;
+			BaseGuard = 20;
+
+			Cooldown = 2;
 			break;
 		case (2):
-			MaxHealth = 120;
+			BaseHealth = 120;
 			break;
 		}
 	}
