@@ -46,6 +46,23 @@ public class Battlemanager : MonoBehaviour {
 		}
 	}
 
+	private void applyPriorityActions(TeamStatus team, Participant user) {
+		if (team.teamOne != user) {
+			Debug.Log("Character does not belong to that team.");
+			return; //add error handling for other users when implemented;
+		}
+
+		switch (user.selected) {
+		case (Participant.Action.NONE):
+			break;
+		case (Participant.Action.ATTACK):
+			break;
+		case (Participant.Action.GUARD):
+			team.addGuard (user);
+			break;
+		}
+	}
+
 	private void applyCharacterActions(TeamStatus team, Participant user) {
 		if (team.teamOne != user) {
 			Debug.Log("Character does not belong to that team.");
@@ -56,10 +73,9 @@ public class Battlemanager : MonoBehaviour {
 		case (Participant.Action.NONE):
 			break;
 		case (Participant.Action.ATTACK):
-			otherTeam(team).addDamage (user);
+			otherTeam(team).attack (user);
 			break;
 		case (Participant.Action.GUARD):
-			team.addGuard (user);
 			break;
 		}
 	}
@@ -67,11 +83,13 @@ public class Battlemanager : MonoBehaviour {
 	private void doBattle() {
 		Debug.Log ("Doing battle.");
 
+		applyPriorityActions (LOAD.TEAM, LOAD.TEAM.teamOne);
+		applyPriorityActions (LOAD.ENEMY, LOAD.ENEMY.teamOne);
+
+		//when speed stat implemented, sort characters by speed into array & implement normal actions through loop;
+
 		applyCharacterActions (LOAD.TEAM, LOAD.TEAM.teamOne);
 		applyCharacterActions (LOAD.ENEMY, LOAD.ENEMY.teamOne);
-
-		LOAD.TEAM.calculateDamage ();
-		LOAD.ENEMY.calculateDamage ();
 	}
 
 	private void clearCharacterActions() {

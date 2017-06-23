@@ -31,8 +31,8 @@ public class TeamStatus {
 	}
 
 	/*TURN RESULTS*/
-	public void calculateDamage() {
-		teamHealth -= Mathf.Round (turnDamage * (100 - turnGuard)/100);
+	public void attack(Participant user) {
+		teamHealth -= Mathf.Round (user.currentAttack * (100 - turnGuard)/100);
 		if (teamHealth <= 0) {
 			teamHealth = 0;
 			allDead = true;
