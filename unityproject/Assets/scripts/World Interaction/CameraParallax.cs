@@ -10,57 +10,69 @@ public class CameraParallax : MonoBehaviour {
 	//MANUALS
 	public float LEFTBOUND;
 	public float RIGHTBOUND;
-	public Vector3 CAMERA_SPEED = new Vector3(1, 0, 0);
+	public float SCROLL_SPEED = 1F;
+	public float ZOOM_SPEED = .5F;
 
 	//GAME OBJECTS/COMPONENTS
 	private Camera cam;
+	private Camera farCam;
+	private Camera nearCam;
 
 	//STATIC VARS
-//	private Vector3 CAMERA_STARTINGPOS;
+	private Vector3 CAMERA_STARTINGPOS;
 
 	//NONSTATIC VARS
 	private float keydir;
+	private float keyzoom;
 	private Vector3 movement;
 	private float cam_pos;
 
 	/*Init*/
 	void Start () {
 		cam = this.gameObject.GetComponent<Camera> ();
-//		CAMERA_STARTINGPOS = cam.transform.position;
+		nearCam = GameObject.Find("Parallax Near Camera").GetComponent<Camera> ();
+		farCam = GameObject.Find("Parallax Far Camera").GetComponent<Camera> ();
+		CAMERA_STARTINGPOS = cam.transform.position;
 	}
 
 	/*Check for edge of world*/
 	bool hitEdge(float keydir){
 		cam_pos = cam.transform.position.x;
 
-		if (cam_pos <= LEFTBOUND && keydir < 0) {
+		if (cam_pos <= CAMERA_STARTINGPOS.x - LEFTBOUND && keydir < 0) {
 			return true;
-		} else if (cam_pos >= RIGHTBOUND && keydir > 0) {
+		} else if (cam_pos >= CAMERA_STARTINGPOS.x + RIGHTBOUND && keydir > 0) {
 			return true;
 		}
 		return false;
 	}
-/*
-	/*PARALLAX ZOOM (HOW IT WORK THO - FIGURE OUT LATER)
-	public float GetFieldOfView(float orthoSize, float distanceFromOrigin)
-	{
-		// orthoSize
-		float a = orthoSize;
-		// distanceFromOrigin
-		float b = Mathf.Abs(distanceFromOrigin);
 
-		float fieldOfView = Mathf.Atan(a / b)  * Mathf.Rad2Deg * 2f;
-		return fieldOfView;
+	/*PARALLAX ZOOM*/
+	public void GetFieldOfView() {
+
+		//float a = cam.orthographicSize;
+		float b = Mathf.Abs (cam.transform.position.z);
+
+		//Set Ortho Zoom FOV
+		//farCam.fieldOfView = Mathf.Atan(a/b) * Mathf.Rad2Deg * 2f;
+		//nearCam.fieldOfView = farCam.fieldOfView;
+
+		//Set Parallax Clipping Planes
+
+		farCam.nearClipPlane = b;
+		farCam.farClipPlane = cam.farClipPlane;
+		nearCam.farClipPlane = b;
+		nearCam.nearClipPlane = cam.nearClipPlane;
 	}
-
-*/
 
 	/* Update is called once per frame */
 	void Update () {
 
 		//update movement
 		keydir = Input.GetAxis ("Horizontal");
-		movement = Vector3.Scale(CAMERA_SPEED, new Vector3(keydir, 0, 0));
+		keyzoom = Input.GetAxis ("Vertical");
+		movement = new Vector3(keydir*SCROLL_SPEED, 0, keyzoom * ZOOM_SPEED);
+		cam.orthographicSize += - keyzoom * ZOOM_SPEED;
 	}
 
 	void FixedUpdate () {
@@ -69,6 +81,8 @@ public class CameraParallax : MonoBehaviour {
 		if (hitEdge (keydir)) {
 			return;
 		}
+
+		GetFieldOfView ();
 
 		//move camera
 		cam.transform.Translate (movement);

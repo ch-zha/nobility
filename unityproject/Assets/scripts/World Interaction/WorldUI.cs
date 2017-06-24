@@ -13,14 +13,14 @@ public class WorldUI : MonoBehaviour {
 
 	public void initDialogueOne() {
 		DIALOGUES[0].SetActive (true);
-		CONTROLS.enabled = false;
+		//CONTROLS.enabled = false;
 	}
 
 	public void exitDialogue() {
 		foreach (GameObject dialogue in DIALOGUES) {
 			dialogue.SetActive (false);
 		}
-		CONTROLS.enabled = true;
+		//CONTROLS.enabled = true;
 	}
 
 	// Use this for initialization

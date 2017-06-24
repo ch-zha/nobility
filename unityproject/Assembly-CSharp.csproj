@@ -50,6 +50,7 @@
      <Compile Include="Assets\scripts\Battle State\BattleUI.cs" />
      <Compile Include="Assets\scripts\Battle State\Battlemanager.cs" />
      <Compile Include="Assets\scripts\Battle State\Participant.cs" />
+     <Compile Include="Assets\scripts\Battle State\PlayerOptions.cs" />
      <Compile Include="Assets\scripts\Battle State\TeamStatus.cs" />
      <Compile Include="Assets\scripts\Characters\Character.cs" />
      <Compile Include="Assets\scripts\Characters\Lonk.cs" />
