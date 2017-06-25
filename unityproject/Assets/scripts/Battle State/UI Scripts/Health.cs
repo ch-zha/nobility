@@ -62,11 +62,12 @@ public class Health : MonoBehaviour {
 				yield return new WaitForFixedUpdate();
 			}
 		} else if (barCurrentPercent == targetPercent) {
-			Debug.Log("No adjustments");
+			//Debug.Log("No adjustments");
+			healthUpdated = true;
 			yield break;
 		}
 		healthUpdated = true;
-		Debug.Log ("Done drawing");
+		//Debug.Log ("Done drawing");
 	}
 
 	public bool healthUpdated;

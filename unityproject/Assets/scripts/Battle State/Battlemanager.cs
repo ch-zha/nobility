@@ -38,9 +38,10 @@ public class Battlemanager : MonoBehaviour {
 
 /*THE GAME, IT DO STUFF*/
 	private void chooseEnemyActions() {
-		Debug.Log ("Picking enemy action");
+		//Debug.Log ("Picking enemy action");
 
-		int action = UnityEngine.Random.Range (1, 4);
+		int action = EnemyAI.randomDecision (LOAD.ENEMY.TEAMMATES [0]);
+
 		Debug.Log ("Enemy Action: " + System.Convert.ToString (action));
 		switch (action) {
 		case (1):
@@ -135,11 +136,6 @@ public class Battlemanager : MonoBehaviour {
 		}
 	}
 
-	private void clearCharacterActions() {
-		LOAD.TEAM.clearAll ();
-		LOAD.ENEMY.clearAll ();
-	}
-
 /*GAME FUNCTIONS*/
 	private TeamStatus otherTeam(TeamStatus team) {
 		if (team == LOAD.TEAM) {
@@ -199,6 +195,7 @@ public class Battlemanager : MonoBehaviour {
 			animationStarted = false;
 			OPTIONS.resetOptions ();
 			LOAD.TEAM.updateCDs ();
+			LOAD.ENEMY.updateCDs ();
 			OPTIONS.cooldownDisable ();
 			OPTIONS.toggleOn (true);
 			currentState = BattleState.PLAYERCHOICE;
@@ -216,12 +213,14 @@ public class Battlemanager : MonoBehaviour {
 			currentState = BattleState.ANIMATION;
 			break;
 		case(BattleState.ANIMATION):
+			//Debug.Log (System.Convert.ToString (DISPLAY.healthUpdated()));
 			if (DISPLAY.healthUpdated()) {
-				currentState = BattleState.START;
+				currentState = BattleState.END;
 			}
 			break;
 		case(BattleState.END):
-			clearCharacterActions ();
+			LOAD.TEAM.nextTurn ();
+			LOAD.ENEMY.nextTurn ();
 			currentState = BattleState.START;
 			break;
 		case(BattleState.DIALOGUE):

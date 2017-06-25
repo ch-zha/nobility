@@ -61,5 +61,7 @@ public class BattleUI : MonoBehaviour {
 	}
 
 	void Update() {
+		//Debug.Log ("Enemy health updated:" + System.Convert.ToString(enemyHealth.healthUpdated));
+		//Debug.Log ("Player health updated:" + System.Convert.ToString(playerHealth.healthUpdated));
 	}
 }

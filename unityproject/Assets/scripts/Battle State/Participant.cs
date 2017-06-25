@@ -12,6 +12,7 @@ public class Participant {
 	public Skill skill {get; set;}
 
 	public float currentAttack {get; set;}
+	public float currentSpeed { get; set;}
 	public int cooldown { get; set;}
 
 	public Action selected;
@@ -32,6 +33,7 @@ public class Participant {
 		skill = source.Skill;
 
 		currentAttack = source.BaseAttack;
+		currentSpeed = source.BaseSpeed;
 		selected = Action.NONE;
 		cooldown = baseCD;
 	}
@@ -44,13 +46,29 @@ public class Participant {
 		}
 	}
 
+	public void resetSpeed() {
+		currentSpeed = source.BaseSpeed;
+	}
+
+	public void changeSpeed(float buff) {
+		currentSpeed *= buff;
+	}
+
+	public void resetAttack() {
+		currentAttack = source.BaseAttack;
+	}
+
+	public void changeAttack(float buff) {
+		currentAttack *= buff;
+	}
+
 	public void clearSelected() {
 		selected = Action.NONE;
 	}
 
 	public override string ToString ()
 	{
-		return string.Format ("Char: {0}", source);
+		return string.Format ("Battler: {0}", source);
 	}
 
 }

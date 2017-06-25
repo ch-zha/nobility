@@ -18,8 +18,9 @@ public class Character {
 
 	/*STATIC PROPERTIES*/
 	public float BaseHealth {get; set; }
-	public float BaseAttack { get; set;}
-	public float BaseGuard { get; set;}
+	public float BaseAttack { get; set; }
+	public float BaseGuard { get; set; }
+	public float BaseSpeed { get; set; }
 
 	public int Cooldown { get; set;}
 	public Skill Skill { get; set;}

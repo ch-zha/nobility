@@ -24,7 +24,7 @@ public class BattleLoad : MonoBehaviour {
 
 		//collect character data
 
-		TEAM = new TeamStatus (new Participant[] {new Participant(new Xenon (Character.BONDSTATE.ONE)), new Participant(new Xenon (Character.BONDSTATE.TWO)), new Participant(new Xenon (Character.BONDSTATE.ONE))});
+		TEAM = new TeamStatus (new Participant[] {new Participant(new Xenon (Character.BONDSTATE.ONE)), new Participant(new Helium (Character.BONDSTATE.ONE)), new Participant (new Helium (Character.BONDSTATE.TWO))});
 		ENEMY = new TeamStatus (new Participant[] {new Participant (new Xenon(Character.BONDSTATE.ENEMY)), null, null});
 
 		Debug.Log (System.Convert.ToString (TEAM.TEAMMATES[0]) + ", " + System.Convert.ToString (TEAM.TEAMMATES[1]) + ", " + System.Convert.ToString (TEAM.TEAMMATES[2]));

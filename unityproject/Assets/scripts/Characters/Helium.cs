@@ -2,10 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Xenon : Character {
+public class Helium : Character {
 
-	public Xenon (BONDSTATE bondstate) {
-		Skill = new AnimeBoy();
+	public Helium (BONDSTATE bondstate) {
+		Skill = new BalloonMan();
 
 		switch (bondstate) {
 		case (BONDSTATE.ENEMY):
@@ -15,7 +15,7 @@ public class Xenon : Character {
 			BaseHealth = 280;
 			BaseAttack = 30;
 			BaseGuard = 20;
-			BaseSpeed = 40;
+			BaseSpeed = 11;
 			Cooldown = 4;
 			break;
 
@@ -23,12 +23,12 @@ public class Xenon : Character {
 
 			STATUS = "BOND ONE";
 
-			BaseHealth = 80;
-			BaseAttack = 20;
+			BaseHealth = 60;
+			BaseAttack = 25;
 			BaseGuard = 20;
-			BaseSpeed = 20;
+			BaseSpeed = 11;
 
-			Cooldown = 4;
+			Cooldown = 0;
 			break;
 
 		case (BONDSTATE.TWO):
@@ -38,33 +38,33 @@ public class Xenon : Character {
 			BaseHealth = 90;
 			BaseAttack = 30;
 			BaseGuard = 25;
-			BaseSpeed = 30;
+			BaseSpeed = 11;
 
-			Cooldown = 3;
+			Cooldown = 4;
 			break;
 		}
 	}
 
-	public class AnimeBoy : Skill {
+	public class BalloonMan : Skill {
 
-		public AnimeBoy() {}
+		public BalloonMan() {}
 
 		public override string getName() {
-			return "Anime Boy";
+			return "Balloon Man";
 		}
 
 		public override string getDescription() {
-			return "Heals team by 50";
+			return "Increases team speed";
 		}
 
 		public override void activate(TeamStatus team) {
-			team.heal (50);
+			team.createNewStatus(TeamStatus.StatusEffect.EFFECT.SPEED, 2, 2);
 		}
 	}
 		
 	private string STATUS;
 	public override string ToString ()
 	{
-		return string.Format ("[Xenon, {0}]", STATUS);
+		return string.Format ("[Helium, {0}]", STATUS);
 	}
 }
