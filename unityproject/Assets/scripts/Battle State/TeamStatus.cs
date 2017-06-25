@@ -4,30 +4,43 @@ using UnityEngine;
 
 public class TeamStatus {
 
-	public Participant teamOne { get; set; }
+	public Participant[] TEAMMATES = new Participant[3];
+
 	public float teamMaxHealth { get; set; }
 	public float teamHealth { get; set; }
 
-	private float turnDamage;
 	private float turnGuard;
 
 	public bool allDead = false;
 
 	// Use this for initialization
-	public TeamStatus (Character one) {
-		teamOne = new Participant (one);
+	public TeamStatus (Participant[] participants) {
 
-		teamMaxHealth = teamOne.contributeHealth; //add other teammates when implemented;
+		teamMaxHealth = 0;
+
+		if (participants.Length != 3) {
+			Debug.Log ("Incorrect participant array length");
+		}
+
+		for (int i = 0; i < participants.Length; i++) {
+			if (participants[i] != null) {
+				TEAMMATES [i] = participants [i];
+				teamMaxHealth += TEAMMATES [i].contributeHealth;
+			}
+		}
+
 		teamHealth = teamMaxHealth;
-	}
-
-	//damage to be inflicted on THIS team this turn
-	public void addDamage (Participant user) {
-		turnDamage += user.currentAttack;
 	}
 
 	public void addGuard(Participant user) {
 		turnGuard += user.contributeGuard;
+	}
+
+	public void heal(float healamt) {
+		teamHealth += healamt;
+		if (teamHealth > teamMaxHealth) {
+			teamHealth = teamMaxHealth;
+		}
 	}
 
 	/*TURN RESULTS*/
@@ -39,11 +52,21 @@ public class TeamStatus {
 		}
 	}
 
-	/*RESET NEXT TURN*/
+	public void useSkill(Participant user) {
+		user.skill.activate (this);
+		user.cooldown = user.baseCD;
+	}
+		
+	/*PREPARE NEXT TURN*/
+	public void updateCDs() {
+		foreach (Participant teammate in TEAMMATES) {
+			if (teammate != null && teammate.cooldown > 0) {
+				teammate.cooldown--;
+			}
+		}
+	}
 	public void clearAll() {
 		turnGuard = 0;
-		turnDamage = 0;
-		teamOne.clearSelected ();
 	}
 
 }

@@ -9,13 +9,20 @@ public class Character {
 	 * Will also store relationship and dialogue data 
 	 * in the future.*/
 
+	public enum BONDSTATE
+	{
+		ENEMY,
+		ONE,
+		TWO
+	}
+
 	/*STATIC PROPERTIES*/
 	public float BaseHealth {get; set; }
 	public float BaseAttack { get; set;}
 	public float BaseGuard { get; set;}
 
 	public int Cooldown { get; set;}
-	public Skill CharSkill;
+	public Skill Skill { get; set;}
 
 	/*SKILLS*/
 

@@ -8,8 +8,10 @@ public class Participant {
 
 	public float contributeHealth {get; set;}
 	public float contributeGuard {get; set;}
-	public float currentAttack {get; set;}
+	public int baseCD { get; set;}
+	public Skill skill {get; set;}
 
+	public float currentAttack {get; set;}
 	public int cooldown { get; set;}
 
 	public Action selected;
@@ -26,9 +28,20 @@ public class Participant {
 
 		contributeHealth = source.BaseHealth;
 		contributeGuard = source.BaseGuard;
+		baseCD = source.Cooldown;
+		skill = source.Skill;
+
 		currentAttack = source.BaseAttack;
 		selected = Action.NONE;
-		//cooldown = source.whatever;
+		cooldown = baseCD;
+	}
+
+	public bool skillReady() {
+		if (cooldown == 0) {
+			return true;
+		} else {
+			return false;
+		}
 	}
 
 	public void clearSelected() {

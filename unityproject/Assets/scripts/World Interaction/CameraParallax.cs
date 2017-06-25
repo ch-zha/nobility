@@ -8,6 +8,8 @@ public class CameraParallax : MonoBehaviour {
 	 *but a vertical version may be desired?*/
 
 	//MANUALS
+	public bool PLAYER_INPUT = true;
+
 	public float LEFTBOUND;
 	public float RIGHTBOUND;
 	public float SCROLL_SPEED = 1F;
@@ -22,8 +24,8 @@ public class CameraParallax : MonoBehaviour {
 	private Vector3 CAMERA_STARTINGPOS;
 
 	//NONSTATIC VARS
-	private float keydir;
-	private float keyzoom;
+	private float dir;
+	private float zoom;
 	private Vector3 movement;
 	private float cam_pos;
 
@@ -36,19 +38,19 @@ public class CameraParallax : MonoBehaviour {
 	}
 
 	/*Check for edge of world*/
-	bool hitEdge(float keydir){
+	private bool hitEdge(float dir){
 		cam_pos = cam.transform.position.x;
 
-		if (cam_pos <= CAMERA_STARTINGPOS.x - LEFTBOUND && keydir < 0) {
+		if (cam_pos <= CAMERA_STARTINGPOS.x - LEFTBOUND && dir < 0) {
 			return true;
-		} else if (cam_pos >= CAMERA_STARTINGPOS.x + RIGHTBOUND && keydir > 0) {
+		} else if (cam_pos >= CAMERA_STARTINGPOS.x + RIGHTBOUND && dir > 0) {
 			return true;
 		}
 		return false;
 	}
 
 	/*PARALLAX ZOOM*/
-	public void GetFieldOfView() {
+	private void GetFieldOfView() {
 
 		//float a = cam.orthographicSize;
 		float b = Mathf.Abs (cam.transform.position.z);
@@ -65,26 +67,27 @@ public class CameraParallax : MonoBehaviour {
 		nearCam.nearClipPlane = cam.nearClipPlane;
 	}
 
+	private Vector3 getMovement(bool input) {
+		if (input == true) {
+			dir = Input.GetAxis ("Horizontal");
+			zoom = Input.GetAxis ("Vertical");
+		}
+
+		if (hitEdge(dir)) {
+			return new Vector3(0, 0, 0);
+		}
+
+		cam.orthographicSize += - zoom * ZOOM_SPEED;
+		return new Vector3(dir*SCROLL_SPEED, 0, zoom * ZOOM_SPEED);
+	}
+
 	/* Update is called once per frame */
 	void Update () {
-
-		//update movement
-		keydir = Input.GetAxis ("Horizontal");
-		keyzoom = Input.GetAxis ("Vertical");
-		movement = new Vector3(keydir*SCROLL_SPEED, 0, keyzoom * ZOOM_SPEED);
-		cam.orthographicSize += - keyzoom * ZOOM_SPEED;
 	}
 
 	void FixedUpdate () {
-		
-		//check for edge of world
-		if (hitEdge (keydir)) {
-			return;
-		}
 
 		GetFieldOfView ();
-
-		//move camera
-		cam.transform.Translate (movement);
+		cam.transform.Translate (getMovement(PLAYER_INPUT));
 	}
 }

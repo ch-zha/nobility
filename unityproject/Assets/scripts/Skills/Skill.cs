@@ -2,19 +2,17 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Skill {
+public abstract class Skill {
 
 	/*Base class for all basic and character-specific skills. Still 
 	 * debating whether to use it primarily for inheriting or for 
 	 * instancing.*/
 
-	public int Cooldown { get; private set; }
-
 	/*LEVEL HANDLING*/
 
 	/*Use skill*/
-	public void activate () {}
-
-	/*BATTLE FUNCTIONS*/
+	public abstract void activate (TeamStatus side);
+	public abstract string getName ();
+	public abstract string getDescription ();
 
 }

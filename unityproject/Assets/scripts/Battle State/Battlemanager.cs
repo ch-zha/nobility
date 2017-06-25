@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using System.Linq;
 
 public class Battlemanager : MonoBehaviour {
 
@@ -9,6 +10,7 @@ public class Battlemanager : MonoBehaviour {
 	 * non-team-specific functions.*/
 
 	public enum BattleState {
+		PREBATTLE,
 		START,
 		PLAYERCHOICE,
 		ENEMYCHOICE,
@@ -23,6 +25,7 @@ public class Battlemanager : MonoBehaviour {
 
 	private BattleLoad LOAD;
 	private BattleUI DISPLAY;
+	private PlayerOptions OPTIONS;
 
 /*BATTLE STRUCTURE*/
 	/*Increment Turn*/
@@ -35,19 +38,22 @@ public class Battlemanager : MonoBehaviour {
 	private void chooseEnemyActions() {
 		Debug.Log ("Picking enemy action");
 
-		int action = Random.Range (1, 3);
+		int action = Random.Range (1, 4);
 		switch (action) {
 		case (1):
-			LOAD.ENEMY.teamOne.selected = Participant.Action.ATTACK;
+			LOAD.ENEMY.TEAMMATES[0].selected = Participant.Action.ATTACK;
 			break;
 		case (2):
-			LOAD.ENEMY.teamOne.selected = Participant.Action.GUARD;
+			LOAD.ENEMY.TEAMMATES[0].selected = Participant.Action.GUARD;
+			break;
+		case (3):
+			LOAD.ENEMY.TEAMMATES [0].selected = Participant.Action.SKILL;
 			break;
 		}
 	}
 
 	private void applyPriorityActions(TeamStatus team, Participant user) {
-		if (team.teamOne != user) {
+		if (! team.TEAMMATES.Contains(user)) {
 			Debug.Log("Character does not belong to that team.");
 			return; //add error handling for other users when implemented;
 		}
@@ -58,46 +64,63 @@ public class Battlemanager : MonoBehaviour {
 		case (Participant.Action.ATTACK):
 			break;
 		case (Participant.Action.GUARD):
+			Debug.Log (System.Convert.ToString (team) + System.Convert.ToString (user) + "guarded");
 			team.addGuard (user);
 			break;
 		}
 	}
 
 	private void applyCharacterActions(TeamStatus team, Participant user) {
-		if (team.teamOne != user) {
+		if (! team.TEAMMATES.Contains(user)) {
 			Debug.Log("Character does not belong to that team.");
 			return; //add error handling for other users when implemented;
 		}
 
 		switch (user.selected) {
 		case (Participant.Action.NONE):
+			//Debug.Log (System.Convert.ToString (team) + System.Convert.ToString (user) + "did nothing");
 			break;
 		case (Participant.Action.ATTACK):
+			//Debug.Log (System.Convert.ToString (team) + System.Convert.ToString (user) + "attacked");
 			otherTeam(team).attack (user);
 			break;
 		case (Participant.Action.GUARD):
+			break;
+		case (Participant.Action.SKILL):
+			team.useSkill (user);
 			break;
 		}
 	}
 
 	private void doBattle() {
-		Debug.Log ("Doing battle.");
 
-		applyPriorityActions (LOAD.TEAM, LOAD.TEAM.teamOne);
-		applyPriorityActions (LOAD.ENEMY, LOAD.ENEMY.teamOne);
+		foreach (Participant teammate in LOAD.TEAM.TEAMMATES) {
+			if (teammate != null) {
+				applyPriorityActions (LOAD.TEAM, teammate);
+			}
+		}
+		foreach (Participant teammate in LOAD.ENEMY.TEAMMATES) {
+			if (teammate != null) {
+				applyPriorityActions (LOAD.ENEMY, teammate);
+			}
+		}
 
 		//when speed stat implemented, sort characters by speed into array & implement normal actions through loop;
 
-		applyCharacterActions (LOAD.TEAM, LOAD.TEAM.teamOne);
-		applyCharacterActions (LOAD.ENEMY, LOAD.ENEMY.teamOne);
+		foreach (Participant teammate in LOAD.TEAM.TEAMMATES) {
+			if (teammate != null) {
+				applyCharacterActions (LOAD.TEAM, teammate);
+			}
+		}
+		foreach (Participant teammate in LOAD.ENEMY.TEAMMATES) {
+			if (teammate != null) {
+				applyCharacterActions (LOAD.ENEMY, teammate);
+			}
+		}
 	}
 
 	private void clearCharacterActions() {
-		Debug.Log ("Clearing Actions");
-
-		LOAD.TEAM.teamOne.selected = Participant.Action.NONE; //change to a function inside TeamStatus;
-		DISPLAY.teamOne.value = 0; //change to a function inside BattleUI
-		LOAD.TEAM.clearAll();
+		LOAD.TEAM.clearAll ();
 		LOAD.ENEMY.clearAll ();
 	}
 
@@ -117,20 +140,19 @@ public class Battlemanager : MonoBehaviour {
 	IEnumerator BattleAnimation() {
 		if (animationStarted == true) {
 			yield break;
+		} else {
+			Debug.Log ("Starting battle animation");
+			animationStarted = true;
+			yield return new WaitForSeconds (2);
+			doBattle ();
+			clearCharacterActions ();
+			currentState = BattleState.START;
 		}
-		Debug.Log ("Starting battle animation");
-		animationStarted = true;
-		yield return new WaitForSeconds(2);
-		doBattle ();
-		clearCharacterActions ();
-		currentState = BattleState.START;
 	}
 
 	public void endTurn() {
 		if (currentState == BattleState.PLAYERCHOICE) {
 			currentState = BattleState.ENEMYCHOICE;
-		} else if (currentState == BattleState.ENEMYCHOICE) {
-			currentState = BattleState.ATTACKANIMATE;
 		}
 	}
 
@@ -151,10 +173,11 @@ public class Battlemanager : MonoBehaviour {
 	void Start() {
 		//initialize turn counters & stuff
 		turn = 0;
-		currentState = BattleState.START;
+		currentState = BattleState.PREBATTLE;
 
 		LOAD = this.gameObject.GetComponent<BattleLoad> ();
 		DISPLAY = this.gameObject.GetComponent<BattleUI> ();
+		OPTIONS = this.gameObject.GetComponent<PlayerOptions> ();
 	}
 
 /*UPDATE*/
@@ -163,16 +186,25 @@ public class Battlemanager : MonoBehaviour {
 		checkVictory ();
 
 		switch(currentState) {
+		case(BattleState.PREBATTLE):
+			currentState = BattleState.PLAYERCHOICE;
+			animationStarted = false;
+			OPTIONS.cooldownDisable ();
+			break;
 		case(BattleState.START):
 			Debug.Log ("START");
 			incrementTurn ();
 			animationStarted = false;
+			OPTIONS.resetOptions ();
+			LOAD.TEAM.updateCDs ();
+			OPTIONS.cooldownDisable ();
+			OPTIONS.toggleOn (true);
 			currentState = BattleState.PLAYERCHOICE;
 			break;
 		case(BattleState.PLAYERCHOICE):
 			break;
 		case(BattleState.ENEMYCHOICE):
-			Debug.Log("ENEMY CHOICE");
+			OPTIONS.toggleOn (false);
 			chooseEnemyActions ();
 			currentState = BattleState.ATTACKANIMATE;
 			break;
