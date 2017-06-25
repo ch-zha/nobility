@@ -11,81 +11,55 @@ public class BattleUI : MonoBehaviour {
 	private Battlemanager STATE;
 	private BattleLoad LOAD;
 
+	private Health[] HEALTHBARS;
+
 	// Use this for initialization
 	void Start () {
 		/*Load Partner Scripts*/
 		LOAD = this.gameObject.GetComponent<BattleLoad> ();
 		STATE = this.gameObject.GetComponent<Battlemanager> ();
 
-		//find GUI elements
-		PLAYERHEALTH = GameObject.Find("p1health").GetComponent<Text>();
-		ENEMYHEALTH = GameObject.Find("e1health").GetComponent<Text>();
-		TURNCOUNT = GameObject.Find("turn").GetComponent<Text>();
+		//playerHealth = GameObject.Find ("PlayerHealth").GetComponent<Health> ();
+		//enemyHealth = GameObject.Find ("EnemyHealth").GetComponent<Health> ();
 
-		//Determine Player Input UI
-		findPlayerUI ();
-
+		updateUIHealth ();
 	}
+		
+	/*HEALTH*/
 
-/*BUTTON HANDLING*/
+	public Health playerHealth;
+	public Health enemyHealth;
 
-	public Dropdown teamOne;
-	public Button endTurn;
+	public float playerHealthPercent { get; set; }
+	public float enemyHealthPercent { get; set; }
 
-	private void findPlayerUI() {
-		teamOne = GameObject.Find ("p1choice").GetComponent<Dropdown> ();
-		endTurn = GameObject.Find ("endturn").GetComponent<Button> ();
-			}
+	public string playerHealthDisplay { get; set; }
+	public string enemyHealthDisplay { get; set; }
 
-	private void buttonEnabler() {
-		if (STATE.currentState == Battlemanager.BattleState.PLAYERCHOICE) {
-			teamOne.enabled = true;
-			endTurn.enabled = true;
-		} else {
-			teamOne.enabled = false;
-			endTurn.enabled = false;
-		}
-	}
+	public void updateUIHealth() {
+		playerHealthPercent = Mathf.Round (LOAD.TEAM.teamHealth / LOAD.TEAM.teamMaxHealth * 100);
+		enemyHealthPercent = Mathf.Round (LOAD.ENEMY.teamHealth / LOAD.ENEMY.teamMaxHealth * 100);
 
-	/*Parse player input: move to separate script when layout set*/
-	public void optionOne() {
-		switch (teamOne.value) {
-		case (0):
-			break;
-		case (1):
-			LOAD.TEAM.TEAMMATES[0].selected = Participant.Action.ATTACK;
-			break;
-		case (2):
-			LOAD.TEAM.TEAMMATES[0].selected = Participant.Action.GUARD;
-			break;
-		}
-	}
+		playerHealthDisplay = System.Convert.ToString (LOAD.TEAM.teamHealth + "/" + LOAD.TEAM.teamMaxHealth);
+		enemyHealthDisplay = System.Convert.ToString (LOAD.ENEMY.teamHealth + "/" + LOAD.ENEMY.teamMaxHealth);
 
+		playerHealth.updateHealth ();
+		enemyHealth.updateHealth ();
 
-/*DISPLAYS*/
-
-	private Text PLAYERHEALTH;
-	private Text ENEMYHEALTH;
-	private Text TURNCOUNT;
-
-	private void displayHealth() {
-		//add more characters later
-		PLAYERHEALTH.text = "HP:" + System.Convert.ToString(LOAD.TEAM.teamHealth) + "/" + System.Convert.ToString(LOAD.TEAM.teamMaxHealth);
-		ENEMYHEALTH.text = "HP:" + System.Convert.ToString(LOAD.ENEMY.teamHealth) + "/" + System.Convert.ToString(LOAD.ENEMY.teamMaxHealth);
-	}
-
-	private void displayTurn() {
-		TURNCOUNT.text = "Turn:" + System.Convert.ToString (STATE.turn);
-	}
-
-	// Update is called once per frame
-	void Update () {
-		displayHealth ();
-		displayTurn ();
-		buttonEnabler ();
+		//Debug.Log (playerHealthDisplay);
+		//Debug.Log (enemyHealthDisplay);
+		//Debug.Log (System.Convert.ToString(playerHealthPercent));
+		//Debug.Log (System.Convert.ToString(enemyHealthPercent));
 	}
 
 	void OnGUI() {
 		GUI.Label(new Rect(10, 10, 150, 100), STATE.currentState.ToString());
+	}
+
+	public bool healthUpdated() {
+		return enemyHealth.healthUpdated & playerHealth.healthUpdated;
+	}
+
+	void Update() {
 	}
 }

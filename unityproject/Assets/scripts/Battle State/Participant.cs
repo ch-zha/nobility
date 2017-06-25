@@ -48,4 +48,9 @@ public class Participant {
 		selected = Action.NONE;
 	}
 
+	public override string ToString ()
+	{
+		return string.Format ("Char: {0}", source);
+	}
+
 }

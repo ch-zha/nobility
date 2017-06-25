@@ -49,4 +49,9 @@ public class Xenon : Character {
 			team.heal (50);
 		}
 	}
+		
+	public override string ToString ()
+	{
+		return string.Format ("[Xenon]");
+	}
 }

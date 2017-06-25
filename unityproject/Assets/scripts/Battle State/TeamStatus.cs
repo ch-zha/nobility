@@ -69,4 +69,9 @@ public class TeamStatus {
 		turnGuard = 0;
 	}
 
+	public override string ToString ()
+	{
+		return string.Format ("[TeamStatus: teamMaxHealth={0}]", teamMaxHealth);
+	}
+
 }

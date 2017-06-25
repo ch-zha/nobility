@@ -14,7 +14,9 @@ public class Battlemanager : MonoBehaviour {
 		START,
 		PLAYERCHOICE,
 		ENEMYCHOICE,
-		ATTACKANIMATE,
+		BATTLE,
+		ANIMATION,
+		END,
 		DIALOGUE,
 		LOSE,
 		WIN
@@ -38,7 +40,8 @@ public class Battlemanager : MonoBehaviour {
 	private void chooseEnemyActions() {
 		Debug.Log ("Picking enemy action");
 
-		int action = Random.Range (1, 4);
+		int action = UnityEngine.Random.Range (1, 4);
+		Debug.Log ("Enemy Action: " + System.Convert.ToString (action));
 		switch (action) {
 		case (1):
 			LOAD.ENEMY.TEAMMATES[0].selected = Participant.Action.ATTACK;
@@ -78,29 +81,40 @@ public class Battlemanager : MonoBehaviour {
 
 		switch (user.selected) {
 		case (Participant.Action.NONE):
-			//Debug.Log (System.Convert.ToString (team) + System.Convert.ToString (user) + "did nothing");
+			Debug.Log (System.Convert.ToString (team) + System.Convert.ToString (user) + "did nothing");
 			break;
 		case (Participant.Action.ATTACK):
-			//Debug.Log (System.Convert.ToString (team) + System.Convert.ToString (user) + "attacked");
-			otherTeam(team).attack (user);
+			Debug.Log (System.Convert.ToString (team) + System.Convert.ToString (user) + "attacked");
+			otherTeam (team).attack (user);
 			break;
 		case (Participant.Action.GUARD):
 			break;
 		case (Participant.Action.SKILL):
+			Debug.Log (System.Convert.ToString (team) + System.Convert.ToString (user) + "used a skill");
 			team.useSkill (user);
 			break;
 		}
 	}
 
-	private void doBattle() {
+	IEnumerator waitForHealth() {
+		if (DISPLAY.healthUpdated ()) {
+			yield break;
+		} else {
+			yield return new WaitForFixedUpdate();
+		}
+	}
 
+	private bool animationStarted;
+	private void doBattle() {
 		foreach (Participant teammate in LOAD.TEAM.TEAMMATES) {
 			if (teammate != null) {
+				Debug.Log ("Ally Priority");
 				applyPriorityActions (LOAD.TEAM, teammate);
 			}
 		}
 		foreach (Participant teammate in LOAD.ENEMY.TEAMMATES) {
 			if (teammate != null) {
+				Debug.Log ("Enemy Priority");
 				applyPriorityActions (LOAD.ENEMY, teammate);
 			}
 		}
@@ -109,11 +123,13 @@ public class Battlemanager : MonoBehaviour {
 
 		foreach (Participant teammate in LOAD.TEAM.TEAMMATES) {
 			if (teammate != null) {
+				Debug.Log ("Ally Normal");
 				applyCharacterActions (LOAD.TEAM, teammate);
 			}
 		}
 		foreach (Participant teammate in LOAD.ENEMY.TEAMMATES) {
 			if (teammate != null) {
+				Debug.Log ("Enemy Normal");
 				applyCharacterActions (LOAD.ENEMY, teammate);
 			}
 		}
@@ -133,20 +149,6 @@ public class Battlemanager : MonoBehaviour {
 		} else {
 			Debug.Log("Not a valid team.");
 			return null;
-		}
-	}
-
-	private bool animationStarted = false;
-	IEnumerator BattleAnimation() {
-		if (animationStarted == true) {
-			yield break;
-		} else {
-			Debug.Log ("Starting battle animation");
-			animationStarted = true;
-			yield return new WaitForSeconds (2);
-			doBattle ();
-			clearCharacterActions ();
-			currentState = BattleState.START;
 		}
 	}
 
@@ -206,10 +208,21 @@ public class Battlemanager : MonoBehaviour {
 		case(BattleState.ENEMYCHOICE):
 			OPTIONS.toggleOn (false);
 			chooseEnemyActions ();
-			currentState = BattleState.ATTACKANIMATE;
+			currentState = BattleState.BATTLE;
 			break;
-		case(BattleState.ATTACKANIMATE):
-			StartCoroutine (BattleAnimation ());
+		case(BattleState.BATTLE):
+			doBattle ();
+			DISPLAY.updateUIHealth ();
+			currentState = BattleState.ANIMATION;
+			break;
+		case(BattleState.ANIMATION):
+			if (DISPLAY.healthUpdated()) {
+				currentState = BattleState.START;
+			}
+			break;
+		case(BattleState.END):
+			clearCharacterActions ();
+			currentState = BattleState.START;
 			break;
 		case(BattleState.DIALOGUE):
 			Debug.Log ("DIALOGUE");
