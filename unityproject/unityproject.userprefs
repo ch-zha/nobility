@@ -1,30 +1,16 @@
 ﻿<Properties StartupItem="Assembly-CSharp.csproj" RefactoringSettings.EnableRefactorings="True">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.WindowsPlayer" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\scripts\Battle State\UI Scripts\Option.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\scripts\Battle State\UI Scripts\PlayerOptions.cs">
     <Files>
-      <File FileName="Assets\scripts\Battle State\UI Scripts\Option.cs" Line="23" Column="9" />
+      <File FileName="Assets\scripts\Battle State\UI Scripts\Option.cs" Line="1" Column="1" />
       <File FileName="Assets\scripts\Battle State\UI Scripts\PlayerOptions.cs" Line="124" Column="37" />
-      <File FileName="Assets\scripts\Battle State\Participant.cs" Line="48" Column="26" />
-      <File FileName="Assets\scripts\Battle State\Battlemanager.cs" Line="51" Column="10" />
+      <File FileName="Assets\scripts\Battle State\Participant.cs" Line="1" Column="1" />
+      <File FileName="Assets\scripts\Battle State\Battlemanager.cs" Line="1" Column="1" />
+      <File FileName="Assets\scripts\Battle State\UI Scripts\BattleUI.cs" Line="1" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
-    <BreakpointStore>
-      <RunToCursorBreakpoint file="D:\GitHub\nobility\unityproject\Assets\scripts\Battle State\BattleLoad.cs" line="28" column="27" />
-      <RunToCursorBreakpoint file="D:\GitHub\nobility\unityproject\Assets\scripts\Battle State\UI Scripts\PlayerOptions.cs" line="47" column="16" />
-      <RunToCursorBreakpoint file="D:\GitHub\nobility\unityproject\Assets\scripts\Battle State\UI Scripts\PlayerOptions.cs" line="47" column="41" />
-      <RunToCursorBreakpoint file="D:\GitHub\nobility\unityproject\Assets\scripts\Battle State\UI Scripts\PlayerOptions.cs" line="47" column="37" />
-      <RunToCursorBreakpoint file="D:\GitHub\nobility\unityproject\Assets\scripts\Battle State\UI Scripts\PlayerOptions.cs" line="47" column="42" />
-      <RunToCursorBreakpoint file="D:\GitHub\nobility\unityproject\Assets\scripts\Battle State\Battlemanager.cs" line="52" column="20" />
-      <RunToCursorBreakpoint file="D:\GitHub\nobility\unityproject\Assets\scripts\Battle State\Battlemanager.cs" line="52" column="29" />
-      <RunToCursorBreakpoint file="D:\GitHub\nobility\unityproject\Assets\scripts\Battle State\UI Scripts\Cooldown.cs" line="29" column="31" />
-      <RunToCursorBreakpoint file="D:\GitHub\nobility\unityproject\Assets\scripts\Battle State\Participant.cs" line="28" column="40" />
-      <RunToCursorBreakpoint file="D:\GitHub\nobility\unityproject\Assets\scripts\Characters\Xenon.cs" line="33" column="7" />
-      <RunToCursorBreakpoint file="D:\GitHub\nobility\unityproject\Assets\scripts\Characters\Xenon.cs" line="35" column="3" />
-      <RunToCursorBreakpoint file="D:\GitHub\nobility\unityproject\Assets\scripts\Characters\Xenon.cs" line="33" column="2" />
-      <RunToCursorBreakpoint file="D:\GitHub\nobility\unityproject\Assets\scripts\Skills\Skill.cs" line="15" column="31" />
-      <RunToCursorBreakpoint file="D:\GitHub\nobility\unityproject\Assets\scripts\Characters\Xenon.cs" line="49" column="2" />
-    </BreakpointStore>
+    <BreakpointStore />
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />
 </Properties>
