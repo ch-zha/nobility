@@ -183,14 +183,17 @@ public class Battlemanager : MonoBehaviour {
 	}
 
 	public void endBattle() {
+		Debug.Log ("Ending Battle");
 		UnityEngine.SceneManagement.SceneManager.LoadScene (0);
 	}
 
-	private void checkVictory() {
+	private BattleState checkVictory() {
 		if (LOAD.TEAM.allDead == true) {
-			currentState = BattleState.LOSE;
+			return BattleState.LOSE;
 		} else if (LOAD.ENEMY.allDead == true) {
-			currentState = BattleState.WIN;
+			return BattleState.WIN;
+		} else {
+			return BattleState.START;
 		}
 	}
 
@@ -208,7 +211,6 @@ public class Battlemanager : MonoBehaviour {
 
 /*UPDATE*/
 	void Update() {
-
 		switch(currentState) {
 		case(BattleState.PREBATTLE):
 			currentState = BattleState.PLAYERCHOICE;
@@ -246,11 +248,10 @@ public class Battlemanager : MonoBehaviour {
 			break;
 		case(BattleState.END):
 			DISPLAY.CAMCONTROL.resetPoint();
-			checkVictory ();
 			LOAD.TEAM.nextTurn ();
 			LOAD.ENEMY.nextTurn ();
 			DISPLAY.updateUIHealth ();
-			currentState = BattleState.START;
+			currentState = checkVictory();
 			break;
 		case(BattleState.DIALOGUE):
 			Debug.Log ("DIALOGUE");

@@ -45,7 +45,7 @@ public class Health : MonoBehaviour {
 		//Debug.Log (targetPercent.ToString ());
 		healthUpdated = false;
 		if (barCurrentPercent < targetPercent) {
-			Debug.Log ("Start drawing health bar");
+			//Debug.Log ("Start drawing health bar");
 			while (barCurrentPercent < targetPercent) {
 				barCurrentPercent += 1F;
 				SIZE.localScale = new Vector3 (ORIG_SIZE.x * (barCurrentPercent/100), 1, 1);
@@ -56,7 +56,7 @@ public class Health : MonoBehaviour {
 			Debug.Log (System.Convert.ToString (targetPercent));
 
 			while (barCurrentPercent > targetPercent) {
-				Debug.Log ("Start drawing health bar");
+				//Debug.Log ("Start drawing health bar");
 				barCurrentPercent-= 1F;
 				//Debug.Log (System.Convert.ToString (barCurrentPercent));
 				SIZE.localScale = new Vector3 (ORIG_SIZE.x * (barCurrentPercent/100), 1, 1);

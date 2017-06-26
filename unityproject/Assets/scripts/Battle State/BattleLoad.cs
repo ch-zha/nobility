@@ -33,4 +33,9 @@ public class BattleLoad : MonoBehaviour {
 		Debug.Log ("ENEMIES " + System.Convert.ToString (ENEMY.TEAMMATES[0]) + ", " + System.Convert.ToString (ENEMY.TEAMMATES[1]) + ", " + System.Convert.ToString (ENEMY.TEAMMATES[2]));
 
 	}
+
+	void Update() {
+		//Debug.Log (TEAM.allDead.ToString ());
+		//Debug.Log (ENEMY.allDead.ToString ());
+	}
 }
