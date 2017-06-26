@@ -26,10 +26,10 @@ public class Health : MonoBehaviour {
 		}
 		TEXT = this.gameObject.GetComponentInChildren<Text> ();
 		if (side == SIDES.ENEMY) {
-			SIZE = GameObject.Find("enemyhealthbar").GetComponentInChildren<RectTransform> ();
+			SIZE = GameObject.Find("enemyhealthbar").GetComponent<RectTransform> ();
 			DISPLAY.playerHealth = this;
 		} else if (side == SIDES.TEAM) {
-			SIZE = GameObject.Find("playerhealthbar").GetComponentInChildren<RectTransform> ();
+			SIZE = GameObject.Find("playerhealthbar").GetComponent<RectTransform> ();
 			DISPLAY.enemyHealth = this;
 		}
 		if (TEXT == null) {
@@ -42,46 +42,41 @@ public class Health : MonoBehaviour {
 
 	private float barCurrentPercent;
 	IEnumerator healthChange(float targetPercent) {
+		//Debug.Log (targetPercent.ToString ());
 		healthUpdated = false;
 		if (barCurrentPercent < targetPercent) {
-			//Debug.Log ("Start drawing health bar");
+			Debug.Log ("Start drawing health bar");
 			while (barCurrentPercent < targetPercent) {
-				barCurrentPercent += 1;
+				barCurrentPercent += 1F;
 				SIZE.localScale = new Vector3 (ORIG_SIZE.x * (barCurrentPercent/100), 1, 1);
-				yield return new WaitForFixedUpdate();
+				yield return new WaitForSeconds(.1F);
 			}
 		} else if (barCurrentPercent > targetPercent) {
 
-			//Debug.Log (System.Convert.ToString (targetPercent));
+			Debug.Log (System.Convert.ToString (targetPercent));
 
 			while (barCurrentPercent > targetPercent) {
-				//Debug.Log ("Start drawing health bar");
-				barCurrentPercent-= 1;
+				Debug.Log ("Start drawing health bar");
+				barCurrentPercent-= 1F;
 				//Debug.Log (System.Convert.ToString (barCurrentPercent));
 				SIZE.localScale = new Vector3 (ORIG_SIZE.x * (barCurrentPercent/100), 1, 1);
-				yield return new WaitForFixedUpdate();
+				yield return new WaitForSeconds(.1F);
 			}
 		} else if (barCurrentPercent == targetPercent) {
-			//Debug.Log("No adjustments");
+			Debug.Log("No adjustments");
 			healthUpdated = true;
 			yield break;
 		}
 		healthUpdated = true;
-		//Debug.Log ("Done drawing");
+		Debug.Log ("Done drawing");
 	}
 
 	public bool healthUpdated;
 
-	public void updateHealth() {
-		if (side == SIDES.TEAM) {
-			TEXT.text = DISPLAY.playerHealthDisplay;
-			//Debug.Log (DISPLAY.playerHealthDisplay);
-			StartCoroutine (healthChange (DISPLAY.playerHealthPercent));
-		} else if (side == SIDES.ENEMY) {
-			TEXT.text = DISPLAY.enemyHealthDisplay;
-			//Debug.Log (DISPLAY.enemyHealthDisplay);
-			StartCoroutine (healthChange (DISPLAY.enemyHealthPercent));
-		}
+	public void updateHealth(string healthDisplay, float healthPercent) {
+		//Debug.Log ("Updating Health");
+		TEXT.text = healthDisplay;
+		StartCoroutine (healthChange (healthPercent));
 	}
 	
 	// Update is called once per frame

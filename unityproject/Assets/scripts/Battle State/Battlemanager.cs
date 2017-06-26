@@ -27,7 +27,7 @@ public class Battlemanager : MonoBehaviour {
 	public int turn;
 
 	private BattleLoad LOAD;
-	private BattleUI DISPLAY;
+	public BattleUI DISPLAY;
 	private PlayerOptions OPTIONS;
 
 /*BATTLE STRUCTURE*/
@@ -43,7 +43,7 @@ public class Battlemanager : MonoBehaviour {
 
 		int action = EnemyAI.randomDecision (LOAD.ENEMY.TEAMMATES [0]);
 
-		Debug.Log ("Enemy Action: " + System.Convert.ToString (action));
+		//Debug.Log ("Enemy Action: " + System.Convert.ToString (action));
 		switch (action) {
 		case (1):
 			LOAD.ENEMY.TEAMMATES[0].selected = Participant.Action.ATTACK;
@@ -66,11 +66,13 @@ public class Battlemanager : MonoBehaviour {
 		case (Participant.Action.GUARD):
 			Debug.Log (System.Convert.ToString (user.TEAM) + System.Convert.ToString (user) + "guarded");
 			user.TEAM.addGuard (user);
+			DISPLAY.ANIMATIONS.addAnimation (DISPLAY.ANIMATIONS.wait ());
 			break;
 		case (Participant.Action.SKILL):
 			if (user.skill.hasPriority ()) {
 				Debug.Log (System.Convert.ToString (user.TEAM) + System.Convert.ToString (user) + "used a skill");
 				user.TEAM.useSkill (user);
+				DISPLAY.ANIMATIONS.addAnimation (DISPLAY.ANIMATIONS.wait ());
 			}
 			break;
 		}
@@ -88,6 +90,7 @@ public class Battlemanager : MonoBehaviour {
 		case (Participant.Action.ATTACK):
 			Debug.Log (System.Convert.ToString (user.TEAM) + System.Convert.ToString (user) + "attacked");
 			otherTeam (user.TEAM).attack (user);
+			DISPLAY.ANIMATIONS.addAnimation (DISPLAY.ANIMATIONS.waitForHealth (new BattleCoroutines.UISnapshot(LOAD)));
 			break;
 		case (Participant.Action.GUARD):
 			break;
@@ -95,16 +98,9 @@ public class Battlemanager : MonoBehaviour {
 			if (!user.skill.hasPriority ()) {
 				Debug.Log (System.Convert.ToString (user.TEAM) + System.Convert.ToString (user) + "used a skill");
 				user.TEAM.useSkill (user);
+				DISPLAY.ANIMATIONS.addAnimation (DISPLAY.ANIMATIONS.waitForHealth (new BattleCoroutines.UISnapshot(LOAD)));
 			}
 			break;
-		}
-	}
-
-	IEnumerator waitForHealth() {
-		if (DISPLAY.healthUpdated ()) {
-			yield break;
-		} else {
-			yield return new WaitForFixedUpdate();
 		}
 	}
 
@@ -213,12 +209,11 @@ public class Battlemanager : MonoBehaviour {
 /*UPDATE*/
 	void Update() {
 
-		checkVictory ();
-
 		switch(currentState) {
 		case(BattleState.PREBATTLE):
 			currentState = BattleState.PLAYERCHOICE;
 			OPTIONS.cooldownDisable ();
+			OPTIONS.toggleOn (true);
 			break;
 		case(BattleState.START):
 			Debug.Log ("START");
@@ -238,19 +233,23 @@ public class Battlemanager : MonoBehaviour {
 			currentState = BattleState.BATTLE;
 			break;
 		case(BattleState.BATTLE):
+			DISPLAY.CAMCONTROL.changeCurrentPoint (DISPLAY.CAMCONTROL.enemyOne);
 			doBattle ();
-			DISPLAY.updateUIHealth ();
+			DISPLAY.ANIMATIONS.runAnimationQueue ();
 			currentState = BattleState.ANIMATION;
 			break;
 		case(BattleState.ANIMATION):
 			//Debug.Log (System.Convert.ToString (DISPLAY.healthUpdated()));
-			if (DISPLAY.healthUpdated()) {
+			if (DISPLAY.ANIMATIONS.animationsOver) {
 				currentState = BattleState.END;
 			}
 			break;
 		case(BattleState.END):
+			DISPLAY.CAMCONTROL.resetPoint();
+			checkVictory ();
 			LOAD.TEAM.nextTurn ();
 			LOAD.ENEMY.nextTurn ();
+			DISPLAY.updateUIHealth ();
 			currentState = BattleState.START;
 			break;
 		case(BattleState.DIALOGUE):

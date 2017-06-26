@@ -12,6 +12,8 @@ public class CameraParallax : MonoBehaviour {
 
 	public float LEFTBOUND;
 	public float RIGHTBOUND;
+	public float INBOUND = 2;
+	public float OUTBOUND = 0;
 	public float SCROLL_SPEED = 1F;
 	public float ZOOM_SPEED = .5F;
 
@@ -19,6 +21,7 @@ public class CameraParallax : MonoBehaviour {
 	private Camera cam;
 	private Camera farCam;
 	private Camera nearCam;
+	private CameraPoints CAMCONTROL;
 
 	//STATIC VARS
 	private Vector3 CAMERA_STARTINGPOS;
@@ -27,23 +30,31 @@ public class CameraParallax : MonoBehaviour {
 	private float dir;
 	private float zoom;
 	private Vector3 movement;
-	private float cam_pos;
 
 	/*Init*/
-	void Start () {
+	void Awake () {
 		cam = this.gameObject.GetComponent<Camera> ();
+		CAMCONTROL = this.gameObject.GetComponent<CameraPoints> ();
 		nearCam = GameObject.Find("Parallax Near Camera").GetComponent<Camera> ();
 		farCam = GameObject.Find("Parallax Far Camera").GetComponent<Camera> ();
 		CAMERA_STARTINGPOS = cam.transform.position;
+		CAMCONTROL.origPoint = CAMERA_STARTINGPOS;
+		cam.transform.position = CAMCONTROL.defaultPoint;
+		CAMCONTROL.resetPoint ();
 	}
 
 	/*Check for edge of world*/
-	private bool hitEdge(float dir){
-		cam_pos = cam.transform.position.x;
+	private bool hitEdge(float dir, float zoom){
+		float cam_pos = cam.transform.position.x;
+		float cam_zoom = cam.transform.position.z;
 
 		if (cam_pos <= CAMERA_STARTINGPOS.x - LEFTBOUND && dir < 0) {
 			return true;
 		} else if (cam_pos >= CAMERA_STARTINGPOS.x + RIGHTBOUND && dir > 0) {
+			return true;
+		} else if (cam_zoom >= CAMERA_STARTINGPOS.z + INBOUND && zoom > 0) {
+			return true;
+		} else if (cam_zoom <= CAMERA_STARTINGPOS.z - OUTBOUND && zoom < 0) {
 			return true;
 		}
 		return false;
@@ -73,21 +84,35 @@ public class CameraParallax : MonoBehaviour {
 			zoom = Input.GetAxis ("Vertical");
 		}
 
-		if (hitEdge(dir)) {
+		if (hitEdge(dir, zoom)) {
 			return new Vector3(0, 0, 0);
 		}
 
-		cam.orthographicSize += - zoom * ZOOM_SPEED;
+		//cam.orthographicSize += - zoom * ZOOM_SPEED;
 		return new Vector3(dir*SCROLL_SPEED, 0, zoom * ZOOM_SPEED);
+	}
+		
+	IEnumerator moveTo(Vector3 target) {
+		if (cam.transform.position != target) {
+			float i = 0;
+			while (i < 1) {
+				i += 0.001F;
+				cam.transform.position = Vector3.Lerp (cam.transform.position, target, i);
+				yield return new WaitForFixedUpdate ();
+			}
+		} else {
+			yield break;
+		}
 	}
 
 	/* Update is called once per frame */
 	void Update () {
-	}
-
-	void FixedUpdate () {
-
 		GetFieldOfView ();
-		cam.transform.Translate (getMovement(PLAYER_INPUT));
+
+		if (PLAYER_INPUT) {
+			cam.transform.Translate (getMovement (PLAYER_INPUT));
+		} else {
+			StartCoroutine (moveTo (CAMCONTROL.currentPoint));
+		}
 	}
 }

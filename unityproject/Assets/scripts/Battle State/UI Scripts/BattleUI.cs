@@ -10,6 +10,8 @@ public class BattleUI : MonoBehaviour {
 
 	private Battlemanager STATE;
 	private BattleLoad LOAD;
+	public BattleCoroutines ANIMATIONS;
+	public CameraPoints CAMCONTROL;
 
 	private Health[] HEALTHBARS;
 
@@ -18,9 +20,11 @@ public class BattleUI : MonoBehaviour {
 		/*Load Partner Scripts*/
 		LOAD = this.gameObject.GetComponent<BattleLoad> ();
 		STATE = this.gameObject.GetComponent<Battlemanager> ();
+		CAMCONTROL = GameObject.Find("TestCam1").GetComponent<CameraPoints> ();
+		ANIMATIONS = new BattleCoroutines (this);
 
-		//playerHealth = GameObject.Find ("PlayerHealth").GetComponent<Health> ();
-		//enemyHealth = GameObject.Find ("EnemyHealth").GetComponent<Health> ();
+		playerHealth = GameObject.Find ("PlayerHealth").GetComponent<Health> ();
+		enemyHealth = GameObject.Find ("EnemyHealth").GetComponent<Health> ();
 
 		updateUIHealth ();
 	}
@@ -30,26 +34,30 @@ public class BattleUI : MonoBehaviour {
 	public Health playerHealth;
 	public Health enemyHealth;
 
-	public float playerHealthPercent { get; set; }
-	public float enemyHealthPercent { get; set; }
-
-	public string playerHealthDisplay { get; set; }
-	public string enemyHealthDisplay { get; set; }
-
 	public void updateUIHealth() {
-		playerHealthPercent = Mathf.Round (LOAD.TEAM.teamHealth / LOAD.TEAM.teamMaxHealth * 100);
-		enemyHealthPercent = Mathf.Round (LOAD.ENEMY.teamHealth / LOAD.ENEMY.teamMaxHealth * 100);
+		//Debug.Log ("Calibrating UI Display");
+		updateUIHealth (LOAD.TEAM.teamHealth, LOAD.TEAM.teamMaxHealth, LOAD.ENEMY.teamHealth, LOAD.ENEMY.teamMaxHealth);
+	}
 
-		playerHealthDisplay = System.Convert.ToString (LOAD.TEAM.teamHealth + "/" + LOAD.TEAM.teamMaxHealth);
-		enemyHealthDisplay = System.Convert.ToString (LOAD.ENEMY.teamHealth + "/" + LOAD.ENEMY.teamMaxHealth);
+	public void updateUIHealth(BattleCoroutines.UISnapshot snapshot) {
+		//Debug.Log ("Uploading snapshot");
+		updateUIHealth (snapshot.playerHealth, snapshot.playerMaxHealth, snapshot.enemyHealth, snapshot.enemyMaxHealth);
+	}
 
-		playerHealth.updateHealth ();
-		enemyHealth.updateHealth ();
+	public void updateUIHealth(float playerCurrent, float playerMax, float enemyCurrent, float enemyMax) {
+		float playerHealthPercent = Mathf.Round (playerCurrent / playerMax * 100);
+		float enemyHealthPercent = Mathf.Round (enemyCurrent / enemyMax * 100);
+
+		string playerHealthDisplay = System.Convert.ToString (playerCurrent + "/" + playerMax);
+		string enemyHealthDisplay = System.Convert.ToString (enemyCurrent + "/" + enemyMax);
+
+		playerHealth.updateHealth (playerHealthDisplay, playerHealthPercent);
+		enemyHealth.updateHealth (enemyHealthDisplay, enemyHealthPercent);
 
 		//Debug.Log (playerHealthDisplay);
 		//Debug.Log (enemyHealthDisplay);
 		//Debug.Log (System.Convert.ToString(playerHealthPercent));
-		//Debug.Log (System.Convert.ToString(enemyHealthPercent));
+		Debug.Log (System.Convert.ToString(enemyHealthPercent));
 	}
 
 	void OnGUI() {

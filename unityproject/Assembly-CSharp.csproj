@@ -46,8 +46,10 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+     <Compile Include="Assets\scripts\Battle State\BattleCoroutines.cs" />
      <Compile Include="Assets\scripts\Battle State\BattleLoad.cs" />
      <Compile Include="Assets\scripts\Battle State\Battlemanager.cs" />
+     <Compile Include="Assets\scripts\Battle State\CameraPoints.cs" />
      <Compile Include="Assets\scripts\Battle State\EnemyAI.cs" />
      <Compile Include="Assets\scripts\Battle State\Participant.cs" />
      <Compile Include="Assets\scripts\Battle State\TeamStatus.cs" />
@@ -56,12 +58,12 @@
      <Compile Include="Assets\scripts\Battle State\UI Scripts\Option.cs" />
      <Compile Include="Assets\scripts\Battle State\UI Scripts\PlayerOptions.cs" />
      <Compile Include="Assets\scripts\Battle State\UI Scripts\SkillDisplay.cs" />
+     <Compile Include="Assets\scripts\CameraParallax.cs" />
      <Compile Include="Assets\scripts\Characters\Character.cs" />
      <Compile Include="Assets\scripts\Characters\Helium.cs" />
      <Compile Include="Assets\scripts\Characters\Skill.cs" />
      <Compile Include="Assets\scripts\Characters\Xenon.cs" />
      <Compile Include="Assets\scripts\Teamstate.cs" />
-     <Compile Include="Assets\scripts\World Interaction\CameraParallax.cs" />
      <Compile Include="Assets\scripts\World Interaction\Dialogue.cs" />
      <Compile Include="Assets\scripts\World Interaction\WorldUI.cs" />
      <Compile Include="Assets\scripts\World Interaction\Worldactions.cs" />
