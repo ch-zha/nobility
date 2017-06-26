@@ -8,10 +8,9 @@ public abstract class Skill {
 	 * debating whether to use it primarily for inheriting or for 
 	 * instancing.*/
 
-	/*LEVEL HANDLING*/
-
 	/*Use skill*/
 	public abstract void activate (TeamStatus side);
+	public abstract bool hasPriority();
 	public abstract string getName ();
 	public abstract string getDescription ();
 

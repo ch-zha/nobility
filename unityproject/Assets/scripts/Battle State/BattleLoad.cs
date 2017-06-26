@@ -24,11 +24,13 @@ public class BattleLoad : MonoBehaviour {
 
 		//collect character data
 
-		TEAM = new TeamStatus (new Participant[] {new Participant(new Xenon (Character.BONDSTATE.ONE)), new Participant(new Helium (Character.BONDSTATE.ONE)), new Participant (new Helium (Character.BONDSTATE.TWO))});
-		ENEMY = new TeamStatus (new Participant[] {new Participant (new Xenon(Character.BONDSTATE.ENEMY)), null, null});
+		TEAM = new TeamStatus(); 
+		TEAM.addParticipants(new Participant[] {new Participant(new Xenon (Character.BONDSTATE.ONE), TEAM), new Participant(new Helium (Character.BONDSTATE.ONE), TEAM), new Participant (new Helium (Character.BONDSTATE.TWO), TEAM)});
+		ENEMY = new TeamStatus();
+		ENEMY.addParticipants(new Participant[] {new Participant (new Xenon(Character.BONDSTATE.ENEMY), ENEMY), null, null});
 
-		Debug.Log (System.Convert.ToString (TEAM.TEAMMATES[0]) + ", " + System.Convert.ToString (TEAM.TEAMMATES[1]) + ", " + System.Convert.ToString (TEAM.TEAMMATES[2]));
-		Debug.Log (System.Convert.ToString (ENEMY.TEAMMATES[0]) + ", " + System.Convert.ToString (ENEMY.TEAMMATES[1]) + ", " + System.Convert.ToString (ENEMY.TEAMMATES[2]));
+		Debug.Log ("ALLIES: " + System.Convert.ToString (TEAM.TEAMMATES[0]) + ", " + System.Convert.ToString (TEAM.TEAMMATES[1]) + ", " + System.Convert.ToString (TEAM.TEAMMATES[2]));
+		Debug.Log ("ENEMIES " + System.Convert.ToString (ENEMY.TEAMMATES[0]) + ", " + System.Convert.ToString (ENEMY.TEAMMATES[1]) + ", " + System.Convert.ToString (ENEMY.TEAMMATES[2]));
 
 	}
 }

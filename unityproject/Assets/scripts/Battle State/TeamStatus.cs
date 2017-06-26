@@ -14,8 +14,16 @@ public class TeamStatus {
 
 	public bool allDead = false;
 
-	// Use this for initialization
-	public TeamStatus (Participant[] participants) {
+	public TeamStatus () {
+		teamMaxHealth = 0;
+	}
+
+	public TeamStatus(Participant[] participants) {
+		teamMaxHealth = 0;
+		addParticipants (participants);
+	}
+		
+	public void addParticipants(Participant[] participants) {
 
 		teamMaxHealth = 0;
 

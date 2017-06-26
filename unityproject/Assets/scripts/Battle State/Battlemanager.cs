@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using System.Linq;
+using System;
 
 public class Battlemanager : MonoBehaviour {
 
@@ -56,43 +57,45 @@ public class Battlemanager : MonoBehaviour {
 		}
 	}
 
-	private void applyPriorityActions(TeamStatus team, Participant user) {
-		if (! team.TEAMMATES.Contains(user)) {
-			Debug.Log("Character does not belong to that team.");
-			return; //add error handling for other users when implemented;
-		}
-
+	private void applyPriorityActions(Participant user) {
 		switch (user.selected) {
 		case (Participant.Action.NONE):
 			break;
 		case (Participant.Action.ATTACK):
 			break;
 		case (Participant.Action.GUARD):
-			Debug.Log (System.Convert.ToString (team) + System.Convert.ToString (user) + "guarded");
-			team.addGuard (user);
+			Debug.Log (System.Convert.ToString (user.TEAM) + System.Convert.ToString (user) + "guarded");
+			user.TEAM.addGuard (user);
+			break;
+		case (Participant.Action.SKILL):
+			if (user.skill.hasPriority ()) {
+				Debug.Log (System.Convert.ToString (user.TEAM) + System.Convert.ToString (user) + "used a skill");
+				user.TEAM.useSkill (user);
+			}
 			break;
 		}
 	}
 
-	private void applyCharacterActions(TeamStatus team, Participant user) {
-		if (! team.TEAMMATES.Contains(user)) {
-			Debug.Log("Character does not belong to that team.");
-			return; //add error handling for other users when implemented;
+	private void applyCharacterActions(Participant user) {
+		if (user == null) {
+			Debug.Log ("Error: User not found");
+			return;
 		}
-
 		switch (user.selected) {
 		case (Participant.Action.NONE):
-			Debug.Log (System.Convert.ToString (team) + System.Convert.ToString (user) + "did nothing");
+			Debug.Log (System.Convert.ToString (user.TEAM) + System.Convert.ToString (user) + "did nothing");
 			break;
 		case (Participant.Action.ATTACK):
-			Debug.Log (System.Convert.ToString (team) + System.Convert.ToString (user) + "attacked");
-			otherTeam (team).attack (user);
+			Debug.Log (System.Convert.ToString (user.TEAM) + System.Convert.ToString (user) + "attacked");
+			otherTeam (user.TEAM).attack (user);
 			break;
 		case (Participant.Action.GUARD):
 			break;
 		case (Participant.Action.SKILL):
-			Debug.Log (System.Convert.ToString (team) + System.Convert.ToString (user) + "used a skill");
-			team.useSkill (user);
+			if (!user.skill.hasPriority ()) {
+				Debug.Log (System.Convert.ToString (user.TEAM) + System.Convert.ToString (user) + "used a skill");
+				user.TEAM.useSkill (user);
+			}
 			break;
 		}
 	}
@@ -105,33 +108,18 @@ public class Battlemanager : MonoBehaviour {
 		}
 	}
 
-	private bool animationStarted;
 	private void doBattle() {
-		foreach (Participant teammate in LOAD.TEAM.TEAMMATES) {
-			if (teammate != null) {
-				Debug.Log ("Ally Priority");
-				applyPriorityActions (LOAD.TEAM, teammate);
-			}
-		}
-		foreach (Participant teammate in LOAD.ENEMY.TEAMMATES) {
-			if (teammate != null) {
-				Debug.Log ("Enemy Priority");
-				applyPriorityActions (LOAD.ENEMY, teammate);
+		foreach (Participant character in sortBySpeed(gatherCharacters())) {
+			//Debug.Log (System.Convert.ToString (character));
+			if (character != null) {
+				applyPriorityActions (character);
 			}
 		}
 
-		//when speed stat implemented, sort characters by speed into array & implement normal actions through loop;
-
-		foreach (Participant teammate in LOAD.TEAM.TEAMMATES) {
-			if (teammate != null) {
-				Debug.Log ("Ally Normal");
-				applyCharacterActions (LOAD.TEAM, teammate);
-			}
-		}
-		foreach (Participant teammate in LOAD.ENEMY.TEAMMATES) {
-			if (teammate != null) {
-				Debug.Log ("Enemy Normal");
-				applyCharacterActions (LOAD.ENEMY, teammate);
+		foreach (Participant character in sortBySpeed(gatherCharacters())) {
+			//Debug.Log (System.Convert.ToString (character));
+			if (character != null) {
+				applyCharacterActions (character);
 			}
 		}
 	}
@@ -146,6 +134,50 @@ public class Battlemanager : MonoBehaviour {
 			Debug.Log("Not a valid team.");
 			return null;
 		}
+	}
+
+	private Participant[] gatherCharacters() {
+		Participant[] allcharacters = new Participant[6];
+		Array.Copy (LOAD.TEAM.TEAMMATES, allcharacters, 3);
+		Array.Copy (LOAD.ENEMY.TEAMMATES, 0, allcharacters, 3, 3);
+
+		int junk = 0;
+		foreach (Participant character in allcharacters) {
+			if (character == null) {
+				junk++;
+			}
+		}
+
+		Participant[] result =  new Participant[6-junk];
+		int i = 0;
+		foreach (Participant character in allcharacters) {
+			if (character != null) {
+				result [i] = character;
+				i++;
+			}
+		}
+
+		return result;
+	}
+
+	private Participant[] sortBySpeed(Participant[] allcharacters) {
+		if (allcharacters == null) {
+			Debug.Log ("No array found");
+		}
+
+		int length = allcharacters.Length;
+
+		for (int i = 1; i < length; i++) {
+			int j = i;
+			while ((j > 0) && (allcharacters [j].currentSpeed > allcharacters [j - 1].currentSpeed)) {
+				int k = j - 1;
+				Participant temp = allcharacters [k];
+				allcharacters [k] = allcharacters [j];
+				allcharacters [j] = temp;
+				j--;
+			}
+		}
+		return allcharacters;
 	}
 
 	public void endTurn() {
@@ -186,13 +218,11 @@ public class Battlemanager : MonoBehaviour {
 		switch(currentState) {
 		case(BattleState.PREBATTLE):
 			currentState = BattleState.PLAYERCHOICE;
-			animationStarted = false;
 			OPTIONS.cooldownDisable ();
 			break;
 		case(BattleState.START):
 			Debug.Log ("START");
 			incrementTurn ();
-			animationStarted = false;
 			OPTIONS.resetOptions ();
 			LOAD.TEAM.updateCDs ();
 			LOAD.ENEMY.updateCDs ();

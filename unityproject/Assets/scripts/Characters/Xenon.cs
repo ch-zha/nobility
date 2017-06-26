@@ -47,7 +47,13 @@ public class Xenon : Character {
 
 	public class AnimeBoy : Skill {
 
-		public AnimeBoy() {}
+		public AnimeBoy() {
+		}
+
+		public override bool hasPriority ()
+		{
+			return false;
+		}
 
 		public override string getName() {
 			return "Anime Boy";

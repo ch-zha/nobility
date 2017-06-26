@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class Participant {
 	
-	public Character source;
+	public Character SOURCE;
+	public TeamStatus TEAM;
 
 	public float contributeHealth {get; set;}
 	public float contributeGuard {get; set;}
@@ -23,17 +24,18 @@ public class Participant {
 		SKILL
 	}
 
-	public Participant (Character character) {
-		source = character;
+	public Participant (Character character, TeamStatus team) {
+		TEAM = team;
+		SOURCE = character;
 		//import if applicable
 
-		contributeHealth = source.BaseHealth;
-		contributeGuard = source.BaseGuard;
-		baseCD = source.Cooldown;
-		skill = source.Skill;
+		contributeHealth = SOURCE.BaseHealth;
+		contributeGuard = SOURCE.BaseGuard;
+		baseCD = SOURCE.Cooldown;
+		skill = SOURCE.Skill;
 
-		currentAttack = source.BaseAttack;
-		currentSpeed = source.BaseSpeed;
+		currentAttack = SOURCE.BaseAttack;
+		currentSpeed = SOURCE.BaseSpeed;
 		selected = Action.NONE;
 		cooldown = baseCD;
 	}
@@ -47,7 +49,7 @@ public class Participant {
 	}
 
 	public void resetSpeed() {
-		currentSpeed = source.BaseSpeed;
+		currentSpeed = SOURCE.BaseSpeed;
 	}
 
 	public void changeSpeed(float buff) {
@@ -55,7 +57,7 @@ public class Participant {
 	}
 
 	public void resetAttack() {
-		currentAttack = source.BaseAttack;
+		currentAttack = SOURCE.BaseAttack;
 	}
 
 	public void changeAttack(float buff) {
@@ -68,7 +70,7 @@ public class Participant {
 
 	public override string ToString ()
 	{
-		return string.Format ("Battler: {0}", source);
+		return string.Format ("Battler: {0}", SOURCE);
 	}
 
 }

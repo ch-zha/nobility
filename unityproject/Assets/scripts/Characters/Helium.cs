@@ -16,7 +16,7 @@ public class Helium : Character {
 			BaseAttack = 30;
 			BaseGuard = 20;
 			BaseSpeed = 11;
-			Cooldown = 4;
+			Cooldown = 3;
 			break;
 
 		case (BONDSTATE.ONE):
@@ -28,7 +28,7 @@ public class Helium : Character {
 			BaseGuard = 20;
 			BaseSpeed = 11;
 
-			Cooldown = 0;
+			Cooldown = 3;
 			break;
 
 		case (BONDSTATE.TWO):
@@ -40,21 +40,27 @@ public class Helium : Character {
 			BaseGuard = 25;
 			BaseSpeed = 11;
 
-			Cooldown = 4;
+			Cooldown = 2;
 			break;
 		}
 	}
 
 	public class BalloonMan : Skill {
 
-		public BalloonMan() {}
+		public BalloonMan() {
+		}
+
+		public override bool hasPriority ()
+		{
+			return true;
+		}
 
 		public override string getName() {
 			return "Balloon Man";
 		}
 
 		public override string getDescription() {
-			return "Increases team speed";
+			return "Increases team speed by 2";
 		}
 
 		public override void activate(TeamStatus team) {
