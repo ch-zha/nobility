@@ -63,7 +63,7 @@
      <Compile Include="Assets\scripts\Characters\Helium.cs" />
      <Compile Include="Assets\scripts\Characters\Skill.cs" />
      <Compile Include="Assets\scripts\Characters\Xenon.cs" />
-     <Compile Include="Assets\scripts\Teamstate.cs" />
+     <Compile Include="Assets\scripts\GameData.cs" />
      <Compile Include="Assets\scripts\World Interaction\Dialogue.cs" />
      <Compile Include="Assets\scripts\World Interaction\WorldUI.cs" />
      <Compile Include="Assets\scripts\World Interaction\Worldactions.cs" />

@@ -1,23 +1,15 @@
 ﻿<Properties StartupItem="Assembly-CSharp.csproj" RefactoringSettings.EnableRefactorings="True">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.WindowsPlayer" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\scripts\CameraParallax.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\scripts\GameData.cs">
     <Files>
-      <File FileName="Assets\scripts\CameraParallax.cs" Line="42" Column="52" />
+      <File FileName="Assets\scripts\Battle State\Battlemanager.cs" Line="1" Column="1" />
+      <File FileName="Assets\scripts\Battle State\TeamStatus.cs" Line="1" Column="1" />
+      <File FileName="Assets\scripts\Battle State\BattleLoad.cs" Line="1" Column="1" />
+      <File FileName="Assets\scripts\GameData.cs" Line="34" Column="97" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
-    <BreakpointStore>
-      <RunToCursorBreakpoint file="D:\GitHub\nobility\unityproject\Assets\scripts\Battle State\BattleCoroutines.cs" line="16" column="27" />
-      <RunToCursorBreakpoint file="D:\GitHub\nobility\unityproject\Assets\scripts\Battle State\BattleCoroutines.cs" line="16" column="27" />
-      <RunToCursorBreakpoint file="D:\GitHub\nobility\unityproject\Assets\scripts\Battle State\BattleCoroutines.cs" line="22" column="15" />
-      <RunToCursorBreakpoint file="D:\GitHub\nobility\unityproject\Assets\scripts\Battle State\BattleCoroutines.cs" line="21" column="12" />
-      <RunToCursorBreakpoint file="D:\GitHub\nobility\unityproject\Assets\scripts\Battle State\BattleCoroutines.cs" line="26" column="12" />
-      <RunToCursorBreakpoint file="D:\GitHub\nobility\unityproject\Assets\scripts\Battle State\UI Scripts\BattleUI.cs" line="52" column="21" />
-      <RunToCursorBreakpoint file="D:\GitHub\nobility\unityproject\Assets\scripts\Battle State\UI Scripts\BattleUI.cs" line="57" column="61" />
-      <RunToCursorBreakpoint file="D:\GitHub\nobility\unityproject\Assets\scripts\Battle State\UI Scripts\BattleUI.cs" line="27" column="20" />
-      <RunToCursorBreakpoint file="D:\GitHub\nobility\unityproject\Assets\scripts\Battle State\Battlemanager.cs" line="101" column="88" />
-      <RunToCursorBreakpoint file="D:\GitHub\nobility\unityproject\Assets\scripts\Battle State\Battlemanager.cs" line="101" column="94" />
-    </BreakpointStore>
+    <BreakpointStore />
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />
 </Properties>
