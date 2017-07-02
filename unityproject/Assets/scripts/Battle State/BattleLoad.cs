@@ -22,11 +22,8 @@ public class BattleLoad : MonoBehaviour {
 		/*Load Partner Scripts*/
 		//DISPLAY = this.gameObject.GetComponent<BattleUI> ();
 		//STATE = this.gameObject.GetComponent<Battlemanager> ();
-		//GAMEDATA = GameObject.Find("GameData").GetComponent<GameData>();
-
-		//collect character data
-
-		if (GAMEDATA != null) {
+		if (GameObject.Find ("GameData") != null) {
+			GAMEDATA = GameObject.Find ("GameData").GetComponent<GameData> ();
 			TEAM = GAMEDATA.currentTeam;
 		} else {
 		TEAM = new TeamStatus (TeamStatus.SIDE.PLAYER); 
@@ -35,10 +32,11 @@ public class BattleLoad : MonoBehaviour {
 				new Participant (new Helium (Character.BONDSTATE.ONE)),
 				new Participant (new Helium (Character.BONDSTATE.TWO))
 			});
-			TEAM.TEAMMATES [0].setTeam (TEAM);
-			TEAM.TEAMMATES [1].setTeam (TEAM);
-			TEAM.TEAMMATES [2].setTeam (TEAM);
 		}
+
+		TEAM.TEAMMATES [0].setTeam (TEAM);
+		TEAM.TEAMMATES [1].setTeam (TEAM);
+		TEAM.TEAMMATES [2].setTeam (TEAM);
 
 		ENEMY = new TeamStatus(TeamStatus.SIDE.ENEMY);
 		ENEMY.addParticipants(new Participant[] {new Participant (new Xenon(Character.BONDSTATE.ENEMY)), null, null});

@@ -27,7 +27,7 @@ public class WorldUI : MonoBehaviour {
 	void Awake () {
 		CONTROLS = GameObject.Find ("Main Camera").GetComponent<CameraParallax> ();
 		DIALOGUES = GameObject.FindGameObjectsWithTag("Dialogue");
-		DIALOGUES[0].SetActive (false);
+		exitDialogue ();
 
 		//HEALTH = GameObject.FindGameObjectWithTag ("health").GetComponent<Text> ();
 		//HEALTH.text = System.Convert.ToString (Teamstate.teamstate.player.Health);

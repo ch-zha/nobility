@@ -25,7 +25,7 @@ public class GameData: MonoBehaviour {
 	private void createDefaultTeam() {
 		currentTeam = new TeamStatus (TeamStatus.SIDE.PLAYER, new Participant[] 
 			{new Participant(new Xenon (Character.BONDSTATE.ONE)),
-			new Participant(new Xenon (Character.BONDSTATE.ONE)),
+			new Participant(new Xenon (Character.BONDSTATE.TWO)),
 			new Participant (new Helium (Character.BONDSTATE.TWO))});
 	}
 
