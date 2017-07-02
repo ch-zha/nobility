@@ -13,4 +13,5 @@ public static class EnemyAI {
 		}
 	}
 
+	/*xenon is a dumb*/
 }
