@@ -23,10 +23,10 @@ public class GameData: MonoBehaviour {
 	}
 
 	private void createDefaultTeam() {
-		currentTeam = new TeamStatus (new Participant[] 
-			{new Participant(new Xenon (Character.BONDSTATE.ONE), currentTeam),
-			new Participant(new Xenon (Character.BONDSTATE.ONE), currentTeam),
-			new Participant (new Helium (Character.BONDSTATE.TWO), currentTeam)});
+		currentTeam = new TeamStatus (TeamStatus.SIDE.PLAYER, new Participant[] 
+			{new Participant(new Xenon (Character.BONDSTATE.ONE)),
+			new Participant(new Xenon (Character.BONDSTATE.ONE)),
+			new Participant (new Helium (Character.BONDSTATE.TWO))});
 	}
 
 	public void Save() {

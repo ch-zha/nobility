@@ -14,11 +14,21 @@ public class TeamStatus {
 
 	public bool allDead = false;
 
-	public TeamStatus () {
+	public enum SIDE
+	{
+		PLAYER,
+		ENEMY
+	}
+
+	public SIDE teamSIDE;
+
+	public TeamStatus (SIDE side) {
+		teamSIDE = side;
 		teamMaxHealth = 0;
 	}
 
-	public TeamStatus(Participant[] participants) {
+	public TeamStatus(SIDE side, Participant[] participants) {
+		teamSIDE = side;
 		teamMaxHealth = 0;
 		addParticipants (participants);
 	}

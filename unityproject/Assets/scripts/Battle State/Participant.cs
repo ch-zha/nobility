@@ -24,8 +24,7 @@ public class Participant {
 		SKILL
 	}
 
-	public Participant (Character character, TeamStatus team) {
-		TEAM = team;
+	public Participant (Character character) {
 		SOURCE = character;
 		//import if applicable
 
@@ -38,6 +37,11 @@ public class Participant {
 		currentSpeed = SOURCE.BaseSpeed;
 		selected = Action.NONE;
 		cooldown = baseCD;
+	}
+
+	public void setTeam (TeamStatus team) {
+		TEAM = team;
+		Debug.Log ("Team set to " + System.Convert.ToString(team));
 	}
 
 	public bool skillReady() {

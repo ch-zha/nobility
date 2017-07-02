@@ -89,7 +89,11 @@ public class Battlemanager : MonoBehaviour {
 			break;
 		case (Participant.Action.ATTACK):
 			Debug.Log (System.Convert.ToString (user.TEAM) + System.Convert.ToString (user) + "attacked");
-			otherTeam (user.TEAM).attack (user);
+			if (user.TEAM != null) {
+				LOAD.otherTeam (user.TEAM).attack (user);
+			} else {
+				Debug.Log ("User.TEAM cannot be accessed");
+			}
 			DISPLAY.ANIMATIONS.addAnimation (DISPLAY.ANIMATIONS.waitForHealth (new BattleCoroutines.UISnapshot(LOAD)));
 			break;
 		case (Participant.Action.GUARD):
@@ -121,16 +125,6 @@ public class Battlemanager : MonoBehaviour {
 	}
 
 /*GAME FUNCTIONS*/
-	private TeamStatus otherTeam(TeamStatus team) {
-		if (team == LOAD.TEAM) {
-			return LOAD.ENEMY;
-		} else if (team == LOAD.ENEMY) {
-			return LOAD.TEAM;
-		} else {
-			Debug.Log("Not a valid team.");
-			return null;
-		}
-	}
 
 	private Participant[] gatherCharacters() {
 		Participant[] allcharacters = new Participant[6];
