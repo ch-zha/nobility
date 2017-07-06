@@ -12,7 +12,7 @@ public class Helium : Character {
 
 			STATUS = "ENEMY";
 
-			BaseHealth = 280;
+			BaseHealth = 250;
 			BaseAttack = 30;
 			BaseGuard = 20;
 			BaseSpeed = 11;
@@ -47,6 +47,8 @@ public class Helium : Character {
 
 	public class BalloonMan : Skill {
 
+		public override Participant USER { get; set;}
+
 		public BalloonMan() {
 		}
 
@@ -63,8 +65,8 @@ public class Helium : Character {
 			return "Increases team speed by 2";
 		}
 
-		public override void activate(TeamStatus team) {
-			team.createNewStatus(TeamStatus.StatusEffect.EFFECT.SPEED, 2, 2);
+		public override void activate() {
+			USER.TEAM.createNewStatus(TeamStatus.StatusEffect.EFFECT.SPEED, 2, 2);
 		}
 	}
 		

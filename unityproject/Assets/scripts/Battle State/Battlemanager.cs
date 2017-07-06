@@ -41,10 +41,15 @@ public class Battlemanager : MonoBehaviour {
 	private void chooseEnemyActions() {
 		//Debug.Log ("Picking enemy action");
 
-		int action = EnemyAI.randomDecision (LOAD.ENEMY.TEAMMATES [0]);
+		int action0;
+		int action1;
+		int action2;
+
+		action0 = EnemyAI.teammateOneDecision (LOAD.ENEMY.TEAMMATES [0]);
+		action1 = EnemyAI.teammateTwoDecision (LOAD.ENEMY.TEAMMATES [1]);
 
 		//Debug.Log ("Enemy Action: " + System.Convert.ToString (action));
-		switch (action) {
+		switch (action0) {
 		case (1):
 			LOAD.ENEMY.TEAMMATES[0].selected = Participant.Action.ATTACK;
 			break;
@@ -55,54 +60,74 @@ public class Battlemanager : MonoBehaviour {
 			LOAD.ENEMY.TEAMMATES [0].selected = Participant.Action.SKILL;
 			break;
 		}
+
+		switch (action1) {
+		case (1):
+			LOAD.ENEMY.TEAMMATES[1].selected = Participant.Action.ATTACK;
+			break;
+		case (2):
+			LOAD.ENEMY.TEAMMATES[1].selected = Participant.Action.GUARD;
+			break;
+		case (3):
+			LOAD.ENEMY.TEAMMATES [1].selected = Participant.Action.SKILL;
+			break;
+		}
 	}
 
 	private void applyPriorityActions(Participant user) {
+
+		string description;
+
 		switch (user.selected) {
 		case (Participant.Action.NONE):
 			break;
 		case (Participant.Action.ATTACK):
 			break;
 		case (Participant.Action.GUARD):
-			Debug.Log (System.Convert.ToString (user.TEAM) + System.Convert.ToString (user) + "guarded");
-			user.TEAM.addGuard (user);
-			DISPLAY.ANIMATIONS.addAnimation (DISPLAY.ANIMATIONS.wait ());
+			description = System.Convert.ToString (user) + "guarded";
+			Debug.Log (description);
+			user.equippedUtility.activate();
+			DISPLAY.ANIMATIONS.addAnimation (DISPLAY.ANIMATIONS.wait(description));
 			break;
 		case (Participant.Action.SKILL):
 			if (user.skill.hasPriority ()) {
-				Debug.Log (System.Convert.ToString (user.TEAM) + System.Convert.ToString (user) + "used a skill");
-				user.TEAM.useSkill (user);
-				DISPLAY.ANIMATIONS.addAnimation (DISPLAY.ANIMATIONS.wait ());
+				description = System.Convert.ToString (user) + "used a skill";
+				Debug.Log (description);
+				user.useSkill ();
+				DISPLAY.ANIMATIONS.addAnimation (DISPLAY.ANIMATIONS.wait(description));
 			}
 			break;
 		}
 	}
 
 	private void applyCharacterActions(Participant user) {
+		string description;
 		if (user == null) {
 			Debug.Log ("Error: User not found");
 			return;
 		}
 		switch (user.selected) {
 		case (Participant.Action.NONE):
-			Debug.Log (System.Convert.ToString (user.TEAM) + System.Convert.ToString (user) + "did nothing");
+			Debug.Log (System.Convert.ToString (user) + "did nothing");
 			break;
 		case (Participant.Action.ATTACK):
-			Debug.Log (System.Convert.ToString (user.TEAM) + System.Convert.ToString (user) + "attacked");
+			description = System.Convert.ToString (user) + "attacked";
+			Debug.Log (description);
 			if (user.TEAM != null) {
-				LOAD.otherTeam (user.TEAM).attack (user);
+				user.equippedAttack.activate ();
 			} else {
 				Debug.Log ("User.TEAM cannot be accessed");
 			}
-			DISPLAY.ANIMATIONS.addAnimation (DISPLAY.ANIMATIONS.waitForHealth (new BattleCoroutines.UISnapshot(LOAD)));
+			DISPLAY.ANIMATIONS.addAnimation (DISPLAY.ANIMATIONS.waitForHealth (new BattleCoroutines.UISnapshot(LOAD, description)));
 			break;
 		case (Participant.Action.GUARD):
 			break;
 		case (Participant.Action.SKILL):
 			if (!user.skill.hasPriority ()) {
-				Debug.Log (System.Convert.ToString (user.TEAM) + System.Convert.ToString (user) + "used a skill");
-				user.TEAM.useSkill (user);
-				DISPLAY.ANIMATIONS.addAnimation (DISPLAY.ANIMATIONS.waitForHealth (new BattleCoroutines.UISnapshot(LOAD)));
+				description = System.Convert.ToString (user) + "used a skill";
+				Debug.Log (description);
+				user.useSkill ();
+				DISPLAY.ANIMATIONS.addAnimation (DISPLAY.ANIMATIONS.waitForHealth (new BattleCoroutines.UISnapshot(LOAD, description)));
 			}
 			break;
 		}
@@ -207,9 +232,10 @@ public class Battlemanager : MonoBehaviour {
 	void Update() {
 		switch(currentState) {
 		case(BattleState.PREBATTLE):
-			currentState = BattleState.PLAYERCHOICE;
 			OPTIONS.cooldownDisable ();
 			OPTIONS.toggleOn (true);
+			DISPLAY.ACTIONDESC.enabled = false;
+			currentState = BattleState.PLAYERCHOICE;
 			break;
 		case(BattleState.START):
 			Debug.Log ("START");
@@ -219,6 +245,7 @@ public class Battlemanager : MonoBehaviour {
 			LOAD.ENEMY.updateCDs ();
 			OPTIONS.cooldownDisable ();
 			OPTIONS.toggleOn (true);
+			DISPLAY.ACTIONDESC.enabled = false;
 			currentState = BattleState.PLAYERCHOICE;
 			break;
 		case(BattleState.PLAYERCHOICE):
@@ -229,6 +256,7 @@ public class Battlemanager : MonoBehaviour {
 			currentState = BattleState.BATTLE;
 			break;
 		case(BattleState.BATTLE):
+			DISPLAY.ACTIONDESC.enabled = true;
 			DISPLAY.CAMCONTROL.changeCurrentPoint (DISPLAY.CAMCONTROL.enemyOne);
 			doBattle ();
 			DISPLAY.ANIMATIONS.runAnimationQueue ();

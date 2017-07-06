@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class TeamStatus {
 
+	public TeamStatus otherTeam;
 	public Participant[] TEAMMATES = new Participant[3];
 
 	public float teamMaxHealth { get; set; }
@@ -14,23 +15,18 @@ public class TeamStatus {
 
 	public bool allDead = false;
 
-	public enum SIDE
-	{
-		PLAYER,
-		ENEMY
-	}
-
-	public SIDE teamSIDE;
-
-	public TeamStatus (SIDE side) {
-		teamSIDE = side;
-		teamMaxHealth = 0;
-	}
-
-	public TeamStatus(SIDE side, Participant[] participants) {
-		teamSIDE = side;
+	public TeamStatus(TeamStatus otherteam, Participant[] participants) {
+		otherTeam = otherteam;
 		teamMaxHealth = 0;
 		addParticipants (participants);
+	}
+
+	public TeamStatus(Participant[] participants) {
+		addParticipants (participants);
+	}
+
+	public TeamStatus(TeamStatus otherteam) {
+		otherTeam = otherteam;
 	}
 		
 	public void addParticipants(Participant[] participants) {
@@ -52,8 +48,17 @@ public class TeamStatus {
 		statusEffects = new List<StatusEffect> ();
 	}
 
-	public void addGuard(Participant user) {
-		turnGuard += user.contributeGuard;
+	public void addGuard (Participant user) {
+		addGuard (user.contributeGuard);
+	}
+
+	public void addGuard(float guardAmount) {
+		turnGuard += guardAmount;
+		if (turnGuard > 100) {
+			turnGuard = 100;
+		} else if (turnGuard < 0) {
+			turnGuard = 0;
+		}
 		//Debug.Log ("Guard Amt. " + System.Convert.ToString (turnGuard));
 	}
 
@@ -65,22 +70,16 @@ public class TeamStatus {
 	}
 
 	/*TURN RESULTS*/
-	public void attack(Participant user) {
-		teamHealth -= Mathf.Round (user.currentAttack * (100 - turnGuard)/100);
+	public void attack (float damage) {
+		teamHealth -= Mathf.Round (damage * (100 - turnGuard) / 100);
 		if (teamHealth <= 0) {
 			teamHealth = 0;
 			allDead = true;
 		}
-		//Debug.Log("Health Left: " + System.Convert.ToString(teamHealth));
 	}
 
-	public void useSkill(Participant user) {
-		if (! user.skillReady()) {
-			Debug.Log ("Skill still in cooldown");
-		} else {
-			user.skill.activate (this);
-			user.cooldown = user.baseCD;
-		}
+	public void attack(Participant user) {
+		attack (user.currentAttack);
 	}
 
 	/*CREATE STATUS*/

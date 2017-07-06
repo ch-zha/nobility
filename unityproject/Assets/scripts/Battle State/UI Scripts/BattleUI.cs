@@ -12,6 +12,7 @@ public class BattleUI : MonoBehaviour {
 	private BattleLoad LOAD;
 	public BattleCoroutines ANIMATIONS;
 	public CameraPoints CAMCONTROL;
+	public Text ACTIONDESC;
 
 	private Health[] HEALTHBARS;
 
@@ -26,6 +27,8 @@ public class BattleUI : MonoBehaviour {
 		playerHealth = GameObject.Find ("PlayerHealth").GetComponent<Health> ();
 		enemyHealth = GameObject.Find ("EnemyHealth").GetComponent<Health> ();
 
+		ACTIONDESC = GameObject.Find ("Action").GetComponent<Text> ();
+
 		updateUIHealth ();
 	}
 		
@@ -33,6 +36,10 @@ public class BattleUI : MonoBehaviour {
 
 	public Health playerHealth;
 	public Health enemyHealth;
+
+	public void clearActionDescription() {
+		ACTIONDESC.text = "";
+	}
 
 	public void updateUIHealth() {
 		//Debug.Log ("Calibrating UI Display");

@@ -12,11 +12,11 @@ public class Xenon : Character {
 
 			STATUS = "ENEMY";
 
-			BaseHealth = 280;
-			BaseAttack = 30;
-			BaseGuard = 20;
+			BaseHealth = 160;
+			BaseAttack = 80;
+			BaseGuard = 40;
 			BaseSpeed = 40;
-			Cooldown = 4;
+			Cooldown = 3;
 			break;
 
 		case (BONDSTATE.ONE):
@@ -28,7 +28,7 @@ public class Xenon : Character {
 			BaseGuard = 20;
 			BaseSpeed = 20;
 
-			Cooldown = 4;
+			Cooldown = 3;
 			break;
 
 		case (BONDSTATE.TWO):
@@ -47,6 +47,8 @@ public class Xenon : Character {
 
 	public class AnimeBoy : Skill {
 
+		public override Participant USER { get; set;}
+
 		public AnimeBoy() {
 		}
 
@@ -63,8 +65,8 @@ public class Xenon : Character {
 			return "Heals team by 50";
 		}
 
-		public override void activate(TeamStatus team) {
-			team.heal (50);
+		public override void activate() {
+			USER.TEAM.heal (50);
 		}
 	}
 		

@@ -26,21 +26,31 @@ public class BattleLoad : MonoBehaviour {
 			GAMEDATA = GameObject.Find ("GameData").GetComponent<GameData> ();
 			TEAM = GAMEDATA.currentTeam;
 		} else {
-		TEAM = new TeamStatus (TeamStatus.SIDE.PLAYER); 
-			TEAM.addParticipants (new Participant[] {
+		TEAM = new TeamStatus (new Participant[] {
 				new Participant (new Xenon (Character.BONDSTATE.ONE)),
-				new Participant (new Helium (Character.BONDSTATE.ONE)),
-				new Participant (new Helium (Character.BONDSTATE.TWO))
+				new Participant (new FistMan (Character.BONDSTATE.ONE)),
+				new Participant (new WallE (Character.BONDSTATE.ONE))
 			});
 		}
 
-		TEAM.TEAMMATES [0].setTeam (TEAM);
-		TEAM.TEAMMATES [1].setTeam (TEAM);
-		TEAM.TEAMMATES [2].setTeam (TEAM);
+		foreach (Participant teammate in TEAM.TEAMMATES) {
+			if (teammate != null) {
+				teammate.setTeam (TEAM);
+			}
+		}
 
-		ENEMY = new TeamStatus(TeamStatus.SIDE.ENEMY);
-		ENEMY.addParticipants(new Participant[] {new Participant (new Xenon(Character.BONDSTATE.ENEMY)), null, null});
-		ENEMY.TEAMMATES [0].setTeam (ENEMY);
+		ENEMY = new TeamStatus(TEAM, new Participant[] {
+				new Participant (new Xenon(Character.BONDSTATE.ENEMY)), 
+				new Participant (new Xenon(Character.BONDSTATE.ENEMY)), 
+				null});
+
+		foreach (Participant teammate in ENEMY.TEAMMATES) {
+			if (teammate != null) {
+				teammate.setTeam (ENEMY);
+			}
+		}
+
+		TEAM.otherTeam = ENEMY;
 
 		Debug.Log ("ALLIES: " + System.Convert.ToString (TEAM.TEAMMATES[0]) + ", " + System.Convert.ToString (TEAM.TEAMMATES[1]) + ", " + System.Convert.ToString (TEAM.TEAMMATES[2]));
 		Debug.Log ("ENEMIES " + System.Convert.ToString (ENEMY.TEAMMATES[0]) + ", " + System.Convert.ToString (ENEMY.TEAMMATES[1]) + ", " + System.Convert.ToString (ENEMY.TEAMMATES[2]));

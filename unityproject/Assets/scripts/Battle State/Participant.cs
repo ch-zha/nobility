@@ -11,6 +11,8 @@ public class Participant {
 	public float contributeGuard {get; set;}
 	public int baseCD { get; set;}
 	public Skill skill {get; set;}
+	public Skill equippedAttack { get; set;}
+	public Skill equippedUtility { get; set;}
 
 	public float currentAttack {get; set;}
 	public float currentSpeed { get; set;}
@@ -31,7 +33,11 @@ public class Participant {
 		contributeHealth = SOURCE.BaseHealth;
 		contributeGuard = SOURCE.BaseGuard;
 		baseCD = SOURCE.Cooldown;
+
 		skill = SOURCE.Skill;
+		skill.USER = this;
+		equippedAttack = new BasicAttack(this);
+		equippedUtility = new BasicGuard(this);
 
 		currentAttack = SOURCE.BaseAttack;
 		currentSpeed = SOURCE.BaseSpeed;
@@ -49,6 +55,15 @@ public class Participant {
 			return true;
 		} else {
 			return false;
+		}
+	}
+
+	public void useSkill() {
+		if (! skillReady()) {
+			Debug.Log ("Skill still in cooldown");
+		} else {
+			skill.activate ();
+			cooldown = baseCD;
 		}
 	}
 
