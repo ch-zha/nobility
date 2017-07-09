@@ -29,7 +29,7 @@ public class BattleUI : MonoBehaviour {
 
 		ACTIONDESC = GameObject.Find ("Action").GetComponent<Text> ();
 
-		updateUIHealth ();
+		updateUIHealth (false);
 	}
 		
 	/*HEALTH*/
@@ -41,25 +41,30 @@ public class BattleUI : MonoBehaviour {
 		ACTIONDESC.text = "";
 	}
 
-	public void updateUIHealth() {
+	public void updateUIHealth(bool animate) {
 		//Debug.Log ("Calibrating UI Display");
-		updateUIHealth (LOAD.TEAM.teamHealth, LOAD.TEAM.teamMaxHealth, LOAD.ENEMY.teamHealth, LOAD.ENEMY.teamMaxHealth);
+		updateUIHealth (LOAD.TEAM.teamHealth, LOAD.TEAM.teamMaxHealth, LOAD.ENEMY.teamHealth, LOAD.ENEMY.teamMaxHealth, animate);
 	}
 
 	public void updateUIHealth(BattleCoroutines.UISnapshot snapshot) {
 		//Debug.Log ("Uploading snapshot");
-		updateUIHealth (snapshot.playerHealth, snapshot.playerMaxHealth, snapshot.enemyHealth, snapshot.enemyMaxHealth);
+		updateUIHealth (snapshot.playerHealth, snapshot.playerMaxHealth, snapshot.enemyHealth, snapshot.enemyMaxHealth, true);
 	}
 
-	public void updateUIHealth(float playerCurrent, float playerMax, float enemyCurrent, float enemyMax) {
+	public void updateUIHealth(float playerCurrent, float playerMax, float enemyCurrent, float enemyMax, bool animate) {
 		float playerHealthPercent = Mathf.Round (playerCurrent / playerMax * 100);
 		float enemyHealthPercent = Mathf.Round (enemyCurrent / enemyMax * 100);
 
 		string playerHealthDisplay = System.Convert.ToString (playerCurrent + "/" + playerMax);
 		string enemyHealthDisplay = System.Convert.ToString (enemyCurrent + "/" + enemyMax);
 
-		playerHealth.updateHealth (playerHealthDisplay, playerHealthPercent);
-		enemyHealth.updateHealth (enemyHealthDisplay, enemyHealthPercent);
+		if (animate) {
+			playerHealth.updateHealth (playerHealthDisplay, playerHealthPercent);
+			enemyHealth.updateHealth (enemyHealthDisplay, enemyHealthPercent);
+		} else {
+			playerHealth.updateHealthNoAnimate (playerHealthDisplay, playerHealthPercent);
+			enemyHealth.updateHealthNoAnimate (enemyHealthDisplay, enemyHealthPercent);
+		}
 
 		//Debug.Log (playerHealthDisplay);
 		//Debug.Log (enemyHealthDisplay);

@@ -12,6 +12,9 @@ public class WorldUI : MonoBehaviour {
 	public Text HEALTH;
 	public Text PlayerName;
 	public GameObject PlayerMenu;
+	private  MovePlayer MOVEMENT;
+
+	public bool menuOn { get; set; }
 
 	public void saveProgress() {
 		GAMEDATA.currentScene = SceneManager.GetActiveScene ().name;
@@ -20,8 +23,15 @@ public class WorldUI : MonoBehaviour {
 		hideMenu ();
 	}
 
+	public void showMenu() {
+		PlayerMenu.SetActive (true);
+		Misc.fadeIn (this, .05F, PlayerMenu.GetComponent<CanvasGroup> ());
+		MOVEMENT.PLAYER_INPUT = false;
+	}
+
 	public void hideMenu() {
 		PlayerMenu.SetActive (false);
+		MOVEMENT.PLAYER_INPUT = true;
 	}
 
 	public void quit() {
@@ -30,7 +40,9 @@ public class WorldUI : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
+		MOVEMENT = GameObject.Find ("Main Camera").GetComponent<MovePlayer> ();
 		GAMEDATA = GameObject.Find ("GameData").GetComponent<GameData> ();
+		PlayerMenu.SetActive (false);
 		PlayerName.text = GAMEDATA.PLAYERNAME;
 		HEALTH.text = System.Convert.ToString(GAMEDATA.currentTeam.teamHealth);
 	}
@@ -38,7 +50,7 @@ public class WorldUI : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		if (Input.GetKey (KeyCode.Escape)) {
-			PlayerMenu.SetActive (true);
+			showMenu ();
 		}
 	}
 }

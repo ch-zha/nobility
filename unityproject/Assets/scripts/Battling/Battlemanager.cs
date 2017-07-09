@@ -272,7 +272,7 @@ public class Battlemanager : MonoBehaviour {
 			DISPLAY.CAMCONTROL.resetPoint();
 			LOAD.TEAM.nextTurn ();
 			LOAD.ENEMY.nextTurn ();
-			DISPLAY.updateUIHealth ();
+			DISPLAY.updateUIHealth (true);
 			currentState = checkVictory();
 			break;
 		case(BattleState.DIALOGUE):

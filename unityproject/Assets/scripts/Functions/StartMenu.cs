@@ -65,7 +65,9 @@ public class StartMenu: MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		StartCoroutine (fadeIn(LOGO_CANVAS, NEWGAME_CANVAS));
+		StartCoroutine (Misc.fadeIn(this, .01F, LOGO_CANVAS, 
+			Misc.fadeIn(this, .05F, CONTINUE_CANVAS, 
+				Misc.fadeIn(this, .05F, NEWGAME_CANVAS))));
 	}
 	
 	// Update is called once per frame

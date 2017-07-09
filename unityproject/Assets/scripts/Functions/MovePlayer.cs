@@ -5,7 +5,7 @@ using UnityEngine;
 public class MovePlayer : MonoBehaviour {
 
 	//MANUALS
-	public bool PLAYER_INPUT = true;
+	public bool PLAYER_INPUT {get; set;}
 
 	public float LEFTBOUND;
 	public float RIGHTBOUND;
@@ -40,6 +40,7 @@ public class MovePlayer : MonoBehaviour {
 
 	void Start() {
 
+		PLAYER_INPUT = true;
 		cam.transform.position = new Vector3(me.transform.position.x, cam.transform.position.y, cam.transform.position.z);
 	}
 
@@ -109,13 +110,14 @@ public class MovePlayer : MonoBehaviour {
 	void Update () {
 		GetFieldOfView ();
 
-		if (dir > 0) {
-			GameObject.Find ("HydrogenSprite").transform.localEulerAngles = new Vector3 (0, 180, 0);
-		} else if (dir < 0) {
-			GameObject.Find ("HydrogenSprite").transform.localEulerAngles = new Vector3 (0, 0, 0);
-		}
-
 		if (PLAYER_INPUT) {
+
+			if (dir > 0) {
+				GameObject.Find ("HydrogenSprite").transform.localEulerAngles = new Vector3 (0, 180, 0);
+			} else if (dir < 0) {
+				GameObject.Find ("HydrogenSprite").transform.localEulerAngles = new Vector3 (0, 0, 0);
+			}
+
 			me.transform.Translate (getMovement (PLAYER_INPUT));
 			if ((me.transform.position.x <= STARTINGPOS.x + RIGHTBOUND - cam.orthographicSize) && 
 				(me.transform.position.x >= STARTINGPOS.x - LEFTBOUND + cam.orthographicSize)) {

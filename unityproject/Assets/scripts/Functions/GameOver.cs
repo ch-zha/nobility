@@ -7,7 +7,7 @@ public class GameOver : MonoBehaviour {
 
 	private GameData GAMEDATA;
 
-	void tryAgain() {
+	public void tryAgain() {
 		if (GAMEDATA.currentScene != null) {
 			SceneManager.LoadScene (GAMEDATA.currentScene);
 		} else {
@@ -15,7 +15,7 @@ public class GameOver : MonoBehaviour {
 		}
 	}
 
-	void quit() {
+	public void quit() {
 		Application.Quit ();
 	}
 

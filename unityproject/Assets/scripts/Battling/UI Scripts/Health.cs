@@ -78,6 +78,12 @@ public class Health : MonoBehaviour {
 		TEXT.text = healthDisplay;
 		StartCoroutine (healthChange (healthPercent));
 	}
+
+	public void updateHealthNoAnimate (string healthDisplay, float healthPercent) {
+		TEXT.text = healthDisplay;
+		barCurrentPercent = healthPercent;
+		SIZE.localScale = new Vector3 (ORIG_SIZE.x * (barCurrentPercent/100), 1, 1);
+	}
 	
 	// Update is called once per frame
 	void Update () {

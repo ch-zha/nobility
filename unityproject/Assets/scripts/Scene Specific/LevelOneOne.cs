@@ -18,7 +18,7 @@ public class LevelOneOne : MonoBehaviour {
 		exitDialogue ();
 	}
 
-	void OnMouseDown () {
+	public void initBattle () {
 		SceneManager.LoadScene (SceneManager.GetActiveScene ().buildIndex + 1);
 	}
 

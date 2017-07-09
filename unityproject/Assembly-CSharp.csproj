@@ -46,19 +46,18 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-     <Compile Include="Assets\scripts\Battle State\BattleLoad.cs" />
-     <Compile Include="Assets\scripts\Battle State\Battlemanager.cs" />
-     <Compile Include="Assets\scripts\Battle State\CameraPoints.cs" />
-     <Compile Include="Assets\scripts\Battle State\EnemyAI.cs" />
-     <Compile Include="Assets\scripts\Battle State\Participant.cs" />
-     <Compile Include="Assets\scripts\Battle State\TeamStatus.cs" />
-     <Compile Include="Assets\scripts\Battle State\UI Scripts\BattleCoroutines.cs" />
-     <Compile Include="Assets\scripts\Battle State\UI Scripts\BattleUI.cs" />
-     <Compile Include="Assets\scripts\Battle State\UI Scripts\Health.cs" />
-     <Compile Include="Assets\scripts\Battle State\UI Scripts\Option.cs" />
-     <Compile Include="Assets\scripts\Battle State\UI Scripts\PlayerOptions.cs" />
-     <Compile Include="Assets\scripts\Battle State\UI Scripts\SkillDisplay.cs" />
-     <Compile Include="Assets\scripts\CameraParallax.cs" />
+     <Compile Include="Assets\scripts\Battling\BattleLoad.cs" />
+     <Compile Include="Assets\scripts\Battling\Battlemanager.cs" />
+     <Compile Include="Assets\scripts\Battling\CameraPoints.cs" />
+     <Compile Include="Assets\scripts\Battling\EnemyAI.cs" />
+     <Compile Include="Assets\scripts\Battling\Participant.cs" />
+     <Compile Include="Assets\scripts\Battling\TeamStatus.cs" />
+     <Compile Include="Assets\scripts\Battling\UI Scripts\BattleCoroutines.cs" />
+     <Compile Include="Assets\scripts\Battling\UI Scripts\BattleUI.cs" />
+     <Compile Include="Assets\scripts\Battling\UI Scripts\Health.cs" />
+     <Compile Include="Assets\scripts\Battling\UI Scripts\Option.cs" />
+     <Compile Include="Assets\scripts\Battling\UI Scripts\PlayerOptions.cs" />
+     <Compile Include="Assets\scripts\Battling\UI Scripts\SkillDisplay.cs" />
      <Compile Include="Assets\scripts\Characters\Character.cs" />
      <Compile Include="Assets\scripts\Characters\FistMan.cs" />
      <Compile Include="Assets\scripts\Characters\Helium.cs" />
@@ -67,11 +66,20 @@
      <Compile Include="Assets\scripts\Characters\Skills\Skill.cs" />
      <Compile Include="Assets\scripts\Characters\WallE.cs" />
      <Compile Include="Assets\scripts\Characters\Xenon.cs" />
-     <Compile Include="Assets\scripts\GameData.cs" />
-     <Compile Include="Assets\scripts\World Interaction\Dialogue.cs" />
-     <Compile Include="Assets\scripts\World Interaction\SpriteBehavior.cs" />
-     <Compile Include="Assets\scripts\World Interaction\WorldUI.cs" />
-     <Compile Include="Assets\scripts\World Interaction\Worldactions.cs" />
+     <Compile Include="Assets\scripts\Data\GameData.cs" />
+     <Compile Include="Assets\scripts\Functions\CameraParallax.cs" />
+     <Compile Include="Assets\scripts\Functions\GameOver.cs" />
+     <Compile Include="Assets\scripts\Functions\Misc.cs" />
+     <Compile Include="Assets\scripts\Functions\MovePlayer.cs" />
+     <Compile Include="Assets\scripts\Functions\NewGame.cs" />
+     <Compile Include="Assets\scripts\Functions\StartMenu.cs" />
+     <Compile Include="Assets\scripts\Functions\Test.cs" />
+     <Compile Include="Assets\scripts\Overworld\Dialogue.cs" />
+     <Compile Include="Assets\scripts\Overworld\SpriteBehavior.cs" />
+     <Compile Include="Assets\scripts\Overworld\WorldUI.cs" />
+     <Compile Include="Assets\scripts\Overworld\Worldactions.cs" />
+     <Compile Include="Assets\scripts\Scene Specific\LevelOneOne.cs" />
+     <Compile Include="Assets\scripts\Scene Specific\LevelOneOneBattle.cs" />
  <Reference Include="UnityEngine.UI">
  <HintPath>C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>
  </Reference>
