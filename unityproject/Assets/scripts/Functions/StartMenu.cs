@@ -49,7 +49,11 @@ public class StartMenu: MonoBehaviour {
 
 	public void continueGame() {
 		GAMEDATA.Load ();
-		SceneManager.LoadScene (GAMEDATA.currentScene);
+		if (GAMEDATA.currentScene != null) {
+			SceneManager.LoadScene (GAMEDATA.currentScene);
+		} else {
+			Debug.Log ("Error: Save File Invalid"); 
+		}
 	}
 
 	void Awake() {

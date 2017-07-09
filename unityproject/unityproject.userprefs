@@ -1,20 +1,15 @@
 ﻿<Properties StartupItem="Assembly-CSharp.csproj" RefactoringSettings.EnableRefactorings="True">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.WindowsPlayer" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\scripts\Functions\GameOver.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\scripts\Data\GameData.cs">
     <Files>
-      <File FileName="Assets\scripts\Scene Specific\LevelOneOne.cs" Line="51" Column="17" />
-      <File FileName="Assets\scripts\Data\GameData.cs" Line="70" Column="16" />
-      <File FileName="Assets\scripts\Overworld\WorldUI.cs" Line="16" Column="9" />
-      <File FileName="Assets\scripts\Functions\StartMenu.cs" Line="51" Column="20" />
-      <File FileName="Assets\scripts\Functions\NewGame.cs" Line="33" Column="34" />
-      <File FileName="Assets\scripts\Functions\GameOver.cs" Line="14" Column="29" />
+      <File FileName="Assets\scripts\Overworld\WorldUI.cs" Line="44" Column="69" />
+      <File FileName="Assets\scripts\Data\GameData.cs" Line="1" Column="1" />
+      <File FileName="Assets\scripts\Functions\NewGame.cs" Line="38" Column="36" />
+      <File FileName="Assets\scripts\Functions\StartMenu.cs" Line="52" Column="39" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
-    <BreakpointStore>
-      <RunToCursorBreakpoint file="D:\GitHub\nobility\unityproject\Assets\scripts\Scene Specific\LevelOneOne.cs" line="22" column="97" />
-      <RunToCursorBreakpoint file="D:\GitHub\nobility\unityproject\Assets\scripts\Functions\StartMenu.cs" line="22" column="27" />
-    </BreakpointStore>
+    <BreakpointStore />
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />
 </Properties>

@@ -36,8 +36,7 @@ public class NewGame : MonoBehaviour {
 
 	public void confirmName() {
 		GAMEFILE.PLAYERNAME = PLAYERNAME;
-		GAMEFILE.Save ();
-		SceneManager.LoadScene (3);
+		SceneManager.LoadScene ("1_1");
 	}
 
 	// Use this for initialization

@@ -1,0 +1,56 @@
+Initialize engine version: 5.6.1f1 (2860b30f0b54)
+GfxDevice: creating device client; threaded=1
+Direct3D:
+    Version:  Direct3D 11.0 [level 11.0]
+    Renderer: NVIDIA GeForce GTX 960M (ID=0x139b)
+    Vendor:   NVIDIA
+    VRAM:     3072 MB
+    Driver:   21.21.13.6909
+Begin MonoManager ReloadAssembly
+Platform assembly: D:\GitHub\nobility\unityproject\Tests\gamepc_Data\Managed\UnityEngine.dll (this message is harmless)
+Loading D:\GitHub\nobility\unityproject\Tests\gamepc_Data\Managed\UnityEngine.dll into Unity Child Domain
+Platform assembly: D:\GitHub\nobility\unityproject\Tests\gamepc_Data\Managed\Assembly-CSharp.dll (this message is harmless)
+Loading D:\GitHub\nobility\unityproject\Tests\gamepc_Data\Managed\Assembly-CSharp.dll into Unity Child Domain
+Platform assembly: D:\GitHub\nobility\unityproject\Tests\gamepc_Data\Managed\UnityEngine.UI.dll (this message is harmless)
+Loading D:\GitHub\nobility\unityproject\Tests\gamepc_Data\Managed\UnityEngine.UI.dll into Unity Child Domain
+Platform assembly: D:\GitHub\nobility\unityproject\Tests\gamepc_Data\Managed\UnityEngine.Networking.dll (this message is harmless)
+Loading D:\GitHub\nobility\unityproject\Tests\gamepc_Data\Managed\UnityEngine.Networking.dll into Unity Child Domain
+Platform assembly: D:\GitHub\nobility\unityproject\Tests\gamepc_Data\Managed\UnityEngine.Analytics.dll (this message is harmless)
+Loading D:\GitHub\nobility\unityproject\Tests\gamepc_Data\Managed\UnityEngine.Analytics.dll into Unity Child Domain
+- Completed reload, in  0.099 seconds
+Platform assembly: D:\GitHub\nobility\unityproject\Tests\gamepc_Data\Managed\System.Core.dll (this message is harmless)
+Platform assembly: D:\GitHub\nobility\unityproject\Tests\gamepc_Data\Managed\System.dll (this message is harmless)
+desktop: 1920x1080 60Hz; virtual: 1920x1080 at 0,0
+<RI> Initializing input.
+<RI> Input initialized.
+<RI> Initialized touch support.
+Serialization depth limit 7 exceeded at 'Participant.SOURCE'. There may be an object composition cycle in one or more of your serialized classes.
+
+Serialization hierarchy:
+8: Participant.SOURCE
+7: TeamStatus.TEAMMATES
+6: Participant.TEAM
+5: TeamStatus.TEAMMATES
+4: Participant.TEAM
+3: TeamStatus.TEAMMATES
+2: Participant.TEAM
+1: TeamStatus.TEAMMATES
+0: GameData.currentTeam
+
+ 
+(Filename:  Line: 84)
+
+UnloadTime: 3.560444 ms
+Unloading 5 Unused Serialized files (Serialized files now loaded: 0)
+UnloadTime: 5.501777 ms
+
+Unloading 3 unused Assets to reduce memory usage. Loaded Objects now: 436.
+Total: 0.352444 ms (FindLiveObjects: 0.040888 ms CreateObjectMapping: 0.017333 ms MarkObjects: 0.287555 ms  DeleteObjects: 0.005333 ms)
+
+I see you binch
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+Setting up 2 worker threads for Enlighten.
+  Thread -> id: 2b0c0 -> priority: 1 
+  Thread -> id: 2ae3c -> priority: 1 
