@@ -1,7 +1,9 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
+[Serializable]
 public class Helium : Character {
 
 	public Helium (BONDSTATE bondstate) {
@@ -45,6 +47,7 @@ public class Helium : Character {
 		}
 	}
 
+	[Serializable]
 	public class BalloonMan : Skill {
 
 		public override Participant USER { get; set;}

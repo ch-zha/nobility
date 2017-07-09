@@ -1,7 +1,9 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
+[Serializable]
 public class FistMan : Character {
 
 	public FistMan (BONDSTATE bondstate) {
@@ -29,6 +31,7 @@ public class FistMan : Character {
 		}
 	}
 
+	[Serializable]
 	public class PunchyPunch : Skill {
 
 		public override Participant USER { get; set;}

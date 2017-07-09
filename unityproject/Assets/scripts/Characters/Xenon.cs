@@ -1,7 +1,9 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
+[Serializable]
 public class Xenon : Character {
 
 	public Xenon (BONDSTATE bondstate) {
@@ -12,7 +14,7 @@ public class Xenon : Character {
 
 			STATUS = "ENEMY";
 
-			BaseHealth = 160;
+			BaseHealth = 80;
 			BaseAttack = 80;
 			BaseGuard = 40;
 			BaseSpeed = 40;
@@ -44,7 +46,8 @@ public class Xenon : Character {
 			break;
 		}
 	}
-
+		
+	[Serializable]
 	public class AnimeBoy : Skill {
 
 		public override Participant USER { get; set;}

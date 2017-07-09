@@ -1,7 +1,9 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
+[Serializable]
 public class WallE : Character {
 
 	public WallE (BONDSTATE bondstate) {
@@ -29,6 +31,7 @@ public class WallE : Character {
 		}
 	}
 
+	[Serializable]
 	public class SuperWall : Skill {
 
 		public override Participant USER { get; set;}
