@@ -11,7 +11,14 @@ public class WallE : Character {
 
 		switch (bondstate) {
 		case (BONDSTATE.ENEMY):
-			Debug.Log("Error: WallE cannot assume that status.");
+			STATUS = "ENEMY";
+
+			BaseHealth = 180;
+			BaseAttack = 80;
+			BaseGuard = 40;
+			BaseSpeed = 20;
+
+			Cooldown = 3;
 			break;
 
 		case (BONDSTATE.ONE):

@@ -40,8 +40,8 @@ public class BattleLoad : MonoBehaviour {
 		}
 
 		ENEMY = new TeamStatus(TEAM, new Participant[] {
-				new Participant (new Xenon(Character.BONDSTATE.ENEMY)), 
-				new Participant (new Xenon(Character.BONDSTATE.ENEMY)), 
+			new Participant (new WallE(Character.BONDSTATE.ENEMY)), 
+			new Participant (new WallE(Character.BONDSTATE.ENEMY)), 
 				null});
 
 		foreach (Participant teammate in ENEMY.TEAMMATES) {
