@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class CameraPoints : MonoBehaviour {
 
+	/*RETIRED CLASS DO NOT USE*/
+
 	public Vector3 defaultPoint = new Vector3 (0, 0, -10);
 	public Vector3 enemyOne = new Vector3 (-10, 3, -2);
 	public Vector3 enemyTwo;

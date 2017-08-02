@@ -16,31 +16,33 @@ public class CameraParallax : MonoBehaviour {
 	public float OUTBOUND = 0;
 	public float SCROLL_SPEED = 1F;
 	public float ZOOM_SPEED = .5F;
+	public float LERP_SPEED = 1F;
 
 	//GAME OBJECTS/COMPONENTS
 	private Camera cam;
 	private Camera farCam;
 	private Camera nearCam;
-	private CameraPoints CAMCONTROL;
 
 	//STATIC VARS
 	private Vector3 CAMERA_STARTINGPOS;
+	private Vector3 ROTATE;
 
 	//NONSTATIC VARS
 	private float dir;
 	private float zoom;
 	private Vector3 movement;
 
+	public Vector3 currentPoint {get; set;}
+	public Vector3 rotate { get; set;}
+
 	/*Init*/
 	void Awake () {
 		cam = this.gameObject.GetComponent<Camera> ();
-		CAMCONTROL = this.gameObject.GetComponent<CameraPoints> ();
 		nearCam = GameObject.Find("Parallax Near Camera").GetComponent<Camera> ();
 		farCam = GameObject.Find("Parallax Far Camera").GetComponent<Camera> ();
 		CAMERA_STARTINGPOS = cam.transform.position;
-		CAMCONTROL.origPoint = CAMERA_STARTINGPOS;
-		cam.transform.position = CAMCONTROL.defaultPoint;
-		CAMCONTROL.resetPoint ();
+		ROTATE = cam.transform.localRotation.eulerAngles;
+		resetCamera ();
 	}
 
 	/*Check for edge of world*/
@@ -96,13 +98,29 @@ public class CameraParallax : MonoBehaviour {
 		if (cam.transform.position != target) {
 			float i = 0;
 			while (i < 1) {
-				i += 0.001F;
+				i += Time.deltaTime * LERP_SPEED;
 				cam.transform.position = Vector3.Lerp (cam.transform.position, target, i);
 				yield return new WaitForFixedUpdate ();
 			}
 		} else {
 			yield break;
 		}
+	}
+		
+	IEnumerator rotateTo(Vector3 target) {
+		if (cam.transform.eulerAngles != target){
+			float i = 0;
+			while (i < 1) {
+				i += Time.deltaTime * LERP_SPEED;
+				cam.transform.rotation = Quaternion.Slerp (cam.transform.rotation, Quaternion.Euler(target), i);
+				yield return new WaitForFixedUpdate ();
+			}
+		}
+	}
+
+	public void resetCamera() {
+		currentPoint = CAMERA_STARTINGPOS;
+		rotate = ROTATE;
 	}
 
 	/* Update is called once per frame */
@@ -112,7 +130,8 @@ public class CameraParallax : MonoBehaviour {
 		if (PLAYER_INPUT) {
 			cam.transform.Translate (getMovement (PLAYER_INPUT));
 		} else {
-			StartCoroutine (moveTo (CAMCONTROL.currentPoint));
+			StartCoroutine (rotateTo (rotate));
+			StartCoroutine (moveTo (currentPoint));
 		}
 	}
 }

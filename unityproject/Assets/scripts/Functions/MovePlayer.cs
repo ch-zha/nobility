@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class MovePlayer : MonoBehaviour {
 
+	/*NOTE: RETIRED CLASS, DO NOT USE*/
+
 	//MANUALS
 	public bool PLAYER_INPUT {get; set;}
 

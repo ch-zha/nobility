@@ -257,7 +257,6 @@ public class Battlemanager : MonoBehaviour {
 			break;
 		case(BattleState.BATTLE):
 			DISPLAY.ACTIONDESC.enabled = true;
-			DISPLAY.CAMCONTROL.changeCurrentPoint (DISPLAY.CAMCONTROL.enemyOne);
 			doBattle ();
 			DISPLAY.ANIMATIONS.runAnimationQueue ();
 			currentState = BattleState.ANIMATION;
@@ -269,7 +268,7 @@ public class Battlemanager : MonoBehaviour {
 			}
 			break;
 		case(BattleState.END):
-			DISPLAY.CAMCONTROL.resetPoint();
+			DISPLAY.CAMERA.resetCamera();
 			LOAD.TEAM.nextTurn ();
 			LOAD.ENEMY.nextTurn ();
 			DISPLAY.updateUIHealth (true);

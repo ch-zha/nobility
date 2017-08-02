@@ -11,7 +11,7 @@ public class BattleUI : MonoBehaviour {
 	private Battlemanager STATE;
 	private BattleLoad LOAD;
 	public BattleCoroutines ANIMATIONS;
-	public CameraPoints CAMCONTROL;
+	public CameraParallax CAMERA;
 	public Text ACTIONDESC;
 
 	private Health[] HEALTHBARS;
@@ -21,7 +21,7 @@ public class BattleUI : MonoBehaviour {
 		/*Load Partner Scripts*/
 		LOAD = this.gameObject.GetComponent<BattleLoad> ();
 		STATE = this.gameObject.GetComponent<Battlemanager> ();
-		CAMCONTROL = GameObject.Find("TestCam1").GetComponent<CameraPoints> ();
+		CAMERA = GameObject.Find("BattleCam").GetComponent<CameraParallax> ();
 		ANIMATIONS = new BattleCoroutines (this);
 
 		playerHealth = GameObject.Find ("PlayerHealth").GetComponent<Health> ();
