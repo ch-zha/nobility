@@ -5,8 +5,6 @@ using UnityEngine.UI;
 
 public class Option : MonoBehaviour {
 
-	/*OLD VERSION: Version 1 Class, DO NOT USE unless updated*/
-
 	public Participant.Action action;
 
 	public Toggle toggle;
@@ -29,4 +27,5 @@ public class Option : MonoBehaviour {
 		selected = toggle;
 		controlcenter.updateOption ();
 	}
+
 }

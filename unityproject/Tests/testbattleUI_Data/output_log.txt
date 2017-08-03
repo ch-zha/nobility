@@ -2,13 +2,13 @@ Mono path[0] = 'D:/GitHub/nobility/unityproject/Tests/testbattleUI_Data/Managed'
 Mono path[1] = 'D:/GitHub/nobility/unityproject/Tests/testbattleUI_Data/Mono'
 Mono config path = 'D:/GitHub/nobility/unityproject/Tests/testbattleUI_Data/Mono/etc'
 PlayerConnection initialized from D:/GitHub/nobility/unityproject/Tests/testbattleUI_Data (debug = 0)
-PlayerConnection initialized network socket : 0.0.0.0 55449
-Multi-casting "[IP] 10.0.0.14 [Port] 55449 [Flags] 3 [Guid] 317929794 [EditorId] 2384097099 [Version] 1048832 [Id] WindowsPlayer(DESKTOP-OHERGSV) [Debug] 1" to [225.0.0.222:54997]...
-Waiting for connection from host on [0.0.0.0:55449]...
-PlayerConnection accepted from [10.0.0.14] handle:0x34c
-Started listening to [0.0.0.0:55449]
-Using monoOptions --debugger-agent=transport=dt_socket,embedding=1,defer=y,address=0.0.0.0:56794
-PlayerConnection already initialized - listening to [0.0.0.0:55449]
+PlayerConnection initialized network socket : 0.0.0.0 55241
+Multi-casting "[IP] 10.0.0.14 [Port] 55241 [Flags] 3 [Guid] 4051607712 [EditorId] 3622901354 [Version] 1048832 [Id] WindowsPlayer(DESKTOP-OHERGSV) [Debug] 1" to [225.0.0.222:54997]...
+Waiting for connection from host on [0.0.0.0:55241]...
+PlayerConnection accepted from [10.0.0.14] handle:0x2d8
+Started listening to [0.0.0.0:55241]
+Using monoOptions --debugger-agent=transport=dt_socket,embedding=1,defer=y,address=0.0.0.0:56712
+PlayerConnection already initialized - listening to [0.0.0.0:55241]
 Player data archive not found at `D:/GitHub/nobility/unityproject/Tests/testbattleUI_Data/data.unity3d`, using local filesystemInitialize engine version: 5.6.1f1 (2860b30f0b54)
 GfxDevice: creating device client; threaded=1
 Direct3D:
@@ -28,14 +28,14 @@ Platform assembly: D:\GitHub\nobility\unityproject\Tests\testbattleUI_Data\Manag
 Loading D:\GitHub\nobility\unityproject\Tests\testbattleUI_Data\Managed\UnityEngine.Networking.dll into Unity Child Domain
 Platform assembly: D:\GitHub\nobility\unityproject\Tests\testbattleUI_Data\Managed\UnityEngine.Analytics.dll (this message is harmless)
 Loading D:\GitHub\nobility\unityproject\Tests\testbattleUI_Data\Managed\UnityEngine.Analytics.dll into Unity Child Domain
-- Completed reload, in  0.027 seconds
+- Completed reload, in  0.143 seconds
 Platform assembly: D:\GitHub\nobility\unityproject\Tests\testbattleUI_Data\Managed\System.Core.dll (this message is harmless)
 Platform assembly: D:\GitHub\nobility\unityproject\Tests\testbattleUI_Data\Managed\System.dll (this message is harmless)
 desktop: 1920x1080 60Hz; virtual: 1920x1080 at 0,0
 <RI> Initializing input.
 <RI> Input initialized.
 <RI> Initialized touch support.
-UnloadTime: 3.283558 ms
+UnloadTime: 3.097336 ms
 NullReferenceException: Object reference not set to an instance of an object
   at Health.Awake () [0x0000c] in D:\GitHub\nobility\unityproject\Assets\scripts\Battling\UI Scripts\Health.cs:23 
  
@@ -47,6 +47,6 @@ NullReferenceException: Object reference not set to an instance of an object
 (Filename: D:/GitHub/nobility/unityproject/Assets/scripts/Battling/UI Scripts/Health.cs Line: 23)
 
 Setting up 2 worker threads for Enlighten.
-  Thread -> id: 1bdc -> priority: 1 
-  Thread -> id: 108c -> priority: 1 
+  Thread -> id: 8310 -> priority: 1 
+  Thread -> id: 80c4 -> priority: 1 
 Waiting for finish
