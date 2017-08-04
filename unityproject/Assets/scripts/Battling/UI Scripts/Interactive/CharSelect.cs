@@ -8,70 +8,105 @@ public class CharSelect : MonoBehaviour {
 
 	public Vector3 cameraPoint;
 	public Vector3 rotate;
+
 	public CanvasGroup optionMenu;
 
+	private CharNav NAVCONTROL;
 	private CameraParallax CAMERA;
-	private Toggle me;
 
-	void Start() {
-		me = gameObject.GetComponent<Toggle> ();
-		CAMERA = GameObject.Find ("BattleCam").GetComponent<CameraParallax> ();
-	}
+	private bool menuOpen { get; set;}
+	public static bool coroutineOneRunning { get; set;}
+	public static bool coroutineTwoRunning { get; set;}
 
 
-
-	public void onSelect() {
-		me.isOn = true;
-	}
-
-	public void selectChar() {
-
-		if (me.isOn) {
-			setCamera ();
-		} else {
-			deselect ();
+	public void clickSelect() {
+		if (!coroutineOneRunning && !coroutineTwoRunning) {
+			NAVCONTROL.currentAlly.closeMenu ();
+			NAVCONTROL.currentAlly = this;
+			selectchar ();
 		}
 	}
 
-	private void deselect() {
-		me.isOn = false;
-		closeMenu ();
-		CAMERA.resetCamera ();
+	public void selectchar() {
+		setCamera ();
+		StartCoroutine (startCharSelect ());
 	}
 
-	private void setCamera() {
+	public void deselect() {
+		closeMenu ();
+		CAMERA.resetCamera ();
+		EventSystem.current.SetSelectedGameObject (null);
+	}
+
+	public void setCamera() {
 		CAMERA.currentPoint = cameraPoint;
 		CAMERA.rotate = rotate;
 	}
 
-	private void openMenu() {
+	public void openMenu() {
 		optionMenu.alpha = .7F;
 		optionMenu.interactable = true;
 		optionMenu.blocksRaycasts = true;
+		menuOpen = true;
+		EventSystem.current.SetSelectedGameObject (optionMenu.gameObject.GetComponent<MenuOption>().options[0].gameObject);
 	}
 
-	private void closeMenu() {
+	public void closeMenu() {
 		optionMenu.alpha = 0;
 		optionMenu.interactable = false;
 		optionMenu.blocksRaycasts = false;
+		menuOpen = false;
 	}
 
+	IEnumerator startCharSelect() {
+		coroutineTwoRunning = true;
+		yield return new WaitForSeconds (.5F);
+		openMenu ();
+		coroutineTwoRunning = false;
+	}
+
+	IEnumerator endCharSelect() {
+		coroutineOneRunning = true;
+		yield return new WaitForSeconds (.5F);
+		closeMenu ();
+		NAVCONTROL.goToNext ();
+		coroutineOneRunning = false;
+	}
+
+
+	/*RUNTIME*/
+
+	void Awake() {
+		closeMenu ();
+		coroutineOneRunning = false;
+		coroutineTwoRunning = false;
+		menuOpen = false;
+
+		NAVCONTROL = GameObject.Find ("BattleScripts").GetComponent<CharNav> ();
+		CAMERA = GameObject.Find ("BattleCam").GetComponent<CameraParallax> ();
+
+		if (CAMERA == null) {
+			Debug.Log ("Camera Not Found");
+		}
+	}
+		
 	void Update() {
-		if (Input.GetKeyDown ("a") && me.isOn) {
-			openMenu ();
-		}
 
-		if (Input.GetKeyDown ("d") && me.isOn) {
-			closeMenu ();
-		}
+		if (!coroutineOneRunning && !coroutineTwoRunning) {
+			/*
+			if (Input.GetKeyDown ("q") && NAVCONTROL.currentAlly == this) {
+				if (!menuOpen) {
+					openMenu ();
+				} else {
+					closeMenu ();
+				}
+			}
+			*/
 
-		if (Input.GetKeyDown ("down") && me.isOn) {
-			EventSystem.current.SetSelectedGameObject (null);
-			deselect ();
-		}
-
-		if (Input.GetKeyDown ("up") && EventSystem.current.currentSelectedGameObject == null) {
-			EventSystem.current.SetSelectedGameObject (EventSystem.current.firstSelectedGameObject);
+			if (Input.GetKeyDown ("e") && NAVCONTROL.currentAlly == this) {
+				EventSystem.current.currentSelectedGameObject.GetComponent<Toggle> ().isOn = true;
+				StartCoroutine (endCharSelect ());
+			}
 		}
 	}
 

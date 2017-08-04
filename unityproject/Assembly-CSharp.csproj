@@ -55,7 +55,9 @@
      <Compile Include="Assets\scripts\Battling\UI Scripts\BattleCoroutines.cs" />
      <Compile Include="Assets\scripts\Battling\UI Scripts\BattleUI.cs" />
      <Compile Include="Assets\scripts\Battling\UI Scripts\Health.cs" />
+     <Compile Include="Assets\scripts\Battling\UI Scripts\Interactive\CharNav.cs" />
      <Compile Include="Assets\scripts\Battling\UI Scripts\Interactive\CharSelect.cs" />
+     <Compile Include="Assets\scripts\Battling\UI Scripts\Interactive\MenuOption.cs" />
      <Compile Include="Assets\scripts\Battling\UI Scripts\Interactive\Option.cs" />
      <Compile Include="Assets\scripts\Battling\UI Scripts\Interactive\PlayerOptions.cs" />
      <Compile Include="Assets\scripts\Battling\UI Scripts\SkillDisplay.cs" />
