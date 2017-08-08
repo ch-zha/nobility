@@ -26,11 +26,7 @@ public class BattleLoad : MonoBehaviour {
 			GAMEDATA = GameObject.Find ("GameData").GetComponent<GameData> ();
 			TEAM = GAMEDATA.currentTeam;
 		} else {
-		TEAM = new TeamStatus (new Participant[] {
-				new Participant (new Xenon (Character.BONDSTATE.ONE)),
-				new Participant (new FistMan (Character.BONDSTATE.ONE)),
-				new Participant (new WallE (Character.BONDSTATE.ONE))
-			});
+			Debug.Log ("No existing game file found.");
 		}
 
 		foreach (Participant teammate in TEAM.TEAMMATES) {
@@ -39,10 +35,7 @@ public class BattleLoad : MonoBehaviour {
 			}
 		}
 
-		ENEMY = new TeamStatus(TEAM, new Participant[] {
-			new Participant (new WallE(Character.BONDSTATE.ENEMY)), 
-			new Participant (new WallE(Character.BONDSTATE.ENEMY)), 
-				null});
+		ENEMY = new TeamStatus(TEAM, new Participant[] {null, null, null});
 
 		foreach (Participant teammate in ENEMY.TEAMMATES) {
 			if (teammate != null) {

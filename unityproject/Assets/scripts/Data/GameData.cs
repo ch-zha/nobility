@@ -30,8 +30,8 @@ public class GameData: MonoBehaviour {
 		currentTeam = new TeamStatus (new Participant[] 
 			{
 				new Participant (new Xenon (Character.BONDSTATE.ONE)),
-				new Participant (new FistMan (Character.BONDSTATE.ONE)),
-				new Participant (new WallE (Character.BONDSTATE.ONE))
+				null,
+				null
 			});
 	}
 

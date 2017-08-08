@@ -18,17 +18,15 @@ public class Character {
 		TWO
 	}
 
-	/*STATIC PROPERTIES*/
-	public float BaseHealth {get; set; }
+	/*STATS & PROPERTIES*/
+
+	public string STATUS { get; set;}
+
+	//public float BaseHealth {get; set; }
 	public float BaseAttack { get; set; }
-	public float BaseGuard { get; set; }
+	public float BaseDefense { get; set; }
 	public float BaseSpeed { get; set; }
 
-	public int Cooldown { get; set;}
-	public Skill Skill { get; set;}
-
 	/*SKILLS*/
-
-	void Start () {
-	}
+	public Skill[] Skills {get; set;}
 }

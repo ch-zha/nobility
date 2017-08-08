@@ -232,31 +232,20 @@ public class Battlemanager : MonoBehaviour {
 	void Update() {
 		switch(currentState) {
 		case(BattleState.PREBATTLE):
-			OPTIONS.cooldownDisable ();
-			OPTIONS.toggleOn (true);
-			DISPLAY.ACTIONDESC.enabled = false;
 			currentState = BattleState.PLAYERCHOICE;
 			break;
 		case(BattleState.START):
 			Debug.Log ("START");
 			incrementTurn ();
-			OPTIONS.resetOptions ();
-			LOAD.TEAM.updateCDs ();
-			LOAD.ENEMY.updateCDs ();
-			OPTIONS.cooldownDisable ();
-			OPTIONS.toggleOn (true);
-			DISPLAY.ACTIONDESC.enabled = false;
 			currentState = BattleState.PLAYERCHOICE;
 			break;
 		case(BattleState.PLAYERCHOICE):
 			break;
 		case(BattleState.ENEMYCHOICE):
-			OPTIONS.toggleOn (false);
 			chooseEnemyActions ();
 			currentState = BattleState.BATTLE;
 			break;
 		case(BattleState.BATTLE):
-			DISPLAY.ACTIONDESC.enabled = true;
 			doBattle ();
 			DISPLAY.ANIMATIONS.runAnimationQueue ();
 			currentState = BattleState.ANIMATION;
@@ -268,7 +257,6 @@ public class Battlemanager : MonoBehaviour {
 			}
 			break;
 		case(BattleState.END):
-			DISPLAY.CAMERA.resetCamera();
 			LOAD.TEAM.nextTurn ();
 			LOAD.ENEMY.nextTurn ();
 			DISPLAY.updateUIHealth (true);

@@ -17,23 +17,16 @@ public class TeamStatus {
 
 	public bool allDead = false;
 
+	/*INIT*/
 	public TeamStatus(TeamStatus otherteam, Participant[] participants) {
+		new TeamStatus (participants);
 		otherTeam = otherteam;
-		teamMaxHealth = 0;
-		addParticipants (participants);
 	}
 
 	public TeamStatus(Participant[] participants) {
-		addParticipants (participants);
-	}
 
-	public TeamStatus(TeamStatus otherteam) {
-		otherTeam = otherteam;
-	}
-		
-	public void addParticipants(Participant[] participants) {
-
-		teamMaxHealth = 0;
+		teamMaxHealth = 150;
+		teamHealth = teamMaxHealth;
 
 		if (participants.Length != 3) {
 			Debug.Log ("Incorrect participant array length");
@@ -42,7 +35,6 @@ public class TeamStatus {
 		for (int i = 0; i < participants.Length; i++) {
 			if (participants[i] != null) {
 				TEAMMATES [i] = participants [i];
-				teamMaxHealth += TEAMMATES [i].contributeHealth;
 			}
 		}
 
@@ -50,8 +42,10 @@ public class TeamStatus {
 		statusEffects = new List<StatusEffect> ();
 	}
 
+	/*EDIT TEAM*/
+
 	public void addGuard (Participant user) {
-		addGuard (user.contributeGuard);
+		addGuard (user.currentDefense);
 	}
 
 	public void addGuard(float guardAmount) {

@@ -9,14 +9,11 @@ public class Participant {
 	public Character SOURCE;
 	public TeamStatus TEAM;
 
-	public float contributeHealth {get; set;}
-	public float contributeGuard {get; set;}
-	public int baseCD { get; set;}
-	public Skill skill {get; set;}
-	public Skill equippedAttack { get; set;}
-	public Skill equippedUtility { get; set;}
+	//public float contributeHealth {get; set;}
+	//public float contributeGuard {get; set;}
 
 	public float currentAttack {get; set;}
+	public float currentDefense { get; set;}
 	public float currentSpeed { get; set;}
 	public int cooldown { get; set;}
 
@@ -28,23 +25,16 @@ public class Participant {
 		SKILL
 	}
 
+	public Skill[] offensive {get; set;}
+
 	public Participant (Character character) {
 		SOURCE = character;
 		//import if applicable
 
-		contributeHealth = SOURCE.BaseHealth;
-		contributeGuard = SOURCE.BaseGuard;
-		baseCD = SOURCE.Cooldown;
-
-		skill = SOURCE.Skill;
-		skill.USER = this;
-		equippedAttack = new BasicAttack(this);
-		equippedUtility = new BasicGuard(this);
-
 		currentAttack = SOURCE.BaseAttack;
 		currentSpeed = SOURCE.BaseSpeed;
+		currentDefense = SOURCE.BaseDefense;
 		selected = Action.NONE;
-		cooldown = baseCD;
 	}
 
 	public void setTeam (TeamStatus team) {
