@@ -5,6 +5,9 @@ using UnityEngine.EventSystems;
 
 public class CharNav : MonoBehaviour {
 
+	private Battlemanager STATE { get; set;}
+	private CameraParallax CAMERA;
+
 	public CharSelect allyOne;
 	public CharSelect allyTwo;
 	public CharSelect allyThree;
@@ -42,28 +45,39 @@ public class CharNav : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
+		STATE = GameObject.Find ("BattleScripts").GetComponent<Battlemanager> ();
+		CAMERA = GameObject.Find ("BattleCam").GetComponent<CameraParallax> ();
+
 		currentAlly = allyOne;
 		allyOne.selectchar ();
 	}
 	
 	// Update is called once per frame
 	void Update () {
-		if (EventSystem.current.currentSelectedGameObject != null) {
-			lastSelected = EventSystem.current.currentSelectedGameObject;
+		if (STATE.currentState == Battlemanager.BattleState.PLAYERCHOICE) {
+			if (EventSystem.current.currentSelectedGameObject != null) {
+				lastSelected = EventSystem.current.currentSelectedGameObject;
+			} else {
+				EventSystem.current.SetSelectedGameObject (lastSelected);
+			}
+
+			if (!CharSelect.coroutineOneRunning && !CharSelect.coroutineTwoRunning) {
+				if (Input.GetKeyDown ("a")) {
+					currentAlly.closeMenu ();
+					goToLast ();
+				}
+
+				if (Input.GetKeyDown ("d")) {
+					currentAlly.closeMenu ();
+					goToNext ();
+				}
+			}
+		} else if (STATE.currentState == Battlemanager.BattleState.START || STATE.currentState == Battlemanager.BattleState.PREBATTLE) {
+			currentAlly = allyOne;
+			allyOne.selectchar ();
 		} else {
-			EventSystem.current.SetSelectedGameObject (lastSelected);
-		}
-
-		if (! CharSelect.coroutineOneRunning && ! CharSelect.coroutineTwoRunning) {
-			if (Input.GetKeyDown ("a")) {
-				currentAlly.closeMenu ();
-				goToLast ();
-			}
-
-			if (Input.GetKeyDown ("d")) {
-				currentAlly.closeMenu ();
-				goToNext ();
-			}
+			EventSystem.current.SetSelectedGameObject (null);
+			CAMERA.resetCamera ();
 		}
 	}
 }

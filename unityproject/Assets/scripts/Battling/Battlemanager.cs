@@ -23,12 +23,11 @@ public class Battlemanager : MonoBehaviour {
 		WIN
 	} 
 
-	public BattleState currentState;
-	public int turn;
+	public BattleState currentState { get; set; }
+	public int turn { get; set; }
 
-	private BattleLoad LOAD;
-	public BattleUI DISPLAY;
-	private PlayerOptions OPTIONS;
+	private BattleLoad LOAD { get; set; }
+	private BattleUI DISPLAY { get; set; }
 
 /*BATTLE STRUCTURE*/
 	/*Increment Turn*/
@@ -38,113 +37,38 @@ public class Battlemanager : MonoBehaviour {
 	//?????????????????????????
 
 /*THE GAME, IT DO STUFF*/
+
 	private void chooseEnemyActions() {
-		//Debug.Log ("Picking enemy action");
-
-		int action0;
-		int action1;
-		int action2;
-
-		action0 = EnemyAI.teammateOneDecision (LOAD.ENEMY.TEAMMATES [0]);
-		action1 = EnemyAI.teammateTwoDecision (LOAD.ENEMY.TEAMMATES [1]);
-
-		//Debug.Log ("Enemy Action: " + System.Convert.ToString (action));
-		switch (action0) {
-		case (1):
-			LOAD.ENEMY.TEAMMATES[0].selected = Participant.Action.ATTACK;
-			break;
-		case (2):
-			LOAD.ENEMY.TEAMMATES[0].selected = Participant.Action.GUARD;
-			break;
-		case (3):
-			LOAD.ENEMY.TEAMMATES [0].selected = Participant.Action.SKILL;
-			break;
-		}
-
-		switch (action1) {
-		case (1):
-			LOAD.ENEMY.TEAMMATES[1].selected = Participant.Action.ATTACK;
-			break;
-		case (2):
-			LOAD.ENEMY.TEAMMATES[1].selected = Participant.Action.GUARD;
-			break;
-		case (3):
-			LOAD.ENEMY.TEAMMATES [1].selected = Participant.Action.SKILL;
-			break;
+		foreach (Participant enemy in LOAD.ENEMY.TEAMMATES) {
+			if (enemy != null) {
+				EnemyAI.makeDecision (enemy);
+			}
 		}
 	}
 
-	private void applyPriorityActions(Participant user) {
-
-		string description;
-
-		switch (user.selected) {
-		case (Participant.Action.NONE):
-			break;
-		case (Participant.Action.ATTACK):
-			break;
-		case (Participant.Action.GUARD):
-			description = System.Convert.ToString (user) + "guarded";
-			Debug.Log (description);
-			user.equippedUtility.activate();
-			DISPLAY.ANIMATIONS.addAnimation (DISPLAY.ANIMATIONS.wait(description));
-			break;
-		case (Participant.Action.SKILL):
-			if (user.skill.hasPriority ()) {
-				description = System.Convert.ToString (user) + "used a skill";
-				Debug.Log (description);
-				user.useSkill ();
-				DISPLAY.ANIMATIONS.addAnimation (DISPLAY.ANIMATIONS.wait(description));
-			}
-			break;
-		}
-	}
-
-	private void applyCharacterActions(Participant user) {
-		string description;
-		if (user == null) {
-			Debug.Log ("Error: User not found");
-			return;
-		}
-		switch (user.selected) {
-		case (Participant.Action.NONE):
-			Debug.Log (System.Convert.ToString (user) + "did nothing");
-			break;
-		case (Participant.Action.ATTACK):
-			description = System.Convert.ToString (user) + "attacked";
-			Debug.Log (description);
-			if (user.TEAM != null) {
-				user.equippedAttack.activate ();
-			} else {
-				Debug.Log ("User.TEAM cannot be accessed");
-			}
-			DISPLAY.ANIMATIONS.addAnimation (DISPLAY.ANIMATIONS.waitForHealth (new BattleCoroutines.UISnapshot(LOAD, description)));
-			break;
-		case (Participant.Action.GUARD):
-			break;
-		case (Participant.Action.SKILL):
-			if (!user.skill.hasPriority ()) {
-				description = System.Convert.ToString (user) + "used a skill";
-				Debug.Log (description);
-				user.useSkill ();
-				DISPLAY.ANIMATIONS.addAnimation (DISPLAY.ANIMATIONS.waitForHealth (new BattleCoroutines.UISnapshot(LOAD, description)));
-			}
-			break;
+	private void useSkill(Participant character) {
+		if (! character.TEAM.exceedsCost(character.selected.cost)) {
+			character.TEAM.reducePoints (character.selected.cost);
+			character.selected.activate (character.TEAM, LOAD.otherTeam (character.TEAM));
+			string description = character.selected.getEvent () + " by " + character.ToString ();
+			DISPLAY.ANIMATIONS.addAnimation (DISPLAY.ANIMATIONS.waitForHealth (new BattleCoroutines.UISnapshot (LOAD, description)));
+		} else {
+			Debug.Log ("Skill cost exceeds available points");
 		}
 	}
 
 	private void doBattle() {
 		foreach (Participant character in sortBySpeed(gatherCharacters())) {
 			//Debug.Log (System.Convert.ToString (character));
-			if (character != null) {
-				applyPriorityActions (character);
+			if (character != null && character.selected.hasPriority ()) {
+				useSkill (character);
 			}
 		}
 
 		foreach (Participant character in sortBySpeed(gatherCharacters())) {
 			//Debug.Log (System.Convert.ToString (character));
-			if (character != null) {
-				applyCharacterActions (character);
+			if (character != null && !character.selected.hasPriority()) {
+				useSkill (character);
 			}
 		}
 	}
@@ -201,7 +125,7 @@ public class Battlemanager : MonoBehaviour {
 		}
 	}
 
-	public void endBattle(int scene) {
+	public void endBattle(string scene) {
 		Debug.Log ("Ending Battle");
 		UnityEngine.SceneManagement.SceneManager.LoadScene (scene);
 	}
@@ -225,7 +149,6 @@ public class Battlemanager : MonoBehaviour {
 
 		LOAD = this.gameObject.GetComponent<BattleLoad> ();
 		DISPLAY = this.gameObject.GetComponent<BattleUI> ();
-		OPTIONS = this.gameObject.GetComponent<PlayerOptions> ();
 	}
 
 /*UPDATE*/
@@ -237,6 +160,8 @@ public class Battlemanager : MonoBehaviour {
 		case(BattleState.START):
 			Debug.Log ("START");
 			incrementTurn ();
+			LOAD.TEAM.startTurn ();
+			LOAD.ENEMY.startTurn ();
 			currentState = BattleState.PLAYERCHOICE;
 			break;
 		case(BattleState.PLAYERCHOICE):
@@ -251,7 +176,6 @@ public class Battlemanager : MonoBehaviour {
 			currentState = BattleState.ANIMATION;
 			break;
 		case(BattleState.ANIMATION):
-			//Debug.Log (System.Convert.ToString (DISPLAY.healthUpdated()));
 			if (DISPLAY.ANIMATIONS.animationsOver) {
 				currentState = BattleState.END;
 			}
@@ -259,7 +183,7 @@ public class Battlemanager : MonoBehaviour {
 		case(BattleState.END):
 			LOAD.TEAM.nextTurn ();
 			LOAD.ENEMY.nextTurn ();
-			DISPLAY.updateUIHealth (true);
+			DISPLAY.endTurn ();
 			currentState = checkVictory();
 			break;
 		case(BattleState.DIALOGUE):
@@ -268,11 +192,11 @@ public class Battlemanager : MonoBehaviour {
 		case(BattleState.WIN):
 			Debug.Log ("WIN");
 			LOAD.writeTeam ();
-			endBattle (3);
+			endBattle ("testbattle02");
 			break;
 		case(BattleState.LOSE):
 			Debug.Log ("LOSE");
-			endBattle (2);
+			endBattle ("GameOver");
 			break;
 		}
 	}

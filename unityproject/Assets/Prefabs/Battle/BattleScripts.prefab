@@ -22,7 +22,7 @@ GameObject:
   - component: {fileID: 114440547746048290}
   - component: {fileID: 114651894924976048}
   - component: {fileID: 114660736196366458}
-  - component: {fileID: 114718628775029196}
+  - component: {fileID: 114929916991233434}
   m_Layer: 0
   m_Name: BattleScripts
   m_TagString: Untagged
@@ -65,10 +65,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3788afdb46982444bb623fa0b9220ebc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  CAMERA: {fileID: 0}
-  ACTIONDESC: {fileID: 0}
-  playerHealth: {fileID: 0}
-  enemyHealth: {fileID: 0}
+  POINTS: {fileID: 0}
+  ENEMYPOINTS: {fileID: 0}
 --- !u!114 &114660736196366458
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -80,10 +78,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9cc746589eb46c74fb8687e06c538cbe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currentState: 0
-  turn: 0
-  DISPLAY: {fileID: 0}
---- !u!114 &114718628775029196
+--- !u!114 &114929916991233434
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -91,6 +86,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 1256938480104156}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0f57e9741fcb00e469c058d3dc6ca2f3, type: 3}
+  m_Script: {fileID: 11500000, guid: af11c0817e27c57408c52a842df55225, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  allyOne: {fileID: 0}
+  allyTwo: {fileID: 0}
+  allyThree: {fileID: 0}

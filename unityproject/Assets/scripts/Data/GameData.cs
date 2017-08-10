@@ -30,9 +30,15 @@ public class GameData: MonoBehaviour {
 		currentTeam = new TeamStatus (new Participant[] 
 			{
 				new Participant (new Xenon (Character.BONDSTATE.ONE)),
-				null,
-				null
+				new Participant (new Xenon (Character.BONDSTATE.ONE)),
+				new Participant (new Xenon (Character.BONDSTATE.ONE))
 			});
+		
+		foreach (Participant teammate in currentTeam.TEAMMATES) {
+			if (teammate != null) {
+				teammate.setTeam (currentTeam);
+			}
+		}
 	}
 
 	public void Save() {

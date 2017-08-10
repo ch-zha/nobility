@@ -1,34 +1,30 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using System;
 
-[Serializable]
-public class BasicGuard : Skill {
+public class ActionNone : Skill {
 
 	public override int cost {get; set;}
-	private float defense {get; set;}
 
-	public BasicGuard (float def) {
-		cost = System.Convert.ToInt16(def / 25);
-		defense = def;
+	public ActionNone () {
+		cost = 0;
 	}
 
 	public override void activate (TeamStatus self, TeamStatus enemy){
-		self.addGuard(defense);
+		Debug.Log ("Turn skipped");
 	}
 
 	public override bool hasPriority() {
-		return true;
+		return false;
 	}
 	public override string getName () {
-		return "Guard";
+		return "Skip";
 	}
 	public override string getDescription () {
-		return "A basic Guard skill";
+		return "Skip this turn";
 	}
 
 	public override string getEvent() {
-		return "Guard used";
+		return "Turn skipped";
 	}
 }

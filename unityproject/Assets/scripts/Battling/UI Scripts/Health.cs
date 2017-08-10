@@ -20,7 +20,7 @@ public class Health : MonoBehaviour {
 
 	// Use this for initialization
 	void Awake () {
-		DISPLAY = GameObject.Find("Scripts").GetComponent<BattleUI> ();
+		DISPLAY = GameObject.Find("BattleScripts").GetComponent<BattleUI> ();
 		if (DISPLAY == null) {
 			Debug.Log ("Can't find DISPLAY");
 		}
@@ -63,12 +63,12 @@ public class Health : MonoBehaviour {
 				yield return new WaitForSeconds(.1F);
 			}
 		} else if (barCurrentPercent == targetPercent) {
-			Debug.Log("No adjustments");
+			//Debug.Log("No adjustments");
 			healthUpdated = true;
 			yield break;
 		}
 		healthUpdated = true;
-		Debug.Log ("Done drawing");
+		//Debug.Log ("Done drawing");
 	}
 
 	public bool healthUpdated;

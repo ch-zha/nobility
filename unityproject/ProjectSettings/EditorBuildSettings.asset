@@ -9,11 +9,11 @@ EditorBuildSettings:
     path: Assets/Scenes/Functional/Start.unity
     guid: b62d9b87da02ac9458db08674f1263de
   - enabled: 0
-    path: Assets/Scenes/Functional/New Game.unity
-    guid: 7d279f75e90f9a649bac40e0433cd5ef
-  - enabled: 0
     path: Assets/Scenes/Functional/GameOver.unity
     guid: bba3c87df2b796d43a6c1738a644f5b8
+  - enabled: 0
+    path: Assets/Scenes/Functional/New Game.unity
+    guid: 7d279f75e90f9a649bac40e0433cd5ef
   - enabled: 0
     path: Assets/Scenes/1_1.unity
     guid: d5ef0649b95e92548873375b1d37203c

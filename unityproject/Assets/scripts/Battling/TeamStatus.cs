@@ -6,27 +6,29 @@ using System;
 [Serializable]
 public class TeamStatus {
 
-	public TeamStatus otherTeam;
 	public Participant[] TEAMMATES = new Participant[3];
 
 	public float teamMaxHealth { get; set; }
 	public float teamHealth { get; set; }
 
-	private float turnGuard;
+	public int currentPoints { get; set; }
+	public int pointsInUse { get; set; }
+	private float turnGuard {get; set; }
 	private List<StatusEffect> statusEffects;
 
-	public bool allDead = false;
+	public bool allDead {get; set;}
 
 	/*INIT*/
-	public TeamStatus(TeamStatus otherteam, Participant[] participants) {
-		new TeamStatus (participants);
-		otherTeam = otherteam;
-	}
 
 	public TeamStatus(Participant[] participants) {
 
 		teamMaxHealth = 150;
 		teamHealth = teamMaxHealth;
+		turnGuard = 0;
+		currentPoints = 6;
+		pointsInUse = 0;
+		statusEffects = new List<StatusEffect> ();
+		allDead = false;
 
 		if (participants.Length != 3) {
 			Debug.Log ("Incorrect participant array length");
@@ -37,16 +39,73 @@ public class TeamStatus {
 				TEAMMATES [i] = participants [i];
 			}
 		}
+	}
 
-		teamHealth = teamMaxHealth;
-		statusEffects = new List<StatusEffect> ();
+	/*TURN ACTIONS*/
+
+	public void addPoints(int points) {
+		currentPoints += points;
+	}
+
+	public void resetPoints () {
+		currentPoints = 6;
+	}
+
+	public void reducePoints (int cost) {
+		currentPoints -= cost;
+		if (currentPoints < 0) {
+			currentPoints = 0;
+		}
+	}
+
+	public bool exceedsCost (int cost) {
+		if (cost > currentPoints) {
+			return true;
+		} else {
+			return false;
+		}
+	}
+
+	public int getPointsInUse() {
+		int total = 0;
+		foreach (Participant teammate in TEAMMATES) {
+			if (teammate != null) {
+				total += teammate.selected.cost;
+			}
+		}
+		pointsInUse = total;
+		return pointsInUse;
+	}
+
+	public void startTurn() {
+		addPoints (6);
+		getPointsInUse ();
+	}
+
+	public void nextTurn() {
+		turnGuard = 0;
+		foreach (Participant teammate in TEAMMATES) {
+			if (teammate != null) {
+				teammate.clearSelected ();
+			}
+		}
+		//Debug.Log ("Turn Guard reset");
+
+		List<StatusEffect> toDelete = new List<StatusEffect>();
+		foreach (StatusEffect status in statusEffects) {
+			status.nextTurn ();
+			if (status.removeMe) {
+				toDelete.Add (status);
+			}
+		}
+
+		foreach (StatusEffect status in toDelete) {
+			statusEffects.Remove (status);
+			Debug.Log (System.Convert.ToString (status) + " deleted");
+		}
 	}
 
 	/*EDIT TEAM*/
-
-	public void addGuard (Participant user) {
-		addGuard (user.currentDefense);
-	}
 
 	public void addGuard(float guardAmount) {
 		turnGuard += guardAmount;
@@ -58,24 +117,19 @@ public class TeamStatus {
 		//Debug.Log ("Guard Amt. " + System.Convert.ToString (turnGuard));
 	}
 
-	public void heal(float healamt) {
+	public void increaseHealth (float healamt) {
 		teamHealth += healamt;
 		if (teamHealth > teamMaxHealth) {
 			teamHealth = teamMaxHealth;
 		}
 	}
-
-	/*TURN RESULTS*/
-	public void attack (float damage) {
+		
+	public void reduceHealth (float damage) {
 		teamHealth -= Mathf.Round (damage * (100 - turnGuard) / 100);
 		if (teamHealth <= 0) {
 			teamHealth = 0;
 			allDead = true;
 		}
-	}
-
-	public void attack(Participant user) {
-		attack (user.currentAttack);
 	}
 
 	/*CREATE STATUS*/
@@ -97,33 +151,6 @@ public class TeamStatus {
 		foreach (Participant teammate in TEAMMATES) {
 			teammate.resetSpeed();
 			Debug.Log (System.Convert.ToString (teammate) + " Speed: " + System.Convert.ToString (teammate.currentSpeed));
-		}
-	}
-
-	/*PREPARE NEXT TURN*/
-	public void updateCDs() {
-		foreach (Participant teammate in TEAMMATES) {
-			if (teammate != null && teammate.cooldown > 0) {
-				teammate.cooldown--;
-			}
-		}
-	}
-
-	public void nextTurn() {
-		turnGuard = 0;
-		//Debug.Log ("Turn Guard reset");
-
-		List<StatusEffect> toDelete = new List<StatusEffect>();
-		foreach (StatusEffect status in statusEffects) {
-			status.nextTurn ();
-			if (status.removeMe) {
-				toDelete.Add (status);
-			}
-		}
-
-		foreach (StatusEffect status in toDelete) {
-			statusEffects.Remove (status);
-			Debug.Log (System.Convert.ToString (status) + " deleted");
 		}
 	}
 
@@ -191,5 +218,6 @@ public class TeamStatus {
 			return string.Format ("[StatusEffect: {0}, Turns Left: {1}, Magnitude: {2}]", effect, turnsLeft, magnitude);
 		}
 	}
+
 
 }

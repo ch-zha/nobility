@@ -10,12 +10,16 @@ public abstract class Skill {
 	 * debating whether to use it primarily for inheriting or for 
 	 * instancing.*/
 
-	public abstract Participant USER { get; set;}
-
 	/*Use skill*/
-	public abstract void activate ();
-	public abstract bool hasPriority();
+	public abstract void activate (TeamStatus self, TeamStatus enemy);
+
+	/*Flexible qualities*/
+	public abstract int cost { get; set;}
+
+	/*Static qualities*/
+	public abstract bool hasPriority ();
 	public abstract string getName ();
+	public abstract string getEvent ();
 	public abstract string getDescription ();
 
 }

@@ -15,27 +15,20 @@ public class BattleLoad : MonoBehaviour {
 	public TeamStatus TEAM { get; set; }
 	public TeamStatus ENEMY { get; set; }
 
-	//junk test code
-
 	// Use this for initialization
 	void Awake () {
-		/*Load Partner Scripts*/
-		//DISPLAY = this.gameObject.GetComponent<BattleUI> ();
-		//STATE = this.gameObject.GetComponent<Battlemanager> ();
+		
 		if (GameObject.Find ("GameData") != null) {
 			GAMEDATA = GameObject.Find ("GameData").GetComponent<GameData> ();
 			TEAM = GAMEDATA.currentTeam;
+			TEAM.resetPoints ();
 		} else {
 			Debug.Log ("No existing game file found.");
 		}
 
-		foreach (Participant teammate in TEAM.TEAMMATES) {
-			if (teammate != null) {
-				teammate.setTeam (TEAM);
-			}
-		}
-
-		ENEMY = new TeamStatus(TEAM, new Participant[] {null, null, null});
+		ENEMY = new TeamStatus(new Participant[] {new Participant(new Xenon(Character.BONDSTATE.ENEMY)),
+			null, 
+			null});
 
 		foreach (Participant teammate in ENEMY.TEAMMATES) {
 			if (teammate != null) {
@@ -43,15 +36,12 @@ public class BattleLoad : MonoBehaviour {
 			}
 		}
 
-		TEAM.otherTeam = ENEMY;
-
 		Debug.Log ("ALLIES: " + System.Convert.ToString (TEAM.TEAMMATES[0]) + ", " + System.Convert.ToString (TEAM.TEAMMATES[1]) + ", " + System.Convert.ToString (TEAM.TEAMMATES[2]));
 		Debug.Log ("ENEMIES " + System.Convert.ToString (ENEMY.TEAMMATES[0]) + ", " + System.Convert.ToString (ENEMY.TEAMMATES[1]) + ", " + System.Convert.ToString (ENEMY.TEAMMATES[2]));
 
 	}
 
 	public TeamStatus otherTeam(TeamStatus team) {
-		Debug.Log (System.Convert.ToString (team));
 		if (team == TEAM) {
 			return ENEMY;
 		} else if (team == ENEMY) {

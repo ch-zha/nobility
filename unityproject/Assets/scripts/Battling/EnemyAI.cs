@@ -4,18 +4,13 @@ using UnityEngine;
 
 public static class EnemyAI {
 
-	public static int teammateOneDecision(Participant user) {
-		//1 is Attack, 2 is Guard, 3, is Skill
-		if (user.skillReady () && user.TEAM.teamMaxHealth - user.TEAM.teamHealth > 50) {
-			return 3;
+	public static void makeDecision(Participant user) {
+		int decision = UnityEngine.Random.Range (0, user.useableSkills.Length);
+		if (!user.TEAM.exceedsCost (user.useableSkills [decision].cost)) {
+			user.selected = user.useableSkills [decision];
+			return;
 		} else {
-			return UnityEngine.Random.Range (1, 3);
+			makeDecision (user);
 		}
 	}
-
-	public static int teammateTwoDecision(Participant user) {
-		return UnityEngine.Random.Range (1, 3);
-	}
-
-	/*xenon is a dumb*/
 }

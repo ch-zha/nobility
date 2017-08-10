@@ -1,17 +1,15 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using System;
 
-[Serializable]
-public class Heal : Skill {
+public class Freeze : Skill {
 
 	public override int cost {get; set;}
-	private float amount { get; set;}
+	private int strength { get; set; }
 
-	public Heal(float number) {
-		cost = 2 * System.Convert.ToInt16(number / 25);
-		amount = number;
+	public Freeze(int magnitude) {
+		cost = magnitude;
+		strength = magnitude;
 	}
 
 	public override bool hasPriority ()
@@ -20,18 +18,18 @@ public class Heal : Skill {
 	}
 
 	public override string getName() {
-		return "Heal";
+		return "Freeze";
 	}
 
 	public override string getDescription() {
-		return "Heals team by 50";
+		return "Reduces enemies' points";
 	}
 
 	public override void activate(TeamStatus self, TeamStatus enemy) {
-		self.increaseHealth (amount);
+		enemy.reducePoints (strength);
 	}
 
 	public override string getEvent() {
-		return "Heal used";
+		return "Freeze used";
 	}
 }

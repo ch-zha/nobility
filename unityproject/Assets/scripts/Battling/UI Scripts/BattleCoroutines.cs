@@ -41,14 +41,14 @@ public class BattleCoroutines {
 	/*COROUTINES*/
 	public IEnumerator wait(string description) {
 		Debug.Log ("Someone did something");
-		DISPLAY.ACTIONDESC.text = description;
 		yield return new WaitForSeconds(2F);
 		runNext ();
 	}
 
 	public IEnumerator waitForHealth(UISnapshot snapshot) {
 		DISPLAY.updateUIHealth (snapshot);
-		DISPLAY.ACTIONDESC.text = snapshot.snapshotDescription;
+		DISPLAY.updatePoints (snapshot);
+		DISPLAY.CURRENTMOVE.text = snapshot.snapshotDescription;
 		while (!DISPLAY.healthUpdated ()) {
 			yield return new WaitForSeconds(.1F);
 		}
@@ -65,9 +65,11 @@ public class BattleCoroutines {
 
 		public float playerHealth;
 		public float playerMaxHealth;
+		public int playerPoints;
 
 		public float enemyHealth;
 		public float enemyMaxHealth;
+		public int enemyPoints;
 
 		public string snapshotDescription;
 
@@ -75,12 +77,15 @@ public class BattleCoroutines {
 
 			playerHealth = snapshot.TEAM.teamHealth;
 			playerMaxHealth = snapshot.TEAM.teamMaxHealth;
+			playerPoints = snapshot.TEAM.currentPoints;
+
 			enemyHealth = snapshot.ENEMY.teamHealth;
 			enemyMaxHealth = snapshot.ENEMY.teamMaxHealth;
+			enemyPoints = snapshot.ENEMY.currentPoints;
 
 			snapshotDescription = description;
 
-			Debug.Log("Snapped!" + this.ToString());
+			//Debug.Log("Snapped!" + this.ToString());
 		}
 
 		public override string ToString ()

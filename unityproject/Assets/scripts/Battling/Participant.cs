@@ -6,26 +6,15 @@ using System;
 [Serializable]
 public class Participant {
 	
-	public Character SOURCE;
-	public TeamStatus TEAM;
-
-	//public float contributeHealth {get; set;}
-	//public float contributeGuard {get; set;}
+	public Character SOURCE { get; set;}
+	public TeamStatus TEAM {get; set;}
 
 	public float currentAttack {get; set;}
 	public float currentDefense { get; set;}
 	public float currentSpeed { get; set;}
-	public int cooldown { get; set;}
 
-	public Action selected;
-	public enum Action {
-		NONE,
-		ATTACK,
-		GUARD,
-		SKILL
-	}
-
-	public Skill[] offensive {get; set;}
+	public Skill[] useableSkills { get; set;}
+	public Skill selected {get; set;}
 
 	public Participant (Character character) {
 		SOURCE = character;
@@ -34,29 +23,14 @@ public class Participant {
 		currentAttack = SOURCE.BaseAttack;
 		currentSpeed = SOURCE.BaseSpeed;
 		currentDefense = SOURCE.BaseDefense;
-		selected = Action.NONE;
+
+		useableSkills = SOURCE.Skills;
+		selected = new ActionNone ();
 	}
 
 	public void setTeam (TeamStatus team) {
 		TEAM = team;
 		Debug.Log ("Team set to " + System.Convert.ToString(team));
-	}
-
-	public bool skillReady() {
-		if (cooldown == 0) {
-			return true;
-		} else {
-			return false;
-		}
-	}
-
-	public void useSkill() {
-		if (! skillReady()) {
-			Debug.Log ("Skill still in cooldown");
-		} else {
-			skill.activate ();
-			cooldown = baseCD;
-		}
 	}
 
 	public void resetSpeed() {
@@ -76,12 +50,12 @@ public class Participant {
 	}
 
 	public void clearSelected() {
-		selected = Action.NONE;
+		selected = new ActionNone ();
 	}
 
 	public override string ToString ()
 	{
-		return string.Format ("Battler: {0}", SOURCE);
+		return string.Format ("{0}", SOURCE);
 	}
 
 }
