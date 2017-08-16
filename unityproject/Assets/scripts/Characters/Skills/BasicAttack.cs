@@ -6,16 +6,15 @@ using System;
 [Serializable]
 public class BasicAttack : Skill {
 
+	public override Participant user { get; set; }
 	public override int cost {get; set;}
-	private float damage { get; set;}
 
 	public BasicAttack (float attack) {
-		cost = System.Convert.ToInt16(attack / 15);
-		damage = attack;
+		cost = 2;
 	}
 
 	public override void activate (TeamStatus self, TeamStatus enemy){
-		enemy.reduceHealth(damage);
+		enemy.reduceHealth(user.currentAttack);
 	}
 
 	public override bool hasPriority() {
@@ -23,6 +22,9 @@ public class BasicAttack : Skill {
 	}
 	public override string getName () {
 		return "Attack";
+	}
+	public override Skill.SKILLTYPE getType() {
+		return Skill.SKILLTYPE.OFFENSE;
 	}
 	public override string getDescription () {
 		return "A basic Attack skill";

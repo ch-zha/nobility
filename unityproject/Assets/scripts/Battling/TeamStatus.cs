@@ -14,9 +14,12 @@ public class TeamStatus {
 	public int currentPoints { get; set; }
 	public int pointsInUse { get; set; }
 	private float turnGuard {get; set; }
+	private Skill.SKILLTYPE comboType { get; set; }
 	private List<StatusEffect> statusEffects;
 
 	public bool allDead {get; set;}
+
+	private int defaultPoints = 6;
 
 	/*INIT*/
 
@@ -25,7 +28,7 @@ public class TeamStatus {
 		teamMaxHealth = 150;
 		teamHealth = teamMaxHealth;
 		turnGuard = 0;
-		currentPoints = 6;
+		currentPoints = defaultPoints;
 		pointsInUse = 0;
 		statusEffects = new List<StatusEffect> ();
 		allDead = false;
@@ -43,12 +46,58 @@ public class TeamStatus {
 
 	/*TURN ACTIONS*/
 
+	public int checkSkillType(Skill.SKILLTYPE type) {
+		int i = 0;
+		foreach (Participant teammate in TEAMMATES) {
+			if (teammate.selected.getType () == type) {
+				i++;
+			}
+		}
+		return i;
+	}
+
+	private bool isAllTeammates(int count) {
+		int i = 0;
+		foreach (Participant teammate in TEAMMATES) {
+			if (teammate != null) {
+				i++;
+			}
+		}
+		if (count == i) {
+			return true;
+		} else {
+			return false;
+		}
+	}
+
+	public Skill.SKILLTYPE checkCombo() {
+		if (isAllTeammates (checkSkillType (Skill.SKILLTYPE.DEFENSE))) {
+			return Skill.SKILLTYPE.DEFENSE;
+		} else if (isAllTeammates (checkSkillType (Skill.SKILLTYPE.OFFENSE))) {
+			return Skill.SKILLTYPE.OFFENSE;
+		} else {
+			return Skill.SKILLTYPE.NONE;
+		}
+	}
+
+	public void applyCombo() {
+		Skill.SKILLTYPE type = checkCombo ();
+		switch (type) {
+		case (Skill.SKILLTYPE.OFFENSE):
+			break;
+		case (Skill.SKILLTYPE.DEFENSE):
+			break;
+		case (Skill.SKILLTYPE.NONE):
+			break;
+		}
+	}
+
 	public void addPoints(int points) {
 		currentPoints += points;
 	}
 
 	public void resetPoints () {
-		currentPoints = 6;
+		currentPoints = defaultPoints;
 	}
 
 	public void reducePoints (int cost) {
@@ -78,7 +127,7 @@ public class TeamStatus {
 	}
 
 	public void startTurn() {
-		addPoints (6);
+		addPoints (defaultPoints);
 		getPointsInUse ();
 	}
 

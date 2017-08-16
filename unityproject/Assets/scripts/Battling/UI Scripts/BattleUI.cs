@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using System;
 
 public class BattleUI : MonoBehaviour {
 
@@ -16,6 +17,7 @@ public class BattleUI : MonoBehaviour {
 	public Text POINTS;
 	public Text ENEMYPOINTS;
 	public Text CURRENTMOVE;
+	public Text COMBODISPLAY;
 
 	private Health[] HEALTHBARS;
 	public Health playerHealth { get; set;}
@@ -99,5 +101,10 @@ public class BattleUI : MonoBehaviour {
 		if (STATE.currentState != Battlemanager.BattleState.ANIMATION) {
 			CURRENTMOVE.text = " ";
 		}
+
+		COMBODISPLAY.text = string.Format ("Offense: {0}{1}Defense: {2}{3}Combo: {4}", 
+			LOAD.TEAM.checkSkillType (Skill.SKILLTYPE.OFFENSE).ToString(), 
+			Environment.NewLine, LOAD.TEAM.checkSkillType (Skill.SKILLTYPE.DEFENSE).ToString(), 
+			Environment.NewLine, LOAD.TEAM.checkCombo ().ToString());
 	}
 }

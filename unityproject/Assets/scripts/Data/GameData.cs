@@ -9,10 +9,10 @@ using UnityEngine.SceneManagement;
 public class GameData: MonoBehaviour {
 
 	public string PLAYERNAME;
-	public TeamStatus currentTeam;
-	public string currentScene;
+	public TeamStatus currentTeam { get; set; }
+	public string currentScene {get; set; }
 
-	public static GameData GAMEDATA;
+	public static GameData GAMEDATA { get; set; }
 
 	void Awake() {
 		if (GAMEDATA == null) {

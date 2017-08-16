@@ -6,6 +6,7 @@ using System;
 [Serializable]
 public class Heal : Skill {
 
+	public override Participant user { get; set; }
 	public override int cost {get; set;}
 	private float amount { get; set;}
 
@@ -21,6 +22,10 @@ public class Heal : Skill {
 
 	public override string getName() {
 		return "Heal";
+	}
+
+	public override Skill.SKILLTYPE getType() {
+		return Skill.SKILLTYPE.DEFENSE;
 	}
 
 	public override string getDescription() {

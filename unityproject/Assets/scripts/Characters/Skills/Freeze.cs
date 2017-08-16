@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Freeze : Skill {
 
+	public override Participant user { get; set; }
 	public override int cost {get; set;}
 	private int strength { get; set; }
 
@@ -19,6 +20,10 @@ public class Freeze : Skill {
 
 	public override string getName() {
 		return "Freeze";
+	}
+
+	public override Skill.SKILLTYPE getType() {
+		return Skill.SKILLTYPE.OFFENSE;
 	}
 
 	public override string getDescription() {

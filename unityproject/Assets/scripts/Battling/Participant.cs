@@ -25,6 +25,10 @@ public class Participant {
 		currentDefense = SOURCE.BaseDefense;
 
 		useableSkills = SOURCE.Skills;
+		foreach (Skill skill in useableSkills) {
+			skill.user = this;
+		}
+
 		selected = new ActionNone ();
 	}
 
@@ -38,7 +42,7 @@ public class Participant {
 	}
 
 	public void changeSpeed(float buff) {
-		currentSpeed *= buff;
+		currentSpeed = Mathf.Round(buff * currentSpeed);
 	}
 
 	public void resetAttack() {
@@ -46,7 +50,7 @@ public class Participant {
 	}
 
 	public void changeAttack(float buff) {
-		currentAttack *= buff;
+		currentAttack = Mathf.Round(buff * currentAttack);
 	}
 
 	public void clearSelected() {

@@ -6,6 +6,7 @@ using System;
 [Serializable]
 public class BasicGuard : Skill {
 
+	public override Participant user { get; set; }
 	public override int cost {get; set;}
 	private float defense {get; set;}
 
@@ -23,6 +24,9 @@ public class BasicGuard : Skill {
 	}
 	public override string getName () {
 		return "Guard";
+	}
+	public override Skill.SKILLTYPE getType() {
+		return Skill.SKILLTYPE.DEFENSE;
 	}
 	public override string getDescription () {
 		return "A basic Guard skill";

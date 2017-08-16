@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class ActionNone : Skill {
 
+	public override Participant user { get; set; }
 	public override int cost {get; set;}
 
 	public ActionNone () {
@@ -20,6 +21,11 @@ public class ActionNone : Skill {
 	public override string getName () {
 		return "Skip";
 	}
+
+	public override Skill.SKILLTYPE getType() {
+		return Skill.SKILLTYPE.NONE;
+	}
+
 	public override string getDescription () {
 		return "Skip this turn";
 	}

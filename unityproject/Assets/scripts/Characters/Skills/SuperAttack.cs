@@ -4,12 +4,11 @@ using UnityEngine;
 
 public class SuperAttack : Skill {
 
+	public override Participant user { get; set; }
 	public override int cost {get; set;}
-	private float damage { get; set;}
 
 	public SuperAttack(float amount) {
 		cost = System.Convert.ToInt16(amount / 20);
-		damage = amount;
 	}
 
 	public override bool hasPriority ()
@@ -21,12 +20,16 @@ public class SuperAttack : Skill {
 		return "SuperAttack";
 	}
 
+	public override Skill.SKILLTYPE getType() {
+		return Skill.SKILLTYPE.OFFENSE;
+	}
+
 	public override string getDescription() {
 		return "A really big attack";
 	}
 
 	public override void activate(TeamStatus self, TeamStatus enemy) {
-		enemy.reduceHealth(damage);
+		enemy.reduceHealth(2 * user.currentAttack);
 	}
 
 	public override string getEvent() {
