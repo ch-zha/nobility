@@ -5,14 +5,20 @@ using UnityEngine.UI;
 
 public class Dialogue : MonoBehaviour {
 
+	/*To use: Attach this script to the background/image element for a dialogue box. 
+	 * Make sure the text box where the dialogue will be held is a child object of 
+	 * the game object that this script is attached to.*/
+
 	public string DIALOGUE;
 	private Text TARGETBOX;
 	private CanvasGroup AlphaControl;
 
 	private string str;
+
+	public Button butt1, butt2, butt3, butt4;
 	private Button[] RESPONSES;
 
-	public bool textComplete;
+	public bool textComplete {get; set;}
 
 	IEnumerator fadeIn() {
 		while (AlphaControl.alpha < 1) {

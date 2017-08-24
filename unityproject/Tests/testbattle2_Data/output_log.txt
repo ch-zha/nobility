@@ -1,41 +1,42 @@
-Mono path[0] = 'D:/GitHub/nobility/unityproject/Tests/testbattle2_Data/Managed'
-Mono path[1] = 'D:/GitHub/nobility/unityproject/Tests/testbattle2_Data/Mono'
-Mono config path = 'D:/GitHub/nobility/unityproject/Tests/testbattle2_Data/Mono/etc'
-PlayerConnection initialized from D:/GitHub/nobility/unityproject/Tests/testbattle2_Data (debug = 0)
-PlayerConnection initialized network socket : 0.0.0.0 55275
-Multi-casting "[IP] 10.0.0.14 [Port] 55275 [Flags] 3 [Guid] 3037796049 [EditorId] 4227080594 [Version] 1048832 [Id] WindowsPlayer(DESKTOP-OHERGSV) [Debug] 1" to [225.0.0.222:54997]...
-Waiting for connection from host on [0.0.0.0:55275]...
-PlayerConnection accepted from [10.0.0.14] handle:0x38c
-Started listening to [0.0.0.0:55275]
-Using monoOptions --debugger-agent=transport=dt_socket,embedding=1,defer=y,address=0.0.0.0:56049
-PlayerConnection already initialized - listening to [0.0.0.0:55275]
-Player data archive not found at `D:/GitHub/nobility/unityproject/Tests/testbattle2_Data/data.unity3d`, using local filesystemInitialize engine version: 5.6.1f1 (2860b30f0b54)
+Mono path[0] = 'C:/Users/green/Documents/nobility/unityproject/Tests/testbattle2_Data/Managed'
+Mono path[1] = 'C:/Users/green/Documents/nobility/unityproject/Tests/testbattle2_Data/Mono'
+Mono config path = 'C:/Users/green/Documents/nobility/unityproject/Tests/testbattle2_Data/Mono/etc'
+PlayerConnection initialized from C:/Users/green/Documents/nobility/unityproject/Tests/testbattle2_Data (debug = 0)
+PlayerConnection initialized network socket : 0.0.0.0 55053
+Multi-casting "[IP] 136.25.183.87 [Port] 55053 [Flags] 3 [Guid] 294522094 [EditorId] 4227080594 [Version] 1048832 [Id] WindowsPlayer(DESKTOP-S5338EJ) [Debug] 1" to [225.0.0.222:54997]...
+Waiting for connection from host on [0.0.0.0:55053]...
+Timed out. Continuing without host connection.
+Started listening to [0.0.0.0:55053]
+Using monoOptions --debugger-agent=transport=dt_socket,embedding=1,defer=y,address=0.0.0.0:56094
+PlayerConnection already initialized - listening to [0.0.0.0:55053]
+Player data archive not found at `C:/Users/green/Documents/nobility/unityproject/Tests/testbattle2_Data/data.unity3d`, using local filesystemInitialize engine version: 5.6.1f1 (2860b30f0b54)
 GfxDevice: creating device client; threaded=1
 Direct3D:
-    Version:  Direct3D 11.0 [level 11.0]
-    Renderer: NVIDIA GeForce GTX 960M (ID=0x139b)
+    Version:  Direct3D 11.0 [level 11.1]
+    Renderer: NVIDIA GeForce GTX 1050 (ID=0x1c8d)
     Vendor:   NVIDIA
     VRAM:     3072 MB
-    Driver:   21.21.13.6909
+    Driver:   21.21.13.7674
 Begin MonoManager ReloadAssembly
-Platform assembly: D:\GitHub\nobility\unityproject\Tests\testbattle2_Data\Managed\UnityEngine.dll (this message is harmless)
-Loading D:\GitHub\nobility\unityproject\Tests\testbattle2_Data\Managed\UnityEngine.dll into Unity Child Domain
-Platform assembly: D:\GitHub\nobility\unityproject\Tests\testbattle2_Data\Managed\Assembly-CSharp.dll (this message is harmless)
-Loading D:\GitHub\nobility\unityproject\Tests\testbattle2_Data\Managed\Assembly-CSharp.dll into Unity Child Domain
-Platform assembly: D:\GitHub\nobility\unityproject\Tests\testbattle2_Data\Managed\UnityEngine.UI.dll (this message is harmless)
-Loading D:\GitHub\nobility\unityproject\Tests\testbattle2_Data\Managed\UnityEngine.UI.dll into Unity Child Domain
-Platform assembly: D:\GitHub\nobility\unityproject\Tests\testbattle2_Data\Managed\UnityEngine.Networking.dll (this message is harmless)
-Loading D:\GitHub\nobility\unityproject\Tests\testbattle2_Data\Managed\UnityEngine.Networking.dll into Unity Child Domain
-Platform assembly: D:\GitHub\nobility\unityproject\Tests\testbattle2_Data\Managed\UnityEngine.Analytics.dll (this message is harmless)
-Loading D:\GitHub\nobility\unityproject\Tests\testbattle2_Data\Managed\UnityEngine.Analytics.dll into Unity Child Domain
-- Completed reload, in  0.178 seconds
-Platform assembly: D:\GitHub\nobility\unityproject\Tests\testbattle2_Data\Managed\System.Core.dll (this message is harmless)
-Platform assembly: D:\GitHub\nobility\unityproject\Tests\testbattle2_Data\Managed\System.dll (this message is harmless)
+Platform assembly: C:\Users\green\Documents\nobility\unityproject\Tests\testbattle2_Data\Managed\UnityEngine.dll (this message is harmless)
+Loading C:\Users\green\Documents\nobility\unityproject\Tests\testbattle2_Data\Managed\UnityEngine.dll into Unity Child Domain
+Platform assembly: C:\Users\green\Documents\nobility\unityproject\Tests\testbattle2_Data\Managed\Assembly-CSharp.dll (this message is harmless)
+Loading C:\Users\green\Documents\nobility\unityproject\Tests\testbattle2_Data\Managed\Assembly-CSharp.dll into Unity Child Domain
+Platform assembly: C:\Users\green\Documents\nobility\unityproject\Tests\testbattle2_Data\Managed\UnityEngine.UI.dll (this message is harmless)
+Loading C:\Users\green\Documents\nobility\unityproject\Tests\testbattle2_Data\Managed\UnityEngine.UI.dll into Unity Child Domain
+Platform assembly: C:\Users\green\Documents\nobility\unityproject\Tests\testbattle2_Data\Managed\UnityEngine.Networking.dll (this message is harmless)
+Loading C:\Users\green\Documents\nobility\unityproject\Tests\testbattle2_Data\Managed\UnityEngine.Networking.dll into Unity Child Domain
+Platform assembly: C:\Users\green\Documents\nobility\unityproject\Tests\testbattle2_Data\Managed\UnityEngine.Analytics.dll (this message is harmless)
+Loading C:\Users\green\Documents\nobility\unityproject\Tests\testbattle2_Data\Managed\UnityEngine.Analytics.dll into Unity Child Domain
+- Completed reload, in  0.075 seconds
+Platform assembly: C:\Users\green\Documents\nobility\unityproject\Tests\testbattle2_Data\Managed\System.Core.dll (this message is harmless)
+Platform assembly: C:\Users\green\Documents\nobility\unityproject\Tests\testbattle2_Data\Managed\System.dll (this message is harmless)
 desktop: 1920x1080 60Hz; virtual: 1920x1080 at 0,0
 <RI> Initializing input.
+XInput1_3.dll not found. Trying XInput9_1_0.dll instead...
 <RI> Input initialized.
 <RI> Initialized touch support.
-UnloadTime: 18.682682 ms
+UnloadTime: 10.407766 ms
 Team set to [TeamStatus: teamMaxHealth=150]
 UnityEngine.DebugLogHandler:Internal_Log(LogType, String, Object)
 UnityEngine.DebugLogHandler:LogFormat(LogType, Object, String, Object[])
@@ -97,6 +98,421 @@ BattleLoad:Awake() (at D:\GitHub\nobility\unityproject\Assets\scripts\Battling\B
  
 (Filename: D:/GitHub/nobility/unityproject/Assets/scripts/Battling/BattleLoad.cs Line: 40)
 
-Setting up 2 worker threads for Enlighten.
-  Thread -> id: 4918 -> priority: 1 
-  Thread -> id: 7724 -> priority: 1 
+90
+UnityEngine.DebugLogHandler:Internal_Log(LogType, String, Object)
+UnityEngine.DebugLogHandler:LogFormat(LogType, Object, String, Object[])
+UnityEngine.Logger:Log(LogType, Object)
+UnityEngine.Debug:Log(Object)
+<healthChange>c__Iterator0:MoveNext() (at D:\GitHub\nobility\unityproject\Assets\scripts\Battling\UI Scripts\Health.cs:56)
+UnityEngine.SetupCoroutine:InvokeMoveNext(IEnumerator, IntPtr) (at C:\buildslave\unity\build\Runtime\Export\Coroutines.cs:17)
+UnityEngine.MonoBehaviour:StartCoroutine_Auto_Internal(IEnumerator)
+UnityEngine.MonoBehaviour:StartCoroutine(IEnumerator) (at C:\buildslave\unity\build\artifacts\generated\common\runtime\MonoBehaviourBindings.gen.cs:62)
+Health:updateHealth(String, Single) (at D:\GitHub\nobility\unityproject\Assets\scripts\Battling\UI Scripts\Health.cs:79)
+BattleUI:updateUIHealth(Single, Single, Single, Single, Boolean) (at D:\GitHub\nobility\unityproject\Assets\scripts\Battling\UI Scripts\BattleUI.cs:71)
+BattleUI:updateUIHealth(UISnapshot) (at D:\GitHub\nobility\unityproject\Assets\scripts\Battling\UI Scripts\BattleUI.cs:59)
+<waitForHealth>c__Iterator1:MoveNext() (at D:\GitHub\nobility\unityproject\Assets\scripts\Battling\UI Scripts\BattleCoroutines.cs:49)
+UnityEngine.SetupCoroutine:InvokeMoveNext(IEnumerator, IntPtr) (at C:\buildslave\unity\build\Runtime\Export\Coroutines.cs:17)
+UnityEngine.MonoBehaviour:StartCoroutine_Auto_Internal(IEnumerator)
+UnityEngine.MonoBehaviour:StartCoroutine(IEnumerator) (at C:\buildslave\unity\build\artifacts\generated\common\runtime\MonoBehaviourBindings.gen.cs:62)
+BattleCoroutines:runNext() (at D:\GitHub\nobility\unityproject\Assets\scripts\Battling\UI Scripts\BattleCoroutines.cs:25)
+<waitForHealth>c__Iterator1:MoveNext() (at D:\GitHub\nobility\unityproject\Assets\scripts\Battling\UI Scripts\BattleCoroutines.cs:61)
+UnityEngine.SetupCoroutine:InvokeMoveNext(IEnumerator, IntPtr) (at C:\buildslave\unity\build\Runtime\Export\Coroutines.cs:17)
+ 
+(Filename: D:/GitHub/nobility/unityproject/Assets/scripts/Battling/UI Scripts/Health.cs Line: 56)
+
+80
+UnityEngine.DebugLogHandler:Internal_Log(LogType, String, Object)
+UnityEngine.DebugLogHandler:LogFormat(LogType, Object, String, Object[])
+UnityEngine.Logger:Log(LogType, Object)
+UnityEngine.Debug:Log(Object)
+<healthChange>c__Iterator0:MoveNext() (at D:\GitHub\nobility\unityproject\Assets\scripts\Battling\UI Scripts\Health.cs:56)
+UnityEngine.SetupCoroutine:InvokeMoveNext(IEnumerator, IntPtr) (at C:\buildslave\unity\build\Runtime\Export\Coroutines.cs:17)
+UnityEngine.MonoBehaviour:StartCoroutine_Auto_Internal(IEnumerator)
+UnityEngine.MonoBehaviour:StartCoroutine(IEnumerator) (at C:\buildslave\unity\build\artifacts\generated\common\runtime\MonoBehaviourBindings.gen.cs:62)
+Health:updateHealth(String, Single) (at D:\GitHub\nobility\unityproject\Assets\scripts\Battling\UI Scripts\Health.cs:79)
+BattleUI:updateUIHealth(Single, Single, Single, Single, Boolean) (at D:\GitHub\nobility\unityproject\Assets\scripts\Battling\UI Scripts\BattleUI.cs:71)
+BattleUI:updateUIHealth(UISnapshot) (at D:\GitHub\nobility\unityproject\Assets\scripts\Battling\UI Scripts\BattleUI.cs:59)
+<waitForHealth>c__Iterator1:MoveNext() (at D:\GitHub\nobility\unityproject\Assets\scripts\Battling\UI Scripts\BattleCoroutines.cs:49)
+UnityEngine.SetupCoroutine:InvokeMoveNext(IEnumerator, IntPtr) (at C:\buildslave\unity\build\Runtime\Export\Coroutines.cs:17)
+UnityEngine.MonoBehaviour:StartCoroutine_Auto_Internal(IEnumerator)
+UnityEngine.MonoBehaviour:StartCoroutine(IEnumerator) (at C:\buildslave\unity\build\artifacts\generated\common\runtime\MonoBehaviourBindings.gen.cs:62)
+BattleCoroutines:runNext() (at D:\GitHub\nobility\unityproject\Assets\scripts\Battling\UI Scripts\BattleCoroutines.cs:25)
+<waitForHealth>c__Iterator1:MoveNext() (at D:\GitHub\nobility\unityproject\Assets\scripts\Battling\UI Scripts\BattleCoroutines.cs:61)
+UnityEngine.SetupCoroutine:InvokeMoveNext(IEnumerator, IntPtr) (at C:\buildslave\unity\build\Runtime\Export\Coroutines.cs:17)
+ 
+(Filename: D:/GitHub/nobility/unityproject/Assets/scripts/Battling/UI Scripts/Health.cs Line: 56)
+
+70
+UnityEngine.DebugLogHandler:Internal_Log(LogType, String, Object)
+UnityEngine.DebugLogHandler:LogFormat(LogType, Object, String, Object[])
+UnityEngine.Logger:Log(LogType, Object)
+UnityEngine.Debug:Log(Object)
+<healthChange>c__Iterator0:MoveNext() (at D:\GitHub\nobility\unityproject\Assets\scripts\Battling\UI Scripts\Health.cs:56)
+UnityEngine.SetupCoroutine:InvokeMoveNext(IEnumerator, IntPtr) (at C:\buildslave\unity\build\Runtime\Export\Coroutines.cs:17)
+UnityEngine.MonoBehaviour:StartCoroutine_Auto_Internal(IEnumerator)
+UnityEngine.MonoBehaviour:StartCoroutine(IEnumerator) (at C:\buildslave\unity\build\artifacts\generated\common\runtime\MonoBehaviourBindings.gen.cs:62)
+Health:updateHealth(String, Single) (at D:\GitHub\nobility\unityproject\Assets\scripts\Battling\UI Scripts\Health.cs:79)
+BattleUI:updateUIHealth(Single, Single, Single, Single, Boolean) (at D:\GitHub\nobility\unityproject\Assets\scripts\Battling\UI Scripts\BattleUI.cs:71)
+BattleUI:updateUIHealth(UISnapshot) (at D:\GitHub\nobility\unityproject\Assets\scripts\Battling\UI Scripts\BattleUI.cs:59)
+<waitForHealth>c__Iterator1:MoveNext() (at D:\GitHub\nobility\unityproject\Assets\scripts\Battling\UI Scripts\BattleCoroutines.cs:49)
+UnityEngine.SetupCoroutine:InvokeMoveNext(IEnumerator, IntPtr) (at C:\buildslave\unity\build\Runtime\Export\Coroutines.cs:17)
+UnityEngine.MonoBehaviour:StartCoroutine_Auto_Internal(IEnumerator)
+UnityEngine.MonoBehaviour:StartCoroutine(IEnumerator) (at C:\buildslave\unity\build\artifacts\generated\common\runtime\MonoBehaviourBindings.gen.cs:62)
+BattleCoroutines:runNext() (at D:\GitHub\nobility\unityproject\Assets\scripts\Battling\UI Scripts\BattleCoroutines.cs:25)
+<waitForHealth>c__Iterator1:MoveNext() (at D:\GitHub\nobility\unityproject\Assets\scripts\Battling\UI Scripts\BattleCoroutines.cs:61)
+UnityEngine.SetupCoroutine:InvokeMoveNext(IEnumerator, IntPtr) (at C:\buildslave\unity\build\Runtime\Export\Coroutines.cs:17)
+ 
+(Filename: D:/GitHub/nobility/unityproject/Assets/scripts/Battling/UI Scripts/Health.cs Line: 56)
+
+START
+UnityEngine.DebugLogHandler:Internal_Log(LogType, String, Object)
+UnityEngine.DebugLogHandler:LogFormat(LogType, Object, String, Object[])
+UnityEngine.Logger:Log(LogType, Object)
+UnityEngine.Debug:Log(Object)
+Battlemanager:Update() (at D:\GitHub\nobility\unityproject\Assets\scripts\Battling\Battlemanager.cs:161)
+ 
+(Filename: D:/GitHub/nobility/unityproject/Assets/scripts/Battling/Battlemanager.cs Line: 161)
+
+Turn skipped
+UnityEngine.DebugLogHandler:Internal_Log(LogType, String, Object)
+UnityEngine.DebugLogHandler:LogFormat(LogType, Object, String, Object[])
+UnityEngine.Logger:Log(LogType, Object)
+UnityEngine.Debug:Log(Object)
+ActionNone:activate(TeamStatus, TeamStatus) (at D:\GitHub\nobility\unityproject\Assets\scripts\Characters\Skills\ActionNone.cs:15)
+Battlemanager:useSkill(Participant) (at D:\GitHub\nobility\unityproject\Assets\scripts\Battling\Battlemanager.cs:52)
+Battlemanager:doBattle() (at D:\GitHub\nobility\unityproject\Assets\scripts\Battling\Battlemanager.cs:71)
+Battlemanager:Update() (at D:\GitHub\nobility\unityproject\Assets\scripts\Battling\Battlemanager.cs:174)
+ 
+(Filename: D:/GitHub/nobility/unityproject/Assets/scripts/Characters/Skills/ActionNone.cs Line: 15)
+
+Turn skipped
+UnityEngine.DebugLogHandler:Internal_Log(LogType, String, Object)
+UnityEngine.DebugLogHandler:LogFormat(LogType, Object, String, Object[])
+UnityEngine.Logger:Log(LogType, Object)
+UnityEngine.Debug:Log(Object)
+ActionNone:activate(TeamStatus, TeamStatus) (at D:\GitHub\nobility\unityproject\Assets\scripts\Characters\Skills\ActionNone.cs:15)
+Battlemanager:useSkill(Participant) (at D:\GitHub\nobility\unityproject\Assets\scripts\Battling\Battlemanager.cs:52)
+Battlemanager:doBattle() (at D:\GitHub\nobility\unityproject\Assets\scripts\Battling\Battlemanager.cs:71)
+Battlemanager:Update() (at D:\GitHub\nobility\unityproject\Assets\scripts\Battling\Battlemanager.cs:174)
+ 
+(Filename: D:/GitHub/nobility/unityproject/Assets/scripts/Characters/Skills/ActionNone.cs Line: 15)
+
+50
+UnityEngine.DebugLogHandler:Internal_Log(LogType, String, Object)
+UnityEngine.DebugLogHandler:LogFormat(LogType, Object, String, Object[])
+UnityEngine.Logger:Log(LogType, Object)
+UnityEngine.Debug:Log(Object)
+<healthChange>c__Iterator0:MoveNext() (at D:\GitHub\nobility\unityproject\Assets\scripts\Battling\UI Scripts\Health.cs:56)
+UnityEngine.SetupCoroutine:InvokeMoveNext(IEnumerator, IntPtr) (at C:\buildslave\unity\build\Runtime\Export\Coroutines.cs:17)
+UnityEngine.MonoBehaviour:StartCoroutine_Auto_Internal(IEnumerator)
+UnityEngine.MonoBehaviour:StartCoroutine(IEnumerator) (at C:\buildslave\unity\build\artifacts\generated\common\runtime\MonoBehaviourBindings.gen.cs:62)
+Health:updateHealth(String, Single) (at D:\GitHub\nobility\unityproject\Assets\scripts\Battling\UI Scripts\Health.cs:79)
+BattleUI:updateUIHealth(Single, Single, Single, Single, Boolean) (at D:\GitHub\nobility\unityproject\Assets\scripts\Battling\UI Scripts\BattleUI.cs:71)
+BattleUI:updateUIHealth(UISnapshot) (at D:\GitHub\nobility\unityproject\Assets\scripts\Battling\UI Scripts\BattleUI.cs:59)
+<waitForHealth>c__Iterator1:MoveNext() (at D:\GitHub\nobility\unityproject\Assets\scripts\Battling\UI Scripts\BattleCoroutines.cs:49)
+UnityEngine.SetupCoroutine:InvokeMoveNext(IEnumerator, IntPtr) (at C:\buildslave\unity\build\Runtime\Export\Coroutines.cs:17)
+UnityEngine.MonoBehaviour:StartCoroutine_Auto_Internal(IEnumerator)
+UnityEngine.MonoBehaviour:StartCoroutine(IEnumerator) (at C:\buildslave\unity\build\artifacts\generated\common\runtime\MonoBehaviourBindings.gen.cs:62)
+BattleCoroutines:runNext() (at D:\GitHub\nobility\unityproject\Assets\scripts\Battling\UI Scripts\BattleCoroutines.cs:25)
+<waitForHealth>c__Iterator1:MoveNext() (at D:\GitHub\nobility\unityproject\Assets\scripts\Battling\UI Scripts\BattleCoroutines.cs:61)
+UnityEngine.SetupCoroutine:InvokeMoveNext(IEnumerator, IntPtr) (at C:\buildslave\unity\build\Runtime\Export\Coroutines.cs:17)
+ 
+(Filename: D:/GitHub/nobility/unityproject/Assets/scripts/Battling/UI Scripts/Health.cs Line: 56)
+
+START
+UnityEngine.DebugLogHandler:Internal_Log(LogType, String, Object)
+UnityEngine.DebugLogHandler:LogFormat(LogType, Object, String, Object[])
+UnityEngine.Logger:Log(LogType, Object)
+UnityEngine.Debug:Log(Object)
+Battlemanager:Update() (at D:\GitHub\nobility\unityproject\Assets\scripts\Battling\Battlemanager.cs:161)
+ 
+(Filename: D:/GitHub/nobility/unityproject/Assets/scripts/Battling/Battlemanager.cs Line: 161)
+
+Turn skipped
+UnityEngine.DebugLogHandler:Internal_Log(LogType, String, Object)
+UnityEngine.DebugLogHandler:LogFormat(LogType, Object, String, Object[])
+UnityEngine.Logger:Log(LogType, Object)
+UnityEngine.Debug:Log(Object)
+ActionNone:activate(TeamStatus, TeamStatus) (at D:\GitHub\nobility\unityproject\Assets\scripts\Characters\Skills\ActionNone.cs:15)
+Battlemanager:useSkill(Participant) (at D:\GitHub\nobility\unityproject\Assets\scripts\Battling\Battlemanager.cs:52)
+Battlemanager:doBattle() (at D:\GitHub\nobility\unityproject\Assets\scripts\Battling\Battlemanager.cs:71)
+Battlemanager:Update() (at D:\GitHub\nobility\unityproject\Assets\scripts\Battling\Battlemanager.cs:174)
+ 
+(Filename: D:/GitHub/nobility/unityproject/Assets/scripts/Characters/Skills/ActionNone.cs Line: 15)
+
+43
+UnityEngine.DebugLogHandler:Internal_Log(LogType, String, Object)
+UnityEngine.DebugLogHandler:LogFormat(LogType, Object, String, Object[])
+UnityEngine.Logger:Log(LogType, Object)
+UnityEngine.Debug:Log(Object)
+<healthChange>c__Iterator0:MoveNext() (at D:\GitHub\nobility\unityproject\Assets\scripts\Battling\UI Scripts\Health.cs:56)
+UnityEngine.SetupCoroutine:InvokeMoveNext(IEnumerator, IntPtr) (at C:\buildslave\unity\build\Runtime\Export\Coroutines.cs:17)
+UnityEngine.MonoBehaviour:StartCoroutine_Auto_Internal(IEnumerator)
+UnityEngine.MonoBehaviour:StartCoroutine(IEnumerator) (at C:\buildslave\unity\build\artifacts\generated\common\runtime\MonoBehaviourBindings.gen.cs:62)
+Health:updateHealth(String, Single) (at D:\GitHub\nobility\unityproject\Assets\scripts\Battling\UI Scripts\Health.cs:79)
+BattleUI:updateUIHealth(Single, Single, Single, Single, Boolean) (at D:\GitHub\nobility\unityproject\Assets\scripts\Battling\UI Scripts\BattleUI.cs:71)
+BattleUI:updateUIHealth(UISnapshot) (at D:\GitHub\nobility\unityproject\Assets\scripts\Battling\UI Scripts\BattleUI.cs:59)
+<waitForHealth>c__Iterator1:MoveNext() (at D:\GitHub\nobility\unityproject\Assets\scripts\Battling\UI Scripts\BattleCoroutines.cs:49)
+UnityEngine.SetupCoroutine:InvokeMoveNext(IEnumerator, IntPtr) (at C:\buildslave\unity\build\Runtime\Export\Coroutines.cs:17)
+UnityEngine.MonoBehaviour:StartCoroutine_Auto_Internal(IEnumerator)
+UnityEngine.MonoBehaviour:StartCoroutine(IEnumerator) (at C:\buildslave\unity\build\artifacts\generated\common\runtime\MonoBehaviourBindings.gen.cs:62)
+BattleCoroutines:runNext() (at D:\GitHub\nobility\unityproject\Assets\scripts\Battling\UI Scripts\BattleCoroutines.cs:25)
+<waitForHealth>c__Iterator1:MoveNext() (at D:\GitHub\nobility\unityproject\Assets\scripts\Battling\UI Scripts\BattleCoroutines.cs:61)
+UnityEngine.SetupCoroutine:InvokeMoveNext(IEnumerator, IntPtr) (at C:\buildslave\unity\build\Runtime\Export\Coroutines.cs:17)
+ 
+(Filename: D:/GitHub/nobility/unityproject/Assets/scripts/Battling/UI Scripts/Health.cs Line: 56)
+
+23
+UnityEngine.DebugLogHandler:Internal_Log(LogType, String, Object)
+UnityEngine.DebugLogHandler:LogFormat(LogType, Object, String, Object[])
+UnityEngine.Logger:Log(LogType, Object)
+UnityEngine.Debug:Log(Object)
+<healthChange>c__Iterator0:MoveNext() (at D:\GitHub\nobility\unityproject\Assets\scripts\Battling\UI Scripts\Health.cs:56)
+UnityEngine.SetupCoroutine:InvokeMoveNext(IEnumerator, IntPtr) (at C:\buildslave\unity\build\Runtime\Export\Coroutines.cs:17)
+UnityEngine.MonoBehaviour:StartCoroutine_Auto_Internal(IEnumerator)
+UnityEngine.MonoBehaviour:StartCoroutine(IEnumerator) (at C:\buildslave\unity\build\artifacts\generated\common\runtime\MonoBehaviourBindings.gen.cs:62)
+Health:updateHealth(String, Single) (at D:\GitHub\nobility\unityproject\Assets\scripts\Battling\UI Scripts\Health.cs:79)
+BattleUI:updateUIHealth(Single, Single, Single, Single, Boolean) (at D:\GitHub\nobility\unityproject\Assets\scripts\Battling\UI Scripts\BattleUI.cs:71)
+BattleUI:updateUIHealth(UISnapshot) (at D:\GitHub\nobility\unityproject\Assets\scripts\Battling\UI Scripts\BattleUI.cs:59)
+<waitForHealth>c__Iterator1:MoveNext() (at D:\GitHub\nobility\unityproject\Assets\scripts\Battling\UI Scripts\BattleCoroutines.cs:49)
+UnityEngine.SetupCoroutine:InvokeMoveNext(IEnumerator, IntPtr) (at C:\buildslave\unity\build\Runtime\Export\Coroutines.cs:17)
+UnityEngine.MonoBehaviour:StartCoroutine_Auto_Internal(IEnumerator)
+UnityEngine.MonoBehaviour:StartCoroutine(IEnumerator) (at C:\buildslave\unity\build\artifacts\generated\common\runtime\MonoBehaviourBindings.gen.cs:62)
+BattleCoroutines:runNext() (at D:\GitHub\nobility\unityproject\Assets\scripts\Battling\UI Scripts\BattleCoroutines.cs:25)
+<waitForHealth>c__Iterator1:MoveNext() (at D:\GitHub\nobility\unityproject\Assets\scripts\Battling\UI Scripts\BattleCoroutines.cs:61)
+UnityEngine.SetupCoroutine:InvokeMoveNext(IEnumerator, IntPtr) (at C:\buildslave\unity\build\Runtime\Export\Coroutines.cs:17)
+ 
+(Filename: D:/GitHub/nobility/unityproject/Assets/scripts/Battling/UI Scripts/Health.cs Line: 56)
+
+START
+UnityEngine.DebugLogHandler:Internal_Log(LogType, String, Object)
+UnityEngine.DebugLogHandler:LogFormat(LogType, Object, String, Object[])
+UnityEngine.Logger:Log(LogType, Object)
+UnityEngine.Debug:Log(Object)
+Battlemanager:Update() (at D:\GitHub\nobility\unityproject\Assets\scripts\Battling\Battlemanager.cs:161)
+ 
+(Filename: D:/GitHub/nobility/unityproject/Assets/scripts/Battling/Battlemanager.cs Line: 161)
+
+Skill cost exceeds available points
+UnityEngine.DebugLogHandler:Internal_Log(LogType, String, Object)
+UnityEngine.DebugLogHandler:LogFormat(LogType, Object, String, Object[])
+UnityEngine.Logger:Log(LogType, Object)
+UnityEngine.Debug:Log(Object)
+Battlemanager:useSkill(Participant) (at D:\GitHub\nobility\unityproject\Assets\scripts\Battling\Battlemanager.cs:56)
+Battlemanager:doBattle() (at D:\GitHub\nobility\unityproject\Assets\scripts\Battling\Battlemanager.cs:71)
+Battlemanager:Update() (at D:\GitHub\nobility\unityproject\Assets\scripts\Battling\Battlemanager.cs:174)
+ 
+(Filename: D:/GitHub/nobility/unityproject/Assets/scripts/Battling/Battlemanager.cs Line: 56)
+
+Skill cost exceeds available points
+UnityEngine.DebugLogHandler:Internal_Log(LogType, String, Object)
+UnityEngine.DebugLogHandler:LogFormat(LogType, Object, String, Object[])
+UnityEngine.Logger:Log(LogType, Object)
+UnityEngine.Debug:Log(Object)
+Battlemanager:useSkill(Participant) (at D:\GitHub\nobility\unityproject\Assets\scripts\Battling\Battlemanager.cs:56)
+Battlemanager:doBattle() (at D:\GitHub\nobility\unityproject\Assets\scripts\Battling\Battlemanager.cs:71)
+Battlemanager:Update() (at D:\GitHub\nobility\unityproject\Assets\scripts\Battling\Battlemanager.cs:174)
+ 
+(Filename: D:/GitHub/nobility/unityproject/Assets/scripts/Battling/Battlemanager.cs Line: 56)
+
+Skill cost exceeds available points
+UnityEngine.DebugLogHandler:Internal_Log(LogType, String, Object)
+UnityEngine.DebugLogHandler:LogFormat(LogType, Object, String, Object[])
+UnityEngine.Logger:Log(LogType, Object)
+UnityEngine.Debug:Log(Object)
+Battlemanager:useSkill(Participant) (at D:\GitHub\nobility\unityproject\Assets\scripts\Battling\Battlemanager.cs:56)
+Battlemanager:doBattle() (at D:\GitHub\nobility\unityproject\Assets\scripts\Battling\Battlemanager.cs:71)
+Battlemanager:Update() (at D:\GitHub\nobility\unityproject\Assets\scripts\Battling\Battlemanager.cs:174)
+ 
+(Filename: D:/GitHub/nobility/unityproject/Assets/scripts/Battling/Battlemanager.cs Line: 56)
+
+START
+UnityEngine.DebugLogHandler:Internal_Log(LogType, String, Object)
+UnityEngine.DebugLogHandler:LogFormat(LogType, Object, String, Object[])
+UnityEngine.Logger:Log(LogType, Object)
+UnityEngine.Debug:Log(Object)
+Battlemanager:Update() (at D:\GitHub\nobility\unityproject\Assets\scripts\Battling\Battlemanager.cs:161)
+ 
+(Filename: D:/GitHub/nobility/unityproject/Assets/scripts/Battling/Battlemanager.cs Line: 161)
+
+Skill cost exceeds available points
+UnityEngine.DebugLogHandler:Internal_Log(LogType, String, Object)
+UnityEngine.DebugLogHandler:LogFormat(LogType, Object, String, Object[])
+UnityEngine.Logger:Log(LogType, Object)
+UnityEngine.Debug:Log(Object)
+Battlemanager:useSkill(Participant) (at D:\GitHub\nobility\unityproject\Assets\scripts\Battling\Battlemanager.cs:56)
+Battlemanager:doBattle() (at D:\GitHub\nobility\unityproject\Assets\scripts\Battling\Battlemanager.cs:71)
+Battlemanager:Update() (at D:\GitHub\nobility\unityproject\Assets\scripts\Battling\Battlemanager.cs:174)
+ 
+(Filename: D:/GitHub/nobility/unityproject/Assets/scripts/Battling/Battlemanager.cs Line: 56)
+
+Turn skipped
+UnityEngine.DebugLogHandler:Internal_Log(LogType, String, Object)
+UnityEngine.DebugLogHandler:LogFormat(LogType, Object, String, Object[])
+UnityEngine.Logger:Log(LogType, Object)
+UnityEngine.Debug:Log(Object)
+ActionNone:activate(TeamStatus, TeamStatus) (at D:\GitHub\nobility\unityproject\Assets\scripts\Characters\Skills\ActionNone.cs:15)
+Battlemanager:useSkill(Participant) (at D:\GitHub\nobility\unityproject\Assets\scripts\Battling\Battlemanager.cs:52)
+Battlemanager:doBattle() (at D:\GitHub\nobility\unityproject\Assets\scripts\Battling\Battlemanager.cs:71)
+Battlemanager:Update() (at D:\GitHub\nobility\unityproject\Assets\scripts\Battling\Battlemanager.cs:174)
+ 
+(Filename: D:/GitHub/nobility/unityproject/Assets/scripts/Characters/Skills/ActionNone.cs Line: 15)
+
+START
+UnityEngine.DebugLogHandler:Internal_Log(LogType, String, Object)
+UnityEngine.DebugLogHandler:LogFormat(LogType, Object, String, Object[])
+UnityEngine.Logger:Log(LogType, Object)
+UnityEngine.Debug:Log(Object)
+Battlemanager:Update() (at D:\GitHub\nobility\unityproject\Assets\scripts\Battling\Battlemanager.cs:161)
+ 
+(Filename: D:/GitHub/nobility/unityproject/Assets/scripts/Battling/Battlemanager.cs Line: 161)
+
+Skill cost exceeds available points
+UnityEngine.DebugLogHandler:Internal_Log(LogType, String, Object)
+UnityEngine.DebugLogHandler:LogFormat(LogType, Object, String, Object[])
+UnityEngine.Logger:Log(LogType, Object)
+UnityEngine.Debug:Log(Object)
+Battlemanager:useSkill(Participant) (at D:\GitHub\nobility\unityproject\Assets\scripts\Battling\Battlemanager.cs:56)
+Battlemanager:doBattle() (at D:\GitHub\nobility\unityproject\Assets\scripts\Battling\Battlemanager.cs:71)
+Battlemanager:Update() (at D:\GitHub\nobility\unityproject\Assets\scripts\Battling\Battlemanager.cs:174)
+ 
+(Filename: D:/GitHub/nobility/unityproject/Assets/scripts/Battling/Battlemanager.cs Line: 56)
+
+Turn skipped
+UnityEngine.DebugLogHandler:Internal_Log(LogType, String, Object)
+UnityEngine.DebugLogHandler:LogFormat(LogType, Object, String, Object[])
+UnityEngine.Logger:Log(LogType, Object)
+UnityEngine.Debug:Log(Object)
+ActionNone:activate(TeamStatus, TeamStatus) (at D:\GitHub\nobility\unityproject\Assets\scripts\Characters\Skills\ActionNone.cs:15)
+Battlemanager:useSkill(Participant) (at D:\GitHub\nobility\unityproject\Assets\scripts\Battling\Battlemanager.cs:52)
+Battlemanager:doBattle() (at D:\GitHub\nobility\unityproject\Assets\scripts\Battling\Battlemanager.cs:71)
+Battlemanager:Update() (at D:\GitHub\nobility\unityproject\Assets\scripts\Battling\Battlemanager.cs:174)
+ 
+(Filename: D:/GitHub/nobility/unityproject/Assets/scripts/Characters/Skills/ActionNone.cs Line: 15)
+
+Turn skipped
+UnityEngine.DebugLogHandler:Internal_Log(LogType, String, Object)
+UnityEngine.DebugLogHandler:LogFormat(LogType, Object, String, Object[])
+UnityEngine.Logger:Log(LogType, Object)
+UnityEngine.Debug:Log(Object)
+ActionNone:activate(TeamStatus, TeamStatus) (at D:\GitHub\nobility\unityproject\Assets\scripts\Characters\Skills\ActionNone.cs:15)
+Battlemanager:useSkill(Participant) (at D:\GitHub\nobility\unityproject\Assets\scripts\Battling\Battlemanager.cs:52)
+Battlemanager:doBattle() (at D:\GitHub\nobility\unityproject\Assets\scripts\Battling\Battlemanager.cs:71)
+Battlemanager:Update() (at D:\GitHub\nobility\unityproject\Assets\scripts\Battling\Battlemanager.cs:174)
+ 
+(Filename: D:/GitHub/nobility/unityproject/Assets/scripts/Characters/Skills/ActionNone.cs Line: 15)
+
+START
+UnityEngine.DebugLogHandler:Internal_Log(LogType, String, Object)
+UnityEngine.DebugLogHandler:LogFormat(LogType, Object, String, Object[])
+UnityEngine.Logger:Log(LogType, Object)
+UnityEngine.Debug:Log(Object)
+Battlemanager:Update() (at D:\GitHub\nobility\unityproject\Assets\scripts\Battling\Battlemanager.cs:161)
+ 
+(Filename: D:/GitHub/nobility/unityproject/Assets/scripts/Battling/Battlemanager.cs Line: 161)
+
+Turn skipped
+UnityEngine.DebugLogHandler:Internal_Log(LogType, String, Object)
+UnityEngine.DebugLogHandler:LogFormat(LogType, Object, String, Object[])
+UnityEngine.Logger:Log(LogType, Object)
+UnityEngine.Debug:Log(Object)
+ActionNone:activate(TeamStatus, TeamStatus) (at D:\GitHub\nobility\unityproject\Assets\scripts\Characters\Skills\ActionNone.cs:15)
+Battlemanager:useSkill(Participant) (at D:\GitHub\nobility\unityproject\Assets\scripts\Battling\Battlemanager.cs:52)
+Battlemanager:doBattle() (at D:\GitHub\nobility\unityproject\Assets\scripts\Battling\Battlemanager.cs:71)
+Battlemanager:Update() (at D:\GitHub\nobility\unityproject\Assets\scripts\Battling\Battlemanager.cs:174)
+ 
+(Filename: D:/GitHub/nobility/unityproject/Assets/scripts/Characters/Skills/ActionNone.cs Line: 15)
+
+Turn skipped
+UnityEngine.DebugLogHandler:Internal_Log(LogType, String, Object)
+UnityEngine.DebugLogHandler:LogFormat(LogType, Object, String, Object[])
+UnityEngine.Logger:Log(LogType, Object)
+UnityEngine.Debug:Log(Object)
+ActionNone:activate(TeamStatus, TeamStatus) (at D:\GitHub\nobility\unityproject\Assets\scripts\Characters\Skills\ActionNone.cs:15)
+Battlemanager:useSkill(Participant) (at D:\GitHub\nobility\unityproject\Assets\scripts\Battling\Battlemanager.cs:52)
+Battlemanager:doBattle() (at D:\GitHub\nobility\unityproject\Assets\scripts\Battling\Battlemanager.cs:71)
+Battlemanager:Update() (at D:\GitHub\nobility\unityproject\Assets\scripts\Battling\Battlemanager.cs:174)
+ 
+(Filename: D:/GitHub/nobility/unityproject/Assets/scripts/Characters/Skills/ActionNone.cs Line: 15)
+
+37
+UnityEngine.DebugLogHandler:Internal_Log(LogType, String, Object)
+UnityEngine.DebugLogHandler:LogFormat(LogType, Object, String, Object[])
+UnityEngine.Logger:Log(LogType, Object)
+UnityEngine.Debug:Log(Object)
+<healthChange>c__Iterator0:MoveNext() (at D:\GitHub\nobility\unityproject\Assets\scripts\Battling\UI Scripts\Health.cs:56)
+UnityEngine.SetupCoroutine:InvokeMoveNext(IEnumerator, IntPtr) (at C:\buildslave\unity\build\Runtime\Export\Coroutines.cs:17)
+UnityEngine.MonoBehaviour:StartCoroutine_Auto_Internal(IEnumerator)
+UnityEngine.MonoBehaviour:StartCoroutine(IEnumerator) (at C:\buildslave\unity\build\artifacts\generated\common\runtime\MonoBehaviourBindings.gen.cs:62)
+Health:updateHealth(String, Single) (at D:\GitHub\nobility\unityproject\Assets\scripts\Battling\UI Scripts\Health.cs:79)
+BattleUI:updateUIHealth(Single, Single, Single, Single, Boolean) (at D:\GitHub\nobility\unityproject\Assets\scripts\Battling\UI Scripts\BattleUI.cs:71)
+BattleUI:updateUIHealth(UISnapshot) (at D:\GitHub\nobility\unityproject\Assets\scripts\Battling\UI Scripts\BattleUI.cs:59)
+<waitForHealth>c__Iterator1:MoveNext() (at D:\GitHub\nobility\unityproject\Assets\scripts\Battling\UI Scripts\BattleCoroutines.cs:49)
+UnityEngine.SetupCoroutine:InvokeMoveNext(IEnumerator, IntPtr) (at C:\buildslave\unity\build\Runtime\Export\Coroutines.cs:17)
+UnityEngine.MonoBehaviour:StartCoroutine_Auto_Internal(IEnumerator)
+UnityEngine.MonoBehaviour:StartCoroutine(IEnumerator) (at C:\buildslave\unity\build\artifacts\generated\common\runtime\MonoBehaviourBindings.gen.cs:62)
+BattleCoroutines:runNext() (at D:\GitHub\nobility\unityproject\Assets\scripts\Battling\UI Scripts\BattleCoroutines.cs:25)
+<waitForHealth>c__Iterator1:MoveNext() (at D:\GitHub\nobility\unityproject\Assets\scripts\Battling\UI Scripts\BattleCoroutines.cs:61)
+UnityEngine.SetupCoroutine:InvokeMoveNext(IEnumerator, IntPtr) (at C:\buildslave\unity\build\Runtime\Export\Coroutines.cs:17)
+ 
+(Filename: D:/GitHub/nobility/unityproject/Assets/scripts/Battling/UI Scripts/Health.cs Line: 56)
+
+START
+UnityEngine.DebugLogHandler:Internal_Log(LogType, String, Object)
+UnityEngine.DebugLogHandler:LogFormat(LogType, Object, String, Object[])
+UnityEngine.Logger:Log(LogType, Object)
+UnityEngine.Debug:Log(Object)
+Battlemanager:Update() (at D:\GitHub\nobility\unityproject\Assets\scripts\Battling\Battlemanager.cs:161)
+ 
+(Filename: D:/GitHub/nobility/unityproject/Assets/scripts/Battling/Battlemanager.cs Line: 161)
+
+Turn skipped
+UnityEngine.DebugLogHandler:Internal_Log(LogType, String, Object)
+UnityEngine.DebugLogHandler:LogFormat(LogType, Object, String, Object[])
+UnityEngine.Logger:Log(LogType, Object)
+UnityEngine.Debug:Log(Object)
+ActionNone:activate(TeamStatus, TeamStatus) (at D:\GitHub\nobility\unityproject\Assets\scripts\Characters\Skills\ActionNone.cs:15)
+Battlemanager:useSkill(Participant) (at D:\GitHub\nobility\unityproject\Assets\scripts\Battling\Battlemanager.cs:52)
+Battlemanager:doBattle() (at D:\GitHub\nobility\unityproject\Assets\scripts\Battling\Battlemanager.cs:71)
+Battlemanager:Update() (at D:\GitHub\nobility\unityproject\Assets\scripts\Battling\Battlemanager.cs:174)
+ 
+(Filename: D:/GitHub/nobility/unityproject/Assets/scripts/Characters/Skills/ActionNone.cs Line: 15)
+
+Turn skipped
+UnityEngine.DebugLogHandler:Internal_Log(LogType, String, Object)
+UnityEngine.DebugLogHandler:LogFormat(LogType, Object, String, Object[])
+UnityEngine.Logger:Log(LogType, Object)
+UnityEngine.Debug:Log(Object)
+ActionNone:activate(TeamStatus, TeamStatus) (at D:\GitHub\nobility\unityproject\Assets\scripts\Characters\Skills\ActionNone.cs:15)
+Battlemanager:useSkill(Participant) (at D:\GitHub\nobility\unityproject\Assets\scripts\Battling\Battlemanager.cs:52)
+Battlemanager:doBattle() (at D:\GitHub\nobility\unityproject\Assets\scripts\Battling\Battlemanager.cs:71)
+Battlemanager:Update() (at D:\GitHub\nobility\unityproject\Assets\scripts\Battling\Battlemanager.cs:174)
+ 
+(Filename: D:/GitHub/nobility/unityproject/Assets/scripts/Characters/Skills/ActionNone.cs Line: 15)
+
+Turn skipped
+UnityEngine.DebugLogHandler:Internal_Log(LogType, String, Object)
+UnityEngine.DebugLogHandler:LogFormat(LogType, Object, String, Object[])
+UnityEngine.Logger:Log(LogType, Object)
+UnityEngine.Debug:Log(Object)
+ActionNone:activate(TeamStatus, TeamStatus) (at D:\GitHub\nobility\unityproject\Assets\scripts\Characters\Skills\ActionNone.cs:15)
+Battlemanager:useSkill(Participant) (at D:\GitHub\nobility\unityproject\Assets\scripts\Battling\Battlemanager.cs:52)
+Battlemanager:doBattle() (at D:\GitHub\nobility\unityproject\Assets\scripts\Battling\Battlemanager.cs:71)
+Battlemanager:Update() (at D:\GitHub\nobility\unityproject\Assets\scripts\Battling\Battlemanager.cs:174)
+ 
+(Filename: D:/GitHub/nobility/unityproject/Assets/scripts/Characters/Skills/ActionNone.cs Line: 15)
+
+START
+UnityEngine.DebugLogHandler:Internal_Log(LogType, String, Object)
+UnityEngine.DebugLogHandler:LogFormat(LogType, Object, String, Object[])
+UnityEngine.Logger:Log(LogType, Object)
+UnityEngine.Debug:Log(Object)
+Battlemanager:Update() (at D:\GitHub\nobility\unityproject\Assets\scripts\Battling\Battlemanager.cs:161)
+ 
+(Filename: D:/GitHub/nobility/unityproject/Assets/scripts/Battling/Battlemanager.cs Line: 161)
+
+Setting up 4 worker threads for Enlighten.
+  Thread -> id: 13a9c -> priority: 1 
+  Thread -> id: 13e28 -> priority: 1 
+  Thread -> id: 13aa4 -> priority: 1 
+  Thread -> id: 139bc -> priority: 1 
