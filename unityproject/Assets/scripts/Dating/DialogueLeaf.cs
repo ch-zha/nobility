@@ -24,11 +24,9 @@ public class DialogueLeaf : MonoBehaviour {
 
 	//destroy func
 
-	//isEnd
-
 	// Use this for initialization
 	void OnEnable () {
-		TEXTBOX = GameObject.FindGameObjectWithTag ("Dialogue");
+		TEXTBOX = GameObject.FindGameObjectWithTag ("Dialogue").GetComponent<Text>();
 		TEXTBOX.text = PROMPT;
 		if (wait) {
 			StartCoroutine (startTimer (seconds));

@@ -5,8 +5,6 @@ using UnityEngine;
 public class testDialogue : MonoBehaviour {
 
 	//group a button
-
-	public delegate void dialogueResponse() {
 		
 
 	// Use this for initialization
